@@ -5,13 +5,13 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import elemenTerra.Board;
 import elemenTerra.Game;
 import elemenTerra.TileKeys;
 
-public class Render extends JComponent implements KeyListener, TileKeys {
+public class BoardView extends JPanel implements KeyListener, TileKeys {
   private Board board;
   private Game game;
   private int height, width;
@@ -30,7 +30,7 @@ public class Render extends JComponent implements KeyListener, TileKeys {
   Color green = new Color(0, 255, 0);
   Color darkGreen = new Color(0, 120, 0);
 
-  public Render(Board board, int width, int height, int tileSize, int gutter) {
+  public BoardView(Board board, int width, int height, int tileSize, int gutter) {
     this.board = board;
     game = board.getGame();
     this.width = width;
