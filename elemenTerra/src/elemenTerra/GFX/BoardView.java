@@ -17,7 +17,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
   protected Game game;
   protected int height;
   protected int width;
-  protected int tileSize = 32;
+  protected int tileSize = 10;
   protected int gutter;
 
   Color lightBlue = new Color(180, 180, 255);
@@ -50,8 +50,8 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   public void paintComponent(Graphics g) {
     String type;
-    for (int row = 0; row < height; row++) {
-      for (int col = 0; col < width; col++) {
+    for (int row = 0; row < board.getHeight(); row++) {
+      for (int col = 0; col < board.getWidth(); col++) {
         type = board.getTile(col, row).toString();
         if (type.equals(TileKeys.defaultTile)) {
           g.setColor(Color.GRAY);

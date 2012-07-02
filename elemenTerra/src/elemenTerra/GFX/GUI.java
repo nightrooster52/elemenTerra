@@ -11,10 +11,10 @@ public class GUI extends JFrame {
   //constructor
   public GUI(Board board) {
     boardView = new BoardView(board);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(boardView);
     setResizable(false);
     pack();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
 
