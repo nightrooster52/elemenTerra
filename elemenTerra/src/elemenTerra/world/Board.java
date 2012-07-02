@@ -1,7 +1,9 @@
-package elemenTerra;
+package elemenTerra.world;
 
 import java.util.Arrays;
 
+import elemenTerra.Game;
+import elemenTerra.TileKeys;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
 import elemenTerra.entity.GasBrain;

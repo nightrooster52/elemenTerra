@@ -1,5 +1,7 @@
-package elemenTerra;
+package elemenTerra.world;
 import java.util.Random;
+
+import elemenTerra.TileKeys;
 
 public class Maps implements TileKeys{
     

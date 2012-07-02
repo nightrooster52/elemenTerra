@@ -1,4 +1,4 @@
-package elemenTerra;
+package elemenTerra.world;
 import java.util.Scanner;
 
 public class Architect{

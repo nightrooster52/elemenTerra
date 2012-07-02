@@ -1,4 +1,4 @@
-package elemenTerra;
+package elemenTerra.world;
 
 import elemenTerra.entity.Entity;
 
