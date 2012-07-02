@@ -54,7 +54,6 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
         Tile tile = board.getTile(col, row);
-
         /*
         type = tile.toString();
         if (type.equals(TileKeys.defaultTile)) {

@@ -107,7 +107,7 @@ public class Game {
         tick(); // game's tick
         display.repaint(); // redraw game
       }
-    }, 0, 1000);
+    }, 0, 10);
   }
 
   public void tick() {
