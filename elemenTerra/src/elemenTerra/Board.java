@@ -1,12 +1,14 @@
 package elemenTerra;
 import java.util.Arrays;
 
-import Entity.Entity;
-import Entity.GasBrain;
-import Entity.LRBrain;
-import Entity.LiquidBrain;
-import Entity.Player;
-import Entity.SolidBrain;
+import elemenTerra.entity.Ai;
+import elemenTerra.entity.Entity;
+import elemenTerra.entity.GasBrain;
+import elemenTerra.entity.LRBrain;
+import elemenTerra.entity.LiquidBrain;
+import elemenTerra.entity.Player;
+import elemenTerra.entity.SolidBrain;
+
 
 public class Board implements TileKeys{
 

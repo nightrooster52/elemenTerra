@@ -5,9 +5,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import elemenTerra.GFX.Display;
+import elemenTerra.entity.Ai;
+import elemenTerra.entity.Entity;
+import elemenTerra.entity.Player;
 
-import Entity.Entity;
-import Entity.Player;
 
 public class Game{
     Board board;

@@ -1,6 +1,6 @@
 package elemenTerra;
 
-import Entity.Entity;
+import elemenTerra.entity.Entity;
 
 public class Tile{
 

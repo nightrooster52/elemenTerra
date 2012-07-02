@@ -1,6 +1,5 @@
-package Entity;
+package elemenTerra.entity;
 
-import elemenTerra.Ai;
 import elemenTerra.Board;
 
 public class LRBrain extends Brain {

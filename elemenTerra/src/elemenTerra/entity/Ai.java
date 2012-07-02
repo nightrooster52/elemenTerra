@@ -1,8 +1,6 @@
-package elemenTerra;
+package elemenTerra.entity;
 
-import Entity.Brain;
-import Entity.Entity;
-import Entity.SeekerBrain;
+import elemenTerra.Board;
 
 public class Ai extends Entity{
     protected Brain brain;

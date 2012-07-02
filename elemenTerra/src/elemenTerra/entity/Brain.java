@@ -1,8 +1,7 @@
-package Entity;
+package elemenTerra.entity;
 import java.util.Arrays;
 import java.util.Random;
 
-import elemenTerra.Ai;
 import elemenTerra.Board;
 import elemenTerra.Game;
 import elemenTerra.Tile;

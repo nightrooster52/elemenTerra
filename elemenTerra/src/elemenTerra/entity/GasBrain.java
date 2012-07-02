@@ -1,12 +1,11 @@
-package Entity;
+package elemenTerra.entity;
 
-import elemenTerra.Ai;
 import elemenTerra.Board;
 
-public class LiquidBrain extends SeekerBrain{
-    public LiquidBrain(Ai body, Board board){
+public class GasBrain extends SeekerBrain{
+    public GasBrain(Ai body, Board board){
 	super(body, board);
-	this.delay = 10;
+	this.delay = 5;
     }
     public void tick(){
 	wait++;

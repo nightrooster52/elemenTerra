@@ -1,15 +1,20 @@
-package Entity;
+package elemenTerra.entity;
 
-import elemenTerra.Ai;
 import elemenTerra.Board;
 
-public class ESeekerBrain extends Brain{
-    private Entity target;
+public class SeekerBrain extends Brain{
+    protected Entity target;
 
-    public ESeekerBrain(Ai body, Entity target, Board board){
+    public SeekerBrain(Ai body,  Board board){
+	super(body, board);
+	this.target = body;
+    }
+
+    public SeekerBrain(Ai body, Entity target, Board board){
 	super(body, board);
 	this.target = target;
     }
+
     public String goToXY(int targetx, int targety, Board b){
 	int ix = body.getX();
 	int iy = body.getY();
@@ -30,15 +35,15 @@ public class ESeekerBrain extends Brain{
 	//System.out.println(distancey);
 	
 	//set up the dx/dy
-	int attemptx;
-	int attempty;
+	int attemptx = 0;
+	int attempty = 0;
 	String aXstr = "";
 	String aYstr = "";
 	if (distancex > 0){
 	    attemptx = 1;
 	    aXstr = "d";
 	    //System.out.println("Right attempt");
-	}else{
+	}else if (distancex < 0){
 	    attemptx = -1;
 	    aXstr = "a";
 	    //System.out.println("Left attempt");
@@ -48,7 +53,7 @@ public class ESeekerBrain extends Brain{
 	    aYstr = "s";
 
 	    //System.out.println("Down attempt");
-	}else{
+	}else if (distancey < 0){
 	    attempty = -1;
 	    aYstr = "w";
 	    //System.out.println("Up attempt");
@@ -83,6 +88,7 @@ public class ESeekerBrain extends Brain{
 	}
 	return attempt;
     }
+
     public String goToTarget(){
 	int targetx = target.getX();
 	int targety = target.getY();
@@ -90,8 +96,9 @@ public class ESeekerBrain extends Brain{
 	//System.out.println("Ai attempted move");
 	return attempt;
     }
+
     public void tick(){
-	//System.out.println("ESeekerBrain ticked");
+	//System.out.println("SeekerBrain ticked");
 	//System.out.println(board.testString);
 	wait++;
 	if (wait == delay){

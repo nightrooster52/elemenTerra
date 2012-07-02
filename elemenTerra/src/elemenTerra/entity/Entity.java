@@ -1,4 +1,4 @@
-package Entity;
+package elemenTerra.entity;
 public class Entity{
 
     protected int x, y;
