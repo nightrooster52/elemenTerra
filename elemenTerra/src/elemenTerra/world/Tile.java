@@ -1,5 +1,7 @@
 package elemenTerra.world;
 
+import java.awt.Color;
+
 import elemenTerra.entity.Entity;
 
 public class Tile {
@@ -50,5 +52,9 @@ public class Tile {
       vacate();
       occupant.die();
     }
+  }
+
+  public Color getColor() {
+    return occupied ? occupant.getColor() : Color.WHITE;
   }
 }

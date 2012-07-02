@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import elemenTerra.Game;
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
+import elemenTerra.world.Tile;
 
 public class BoardView extends JPanel implements KeyListener, TileKeys {
   protected Board board;
@@ -52,7 +53,10 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
     String type;
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
-        type = board.getTile(col, row).toString();
+        Tile tile = board.getTile(col, row);
+
+        /*
+        type = tile.toString();
         if (type.equals(TileKeys.defaultTile)) {
           g.setColor(Color.GRAY);
         }
@@ -99,6 +103,8 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
         if (type.equals(TileKeys.earthSolid)) {
           g.setColor(darkGreen);
         }
+        */
+        g.setColor(tile.getColor());
         g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
             - gutter, tileSize - gutter);
       }

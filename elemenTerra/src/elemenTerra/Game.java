@@ -59,17 +59,20 @@ public class Game {
 
     int x = px + dx;
     int y = py + dy;
-    //System.out.println(x);      
-    //System.out.println(y);      
+
     if (board.checkTile(x, y)) {
-      //System.out.println("checkTile valid");
+
       Tile targetTile = board.getTile(x, y);
+
       // vacate Entity's current tile
       board.getTile(px, py).vacate();
+
       // move the entity
       e.move(dx, dy);
+
       // occupy the new tile
       targetTile.occupy(e);
+
     } else {
       board.bump(x, y, e);
     }
