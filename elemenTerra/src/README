@@ -1,0 +1,5 @@
+ELEMENTerra
+is a tile based abstraction of states of matter, locked in equilibrium 
+through a rock-paper-scissors style of elemental interaction
+
+the player is an actor of this world
