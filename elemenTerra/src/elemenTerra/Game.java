@@ -8,6 +8,9 @@ import elemenTerra.GFX.GUI;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
 import elemenTerra.entity.Player;
+import elemenTerra.world.Board;
+import elemenTerra.world.Maps;
+import elemenTerra.world.Tile;
 
 public class Game {
   // primitive fields

@@ -8,9 +8,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-import elemenTerra.Board;
 import elemenTerra.Game;
 import elemenTerra.TileKeys;
+import elemenTerra.world.Board;
 
 public class BoardView extends JPanel implements KeyListener, TileKeys {
   protected Board board;

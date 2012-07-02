@@ -2,7 +2,7 @@ package elemenTerra.GFX;
 
 import javax.swing.JFrame;
 
-import elemenTerra.Board;
+import elemenTerra.world.Board;
 
 public class GUI extends JFrame {
 

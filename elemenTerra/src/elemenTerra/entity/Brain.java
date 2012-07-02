@@ -2,9 +2,9 @@ package elemenTerra.entity;
 import java.util.Arrays;
 import java.util.Random;
 
-import elemenTerra.Board;
 import elemenTerra.Game;
-import elemenTerra.Tile;
+import elemenTerra.world.Board;
+import elemenTerra.world.Tile;
 
 public abstract class Brain{
     protected int delay = 10;

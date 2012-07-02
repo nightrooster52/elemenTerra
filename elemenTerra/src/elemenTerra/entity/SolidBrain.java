@@ -1,6 +1,6 @@
 package elemenTerra.entity;
 
-import elemenTerra.Board;
+import elemenTerra.world.Board;
 
 public class SolidBrain extends SeekerBrain{
     public SolidBrain(Ai body, Board board){

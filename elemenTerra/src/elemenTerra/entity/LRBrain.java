@@ -1,6 +1,6 @@
 package elemenTerra.entity;
 
-import elemenTerra.Board;
+import elemenTerra.world.Board;
 
 public class LRBrain extends Brain {
     private String lr; //is this a left or a right turning brain

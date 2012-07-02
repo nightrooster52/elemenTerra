@@ -1,6 +1,6 @@
 package elemenTerra.entity;
 
-import elemenTerra.Board;
+import elemenTerra.world.Board;
 
 public class LiquidBrain extends SeekerBrain{
     public LiquidBrain(Ai body, Board board){
