@@ -80,7 +80,7 @@ public class Maps implements TileKeys {
     String randomElements = "050 050 ";
     Random random = new Random();
     for (int i = 0; i < 2500; i++) {
-      int type = random.nextInt(15);
+      int type = random.nextInt(80);
       String tileStr = TileKeys.defaultTile;
       if (type == 0) {
         tileStr = TileKeys.fireGas;

@@ -155,7 +155,6 @@ public class Board implements TileKeys {
   }
 
   public Game getGame() {
-    //System.out.println("getGame() called");
     return game;
   }
 

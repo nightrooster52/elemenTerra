@@ -39,7 +39,6 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
     height = tileSize * board.getHeight();
 
     game = board.getGame();
-
     setFocusable(true);
     requestFocus();
     addKeyListener(this);
@@ -54,8 +53,9 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
         Tile tile = board.getTile(col, row);
-        /*
+
         type = tile.toString();
+        g.setColor(Color.WHITE);
         if (type.equals(TileKeys.defaultTile)) {
           g.setColor(Color.GRAY);
         }
@@ -102,12 +102,16 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
         if (type.equals(TileKeys.earthSolid)) {
           g.setColor(darkGreen);
         }
-        */
-        g.setColor(tile.getColor());
+
+        //g.setColor(tile.getColor());
         g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
             - gutter, tileSize - gutter);
       }
     }
+  }
+
+  public void setGame(Game game) {
+    this.game = game;
   }
 
   public void keyTyped(KeyEvent e) {
@@ -116,7 +120,6 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   public void keyPressed(KeyEvent e) {
     String input = "" + e.getKeyChar();
-    System.out.println(input);
     game.handleMove(input, board.getPlayer());
   }
 

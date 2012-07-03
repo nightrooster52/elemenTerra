@@ -32,7 +32,6 @@ public class Game {
    */
   public static void main(String[] args) {
     Game g = new Game();
-
     g.start();
   }
 
@@ -44,7 +43,6 @@ public class Game {
   public Game() {
     maps = new Maps();
     board = new Board(maps.randomElements());
-    display = new GUI(board);
     player = board.getPlayer();
     aiArray = board.getAiArray();
     scanner = new Scanner(System.in);
@@ -98,23 +96,24 @@ public class Game {
   }
 
   public void start() {
+    // Now that the game is created
     board.takeGame(this);
     board.gameAi();
+    display = new GUI(board);
 
     gameTimer.schedule(new TimerTask() {
-      @Override
       public void run() {
-        tick(); // game's tick
-        display.repaint(); // redraw game
+        tick();
       }
     }, 0, 10);
   }
 
   public void tick() {
-    //handleMove(scanner.next(), player);
+    handleMove(scanner.next(), player);
     for (Ai element : aiArray) {
       element.tick();
     }
+    display.repaint(); // redraw game
   }
 
   public String toString() {

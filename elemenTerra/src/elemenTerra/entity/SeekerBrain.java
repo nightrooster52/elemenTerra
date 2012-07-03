@@ -71,7 +71,7 @@ public class SeekerBrain extends Brain {
       } else {
         if (!board.getTile(dx, iy).getEntity().toString().equals("X")) {
           attempt = aYstr;
-          System.out.println(board.getTile(dx, iy).getEntity().toString());
+          //System.out.println(board.getTile(dx, iy).getEntity().toString());
         }
       }
     } else {
@@ -82,7 +82,7 @@ public class SeekerBrain extends Brain {
       } else {
         if (!board.getTile(ix, dy).getEntity().toString().equals("X")) {
           attempt = aXstr;
-          System.out.println(board.getTile(ix, dy).getEntity().toString());
+          //System.out.println(board.getTile(ix, dy).getEntity().toString());
         }
       }
     }
