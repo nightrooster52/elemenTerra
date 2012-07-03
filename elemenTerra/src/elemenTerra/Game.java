@@ -109,7 +109,6 @@ public class Game {
   }
 
   public void tick() {
-    handleMove(scanner.next(), player);
     for (Ai element : aiArray) {
       element.tick();
     }
