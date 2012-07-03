@@ -4,12 +4,12 @@ import javax.swing.JFrame;
 
 import elemenTerra.world.Board;
 
-public class GUI extends JFrame {
+public class Display extends JFrame {
 
   protected BoardView boardView;
 
   //constructor
-  public GUI(Board board) {
+  public Display(Board board) {
     boardView = new BoardView(board);
     setContentPane(boardView);
     setResizable(false);

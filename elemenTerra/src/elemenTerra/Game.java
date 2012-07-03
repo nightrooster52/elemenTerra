@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import elemenTerra.GFX.GUI;
+import elemenTerra.GFX.Display;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
 import elemenTerra.entity.Player;
@@ -18,7 +18,7 @@ public class Game {
 
   // object fields
   protected Board board;
-  protected GUI display;
+  protected Display display;
   protected Player player;
   protected Maps maps;
   protected Scanner scanner;
@@ -99,7 +99,7 @@ public class Game {
     // Now that the game is created
     board.takeGame(this);
     board.gameAi();
-    display = new GUI(board);
+    display = new Display(board);
 
     gameTimer.schedule(new TimerTask() {
       public void run() {
