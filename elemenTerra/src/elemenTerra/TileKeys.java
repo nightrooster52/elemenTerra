@@ -1,27 +1,35 @@
 package elemenTerra;
+
 public interface TileKeys {
 
-    
-    String defaultTile = "0";
-    String blockTile = "#";
-    String playerTile = "X"; 
-    String SeekerTile = "+"; 
-    String LTile = "L";
-    String RTile = "R";
+	char defaultTile = '0';
+	char blockTile = '#';
+	char playerTile = 'X';
+	char SeekerTile = '+';
+	char LTile = 'L';
+	char RTile = 'R';
 
-    String fireGas = "r";
-    String fireLiquid = "f";
-    String fireSolid = "F";
+	char fireGas = 'r';
+	char fireLiquid = 'f';
+	char fireSolid = 'F';
 
-    String waterGas = "b";
-    String waterLiquid = "w";
-    String waterSolid = "W";
+	char waterGas = 'b';
+	char waterLiquid = 'w';
+	char waterSolid = 'W';
 
-    String earthGas = "g";
-    String earthLiquid = "e";
-    String earthSolid = "E";
+	char earthGas = 'g';
+	char earthLiquid = 'e';
+	char earthSolid = 'E';
 
-    String[] KeyArray = {defaultTile, blockTile, playerTile, LTile, RTile, fireGas, fireLiquid, fireSolid, waterGas, waterLiquid,  waterSolid, earthGas, earthLiquid, earthSolid};
+	//(+1)%3 for stronger element, (+2)%3 for weaker element
 
+	char[] gasses = {fireGas, waterGas, earthGas};
+	char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
+	char[] solids = {fireSolid, waterSolid, earthSolid};
 
+	char[] fires = {fireGas, fireLiquid, fireSolid};
+	char[] waters = {waterGas, waterLiquid, waterSolid};
+	char[] earths = {earthGas, earthLiquid, earthSolid};
+
+	char[] KeyArray = {defaultTile, blockTile, playerTile, LTile, RTile, fireGas, fireLiquid, fireSolid, waterGas, waterLiquid,  waterSolid, earthGas, earthLiquid, earthSolid};
 }

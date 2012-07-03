@@ -6,55 +6,56 @@ import elemenTerra.entity.Entity;
 
 public class Tile {
 
-  private boolean occupied = false;
-  private Entity occupant = null;
-  private String type = "0";
+	private boolean occupied = false;
+	private Entity occupant = null;
+	private char identity = '0';
 
-  public Tile() {
-  }
+	public Tile() {
+	}
 
-  public Tile(String type) {
-    this.type = type;
-  }
+	public Tile(char identity) {
+		this.identity = identity;
+	}
 
-  public boolean isOccupied() {
-    return occupied;
-  }
+	public boolean isOccupied() {
+		return occupied;
+	}
 
-  public void occupy(Entity e) {
-    occupant = e;
-    occupied = true;
-  }
+	public void occupy(Entity e) {
+		occupant = e;
+		occupied = true;
+	}
 
-  public void vacate() {
-    occupant = null;
-    occupied = false;
-  }
+	public void vacate() {
+		occupant = null;
+		occupied = false;
+	}
 
-  public void mutate(String type) {
-    this.type = type;
-  }
+	public void mutate(char identity) {
+		this.identity = identity;
+	}
 
-  public String getType() {
-    return type;
-  }
+	public char getIdentity() {
+		return identity;
+	}
 
-  public Entity getEntity() {
-    return occupant;
-  }
+	public Entity getEntity() {
+		return occupant;
+	}
 
-  public String toString() {
-    return occupied ? occupant.toString() : type;
-  }
+	@Override
+	public String toString() {
+		return occupied ? occupant.toString() : identity + "";
+	}
 
-  public void die() {
-    if (occupied) {
-      vacate();
-      occupant.die();
-    }
-  }
+	public void die() {
+		if (occupied) {
+			vacate();
+			occupant.die();
+		}
+	}
 
-  public Color getColor() {
-    return occupied ? occupant.getColor() : Color.WHITE;
-  }
+	public Color getColor() {
+		return occupied ? occupant.getColor() : Color.WHITE;
+	}
 }

@@ -13,109 +13,112 @@ import elemenTerra.world.Maps;
 import elemenTerra.world.Tile;
 
 public class Game {
-  // primitive fields
-  protected Ai[] aiArray;
+	// primitive fields
+	protected Ai[] aiArray;
 
-  // object fields
-  protected Board board;
-  protected Display display;
-  protected Player player;
-  protected Maps maps;
-  protected Scanner scanner;
-  protected Timer gameTimer;
-  public String testString = "GAME REFERENCE VALID";
+	// object fields
+	protected Board board;
+	protected Display display;
+	protected Player player;
+	protected Maps maps;
+	protected Scanner scanner;
+	protected Timer gameTimer;
+	public String testString = "GAME REFERENCE VALID";
 
-  /**
-   * 
-   * MAIN METHOD
-   * 
-   */
-  public static void main(String[] args) {
-    Game g = new Game();
-    g.start();
-  }
+	/**
+	 * 
+	 * MAIN METHOD
+	 * 
+	 */
+	public static void main(String[] args) {
+		Game g = new Game();
+		g.start();
+	}
 
-  /**
-   * 
-   * CONSTRUCTOR
-   * 
-   */
-  public Game() {
-    maps = new Maps();
-    board = new Board(maps.randomElements());
-    player = board.getPlayer();
-    aiArray = board.getAiArray();
-    scanner = new Scanner(System.in);
-    gameTimer = new Timer();
-  }
+	/**
+	 * 
+	 * CONSTRUCTOR
+	 * 
+	 */
 
-  public void moveEntity(int dx, int dy, Entity e) {
-    //System.out.println("called moveEntity");
+	public Game() {
+		maps = new Maps();
+		board = new Board(maps.randomElements());
+		player = board.getPlayer();
+		aiArray = board.getAiArray();
+		scanner = new Scanner(System.in);
+		gameTimer = new Timer();
+	}
 
-    int px = e.getX();
-    int py = e.getY();
+	public void moveEntity(int dx, int dy, Entity e) {
+		//System.out.println("called moveEntity");
 
-    int x = px + dx;
-    int y = py + dy;
+		int px = e.getX();
+		int py = e.getY();
 
-    if (board.checkTile(x, y)) {
+		int x = px + dx;
+		int y = py + dy;
 
-      Tile targetTile = board.getTile(x, y);
+		if (board.checkTile(x, y)) {
 
-      // vacate Entity's current tile
-      board.getTile(px, py).vacate();
+			Tile targetTile = board.getTile(x, y);
 
-      // move the entity
-      e.move(dx, dy);
+			// vacate Entity's current tile
+			board.getTile(px, py).vacate();
 
-      // occupy the new tile
-      targetTile.occupy(e);
+			// move the entity
+			e.move(dx, dy);
 
-    } else {
-      board.bump(x, y, e);
-    }
-  }
+			// occupy the new tile
+			targetTile.occupy(e);
 
-  public void handleMove(String s, Entity e) {
-    //System.out.println("called handleMove");
-    if (s.equals("w")) {
-      e.face(s);
-      moveEntity(0, -1, e);
-    } else if (s.equals("a")) {
-      e.face(s);
-      moveEntity(-1, 0, e);
-    } else if (s.equals("s")) {
-      e.face(s);
-      moveEntity(0, 1, e);
-    } else if (s.equals("d")) {
-      e.face(s);
-      moveEntity(1, 0, e);
-    } else {
-      ; // do nothing
-    }
-  }
+		} else {
+			board.bump(x, y, e);
+		}
+	}
 
-  public void start() {
-    // Now that the game is created
-    board.takeGame(this);
-    board.gameAi();
-    display = new Display(board);
+	public void handleMove(char input, Entity e) {
+		//System.out.println("called handleMove");
+		if (input == 'w') {
+			e.face(input);
+			moveEntity(0, -1, e);
+		} else if (input == 'a') {
+			e.face(input);
+			moveEntity(-1, 0, e);
+		} else if (input == 's') {
+			e.face(input);
+			moveEntity(0, 1, e);
+		} else if (input == 'd') {
+			e.face(input);
+			moveEntity(1, 0, e);
+		} else {
+			; // do nothing
+		}
+	}
 
-    gameTimer.schedule(new TimerTask() {
-      public void run() {
-        tick();
-      }
-    }, 0, 10);
-  }
+	public void start() {
+		// Now that the game is created
+		board.takeGame(this);
+		board.gameAi();
+		display = new Display(board);
 
-  public void tick() {
-    for (Ai element : aiArray) {
-      element.tick();
-    }
-    display.repaint(); // redraw game
-  }
+		gameTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				tick();
+			}
+		}, 0, 10);
+	}
 
-  public String toString() {
-    return board.toString();
-  }
+	public void tick() {
+		for (Ai element : aiArray) {
+			element.tick();
+		}
+		display.repaint(); // redraw game
+	}
+
+	@Override
+	public String toString() {
+		return board.toString();
+	}
 }
