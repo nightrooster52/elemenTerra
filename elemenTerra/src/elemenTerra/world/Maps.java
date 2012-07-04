@@ -126,4 +126,21 @@ public class Maps implements TileKeys {
     return randomElements;
   }
 
+  public String randomGas() {
+    String randomElements = "050 050 ";
+    Random random = new Random();
+    for (int i = 0; i < 2500; i++) {
+      char tileStr = TileKeys.defaultTile;
+      int type = random.nextInt(3);
+
+      if (type == 0) {
+        tileStr = TileKeys.fireGas;
+      } else if (type == 1) {
+        //tileStr = TileKeys.waterGas;
+      }
+
+      randomElements += tileStr;
+    }
+    return randomElements;
+  }
 }
