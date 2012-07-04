@@ -143,7 +143,9 @@ public class Board implements TileKeys {
   public List<Entity> getEntities() {
     List<Entity> entityList = new LinkedList<Entity>();
     for (Tile tile : getTiles()) {
-      entityList.add(tile.getEntity());
+      if (tile.isOccupied()) {
+        entityList.add(tile.getEntity());
+      }
     }
     return entityList;
   }

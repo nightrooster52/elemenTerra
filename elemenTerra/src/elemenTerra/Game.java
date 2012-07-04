@@ -95,7 +95,7 @@ public class Game {
     // Now that the game is created
     board.takeGame(this);
     display = new Display(board);
-
+    board.gameAi();
     gameTimer.schedule(new TimerTask() {
       @Override
       public void run() {
