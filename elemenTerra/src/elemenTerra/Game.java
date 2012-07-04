@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import elemenTerra.GFX.BoardView;
 import elemenTerra.GFX.Display;
+import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
 import elemenTerra.entity.Player;
 import elemenTerra.world.Board;
@@ -93,9 +95,16 @@ public class Game {
 
   public void start() {
     // Now that the game is created
-    board.takeGame(this);
     display = new Display(board);
-    board.gameAi();
+
+    ((BoardView) display.getContentPane()).setGame(this);
+
+    for (Entity entity : board.getEntities()) {
+      if (entity instanceof Ai) {
+        ((Ai) entity).getBrain().setGame(this);
+      }
+    }
+
     gameTimer.schedule(new TimerTask() {
       @Override
       public void run() {

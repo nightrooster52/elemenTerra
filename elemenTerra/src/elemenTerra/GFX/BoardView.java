@@ -14,72 +14,70 @@ import elemenTerra.world.Board;
 import elemenTerra.world.Tile;
 
 public class BoardView extends JPanel implements KeyListener, TileKeys {
-	protected Board board;
-	protected Game game;
-	protected int height;
-	protected int width;
-	protected int tileSize = 10;
-	protected int gutter;
+  protected int height;
+  protected int width;
+  protected int tileSize = 10;
+  protected int gutter;
 
-	Color lightBlue = new Color(180, 180, 255);
-	Color blue = new Color(0, 0, 255);
-	Color darkBlue = new Color(0, 0, 120);
+  protected Board board;
+  protected Game game;
 
-	Color lightRed = new Color(255, 180, 180);
-	Color red = new Color(255, 0, 0);
-	Color darkRed = new Color(120, 0, 0);
+  Color lightBlue = new Color(180, 180, 255);
+  Color blue = new Color(0, 0, 255);
+  Color darkBlue = new Color(0, 0, 120);
 
-	Color lightGreen = new Color(180, 255, 180);
-	Color green = new Color(0, 255, 0);
-	Color darkGreen = new Color(0, 120, 0);
+  Color lightRed = new Color(255, 180, 180);
+  Color red = new Color(255, 0, 0);
+  Color darkRed = new Color(120, 0, 0);
 
-	public BoardView(Board board) {
-		this.board = board;
-		width = tileSize * board.getWidth();
-		height = tileSize * board.getHeight();
+  Color lightGreen = new Color(180, 255, 180);
+  Color green = new Color(0, 255, 0);
+  Color darkGreen = new Color(0, 120, 0);
 
-		game = board.getGame();
-		setFocusable(true);
-		requestFocus();
-		addKeyListener(this);
-	}
+  public BoardView(Board board) {
+    this.board = board;
+    width = tileSize * board.getWidth();
+    height = tileSize * board.getHeight();
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(width, height);
-	}
+    setFocusable(true);
+    requestFocus();
+    addKeyListener(this);
+  }
 
-	@Override
-	public void paintComponent(Graphics g) {
-		char identity;
-		for (int row = 0; row < board.getHeight(); row++) {
-			for (int col = 0; col < board.getWidth(); col++) {
-				Tile tile = board.getTile(col, row);
+  @Override
+  public Dimension getPreferredSize() {
+    return new Dimension(width, height);
+  }
 
-				g.setColor(tile.getColor());
-				g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
-						- gutter, tileSize - gutter);
-			}
-		}
-	}
+  @Override
+  public void paintComponent(Graphics g) {
+    for (int row = 0; row < board.getHeight(); row++) {
+      for (int col = 0; col < board.getWidth(); col++) {
+        Tile tile = board.getTile(col, row);
 
-	public void setGame(Game game) {
-		this.game = game;
-	}
+        g.setColor(tile.getColor());
+        g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
+            - gutter, tileSize - gutter);
+      }
+    }
+  }
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		//System.out.println("keyTyped");
-	}
+  public void setGame(Game game) {
+    this.game = game;
+  }
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		char input = e.getKeyChar();
-		game.handleMove(input, board.getPlayer());
-	}
+  @Override
+  public void keyTyped(KeyEvent e) {
+    //System.out.println("keyTyped");
+  }
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		//System.out.println("keyReleased");
-	}
+  @Override
+  public void keyPressed(KeyEvent e) {
+    game.handleMove(e.getKeyChar(), board.getPlayer());
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+    //System.out.println("keyReleased");
+  }
 }

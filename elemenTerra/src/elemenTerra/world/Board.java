@@ -3,7 +3,6 @@ package elemenTerra.world;
 import java.util.LinkedList;
 import java.util.List;
 
-import elemenTerra.Game;
 import elemenTerra.TileKeys;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
@@ -19,7 +18,6 @@ public class Board implements TileKeys {
   private int height;
   private int width;
   private Player player;
-  private Game game;
   private int cursor;
   private Boolean playerHasSpawned = false;
 
@@ -90,11 +88,7 @@ public class Board implements TileKeys {
   }
 
   public boolean checkTile(int x, int y) {
-    //System.out.println("called checkTile")
-    if (inBounds(x, y)) {
-      return !board[y][x].isOccupied();
-    }
-    return false;
+    return inBounds(x, y) && !board[y][x].isOccupied();
   }
 
   public boolean inBounds(int x, int y) {
@@ -106,22 +100,6 @@ public class Board implements TileKeys {
       board[y][x].getEntity().bump(e);
     }
 
-  }
-
-  public void gameAi() {
-    for (Entity entity : getEntities()) {
-      if (entity instanceof Ai) {
-        ((Ai) entity).getBrain().setGame(game);
-      }
-    }
-  }
-
-  public void takeGame(Game g) {
-    game = g;
-  }
-
-  public Game getGame() {
-    return game;
   }
 
   public Tile getTile(int x, int y) {
