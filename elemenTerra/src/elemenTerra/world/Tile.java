@@ -31,7 +31,7 @@ public class Tile {
 		occupied = false;
 	}
 
-	public void mutate(char identity) {
+	public void setIdentity(char identity) {
 		this.identity = identity;
 	}
 
