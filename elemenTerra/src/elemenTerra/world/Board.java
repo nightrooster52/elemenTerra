@@ -6,11 +6,7 @@ import java.util.List;
 import elemenTerra.TileKeys;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
-import elemenTerra.entity.GasBrain;
-import elemenTerra.entity.LRBrain;
-import elemenTerra.entity.LiquidBrain;
 import elemenTerra.entity.Player;
-import elemenTerra.entity.SolidBrain;
 
 public class Board implements TileKeys {
 
@@ -44,40 +40,24 @@ public class Board implements TileKeys {
         char identity = map.charAt(cursor++);
         Tile tile = new Tile();
         board[row][col] = tile;
+
         if (identity == TileKeys.blockTile) {
+
           tile.setIdentity(identity);
           tile.occupy(new Entity(col, row, TileKeys.blockTile));
+
         } else if (identity == TileKeys.playerTile) {
+
           player = new Player(col, row, TileKeys.playerTile);
           tile.occupy(player);
           playerHasSpawned = true;
+
         } else if (identity != TileKeys.defaultTile) {
-          Ai ai = new Ai(col, row, this);
-          tile.occupy(ai);
-          ai.setIdentity(identity);
-          char aiIdentity = ai.getIdentity();
-          if (aiIdentity == TileKeys.SeekerTile) {
-            ai.setTarget(player);
-          } else if (aiIdentity == TileKeys.LTile) {
-            ai.setBrain(new LRBrain(ai, this, "left"));
-          } else if (aiIdentity == TileKeys.RTile) {
-            ai.setBrain(new LRBrain(ai, this, "right"));
-          } else if (aiIdentity == TileKeys.fireGas
-              || aiIdentity == TileKeys.earthGas
-              || aiIdentity == TileKeys.waterGas) {
-            ai.setBrain(new GasBrain(ai, this));
-          } else if (aiIdentity == TileKeys.fireLiquid
-              || aiIdentity == TileKeys.earthLiquid
-              || aiIdentity == TileKeys.waterLiquid) {
-            ai.setBrain(new LiquidBrain(ai, this));
-          } else if (aiIdentity == TileKeys.fireSolid
-              || aiIdentity == TileKeys.earthSolid
-              || aiIdentity == TileKeys.waterSolid) {
-            ai.setBrain(new SolidBrain(ai, this));
-          }
+          tile.occupy(Ai.parse(identity, this, col, row));
         }
       }
     }
+
     if (playerHasSpawned == false) {
       board[10][10].vacate();
       player = new Player(10, 10, TileKeys.playerTile);
