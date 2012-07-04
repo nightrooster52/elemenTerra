@@ -7,6 +7,7 @@ public class Entity {
   protected int x, y;
   protected char identity = '#';
   protected char facing = 'w';
+  protected Color color = Color.gray;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
 
@@ -85,6 +86,11 @@ public class Entity {
   }
 
   public Color getColor() {
-    return Color.GRAY;
+    return color;
   }
+
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
 }

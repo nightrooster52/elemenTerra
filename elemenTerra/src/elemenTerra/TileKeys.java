@@ -1,35 +1,57 @@
 package elemenTerra;
 
+import java.awt.Color;
+
 public interface TileKeys {
 
-	char defaultTile = '0';
-	char blockTile = '#';
-	char playerTile = 'X';
-	char SeekerTile = '+';
-	char LTile = 'L';
-	char RTile = 'R';
+  Color lightBlue = new Color(180, 180, 255);
+  Color blue = new Color(0, 0, 255);
+  Color darkBlue = new Color(0, 0, 120);
 
-	char fireGas = 'r';
-	char fireLiquid = 'f';
-	char fireSolid = 'F';
+  Color lightRed = new Color(255, 180, 180);
+  Color red = new Color(255, 0, 0);
+  Color darkRed = new Color(120, 0, 0);
 
-	char waterGas = 'b';
-	char waterLiquid = 'w';
-	char waterSolid = 'W';
+  Color lightGreen = new Color(180, 255, 180);
+  Color green = new Color(0, 255, 0);
+  Color darkGreen = new Color(0, 120, 0);
 
-	char earthGas = 'g';
-	char earthLiquid = 'e';
-	char earthSolid = 'E';
+  char defaultTile = '0';
+  char blockTile = '#';
+  char playerTile = 'X';
+  char SeekerTile = '+';
+  char LTile = 'L';
+  char RTile = 'R';
 
-	//(+1)%3 for stronger element, (+2)%3 for weaker element
+  char fireGas = 'r';
+  char fireLiquid = 'f';
+  char fireSolid = 'F';
 
-	char[] gasses = {fireGas, waterGas, earthGas};
-	char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
-	char[] solids = {fireSolid, waterSolid, earthSolid};
+  char waterGas = 'b';
+  char waterLiquid = 'w';
+  char waterSolid = 'W';
 
-	char[] fires = {fireGas, fireLiquid, fireSolid};
-	char[] waters = {waterGas, waterLiquid, waterSolid};
-	char[] earths = {earthGas, earthLiquid, earthSolid};
+  char earthGas = 'g';
+  char earthLiquid = 'e';
+  char earthSolid = 'E';
 
-	char[] KeyArray = {defaultTile, blockTile, playerTile, LTile, RTile, fireGas, fireLiquid, fireSolid, waterGas, waterLiquid,  waterSolid, earthGas, earthLiquid, earthSolid};
+  //(+1)%3 for stronger element, (+2)%3 for weaker element
+
+  char[] gasses = { TileKeys.fireGas, TileKeys.waterGas, TileKeys.earthGas };
+  char[] liquids = { TileKeys.fireLiquid, TileKeys.waterLiquid,
+      TileKeys.earthLiquid };
+  char[] solids = { TileKeys.fireSolid, TileKeys.waterSolid,
+      TileKeys.earthSolid };
+
+  char[] fires = { TileKeys.fireGas, TileKeys.fireLiquid, TileKeys.fireSolid };
+  char[] waters = { TileKeys.waterGas, TileKeys.waterLiquid,
+      TileKeys.waterSolid };
+  char[] earths = { TileKeys.earthGas, TileKeys.earthLiquid,
+      TileKeys.earthSolid };
+
+  char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
+      TileKeys.playerTile, TileKeys.LTile, TileKeys.RTile, TileKeys.fireGas,
+      TileKeys.fireLiquid, TileKeys.fireSolid, TileKeys.waterGas,
+      TileKeys.waterLiquid, TileKeys.waterSolid, TileKeys.earthGas,
+      TileKeys.earthLiquid, TileKeys.earthSolid };
 }

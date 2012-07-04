@@ -1,6 +1,5 @@
 package elemenTerra.GFX;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -21,18 +20,6 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   protected Board board;
   protected Game game;
-
-  Color lightBlue = new Color(180, 180, 255);
-  Color blue = new Color(0, 0, 255);
-  Color darkBlue = new Color(0, 0, 120);
-
-  Color lightRed = new Color(255, 180, 180);
-  Color red = new Color(255, 0, 0);
-  Color darkRed = new Color(120, 0, 0);
-
-  Color lightGreen = new Color(180, 255, 180);
-  Color green = new Color(0, 255, 0);
-  Color darkGreen = new Color(0, 120, 0);
 
   public BoardView(Board board) {
     this.board = board;
