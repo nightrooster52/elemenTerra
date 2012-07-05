@@ -35,40 +35,15 @@ public interface TileKeys {
   char earthLiquid = 'e';
   char earthSolid = 'E';
 
-  //(+1)%3 for stronger element, (+2)%3 for weaker element
-  char[][] interactionKey ={
-		  {fireGas, fireLiquid, fireSolid},
-		  {waterGas, waterLiquid, waterSolid},
-		  {earthGas, earthLiquid, earthSolid}
-	  };
+  char[] fireStates = {fireGas, fireLiquid, fireSolid};
+  char[] waterStates = {waterGas, waterLiquid, waterSolid};
+  char[] earthStates = {earthGas, earthLiquid, earthSolid};
+  char[] junkCharArray = {'Z'}; 
   
-  public char[] strongerStates(char identity){
-	  for (int element = 0; element < 3; element++){
-			for (int state = 0; state < 3; state++){
-				if identity == interactionKey[element][state]{
-					return interactionKey[(element+1)%3];
-					}
-				}		
-	  		}
-  		}
-  public char[] weakerStates(char identity){
-	  for (int element = 0; element < 3; element++){
-		  for (int state = 0; state < 3; state++){
-			  if identity == interactionKey[element][state]{
-				  return interactionKey[(element+2)%3];
-				  }
-			  }			
-		  }
-  }
-  public char[] analagousStates(char identity){
-	  for (int element = 0; element < 3; element++){
-			for (int state = 0; state < 3; state++){
-				if identity == interactionKey[element][state]{
-					return interactionKey[(element)];
-					}	
-				}	
-			}	
-  		}
+  
+  char[][] interactionKey = {fireStates, waterStates, earthStates };
+  
+  
   
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
