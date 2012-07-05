@@ -51,11 +51,11 @@ public interface TileKeys {
 				}		
 	  		}
   		}
-  public char[] strongerStates(char identity){
+  public char[] weakerStates(char identity){
 	  for (int element = 0; element < 3; element++){
 		  for (int state = 0; state < 3; state++){
 			  if identity == interactionKey[element][state]{
-				  return interactionKey[(element+1)%3];
+				  return interactionKey[(element+2)%3];
 				  }
 			  }			
 		  }

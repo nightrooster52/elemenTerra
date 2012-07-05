@@ -7,6 +7,10 @@ public class Ai extends Entity {
   protected Brain brain;
   protected Board board;
   protected Entity target;
+  protected char[] strongerStates;
+  protected char[] weakerStates;
+  protected char[] analagousStates;
+  
 
   public Ai(int x, int y, Board b) {
     super(x, y);
@@ -40,10 +44,49 @@ public class Ai extends Entity {
   public void setBrain(Brain brain) {
     this.brain = brain;
   }
+  
+  /*sets the state interaction arrays for easy access in collisions
+   * I was wondering if we could use a hashmap here instead of arrays to make running collision logic faster?
+   * 
+   */
+  protected void setInteractionKeys(){
+	  analagousStates = analagousStates(identity);
+	  weakerStates = weakerStates(identity);
+	  strongerStates = strongerStates(identity);
+  }
+
+  protected char[] strongerStates(char identity){
+	  for (int element = 0; element < 3; element++){
+			for (int state = 0; state < 3; state++){
+				if identity == TileKeys.interactionKey[element][state]{
+					return TileKeys.interactionKey[(element+1)%3];
+					}
+				}		
+	  		}
+  		}
+  protected char[] weakerStates(char identity){
+	  for (int element = 0; element < 3; element++){
+		  for (int state = 0; state < 3; state++){
+			  if identity == TileKeys.interactionKey[element][state]{
+				  return TileKeys.interactionKey[(element+2)%3];
+				  }
+			  }			
+		  }
+  }
+  protected char[] analagousStates(char identity){
+	  for (int element = 0; element < 3; element++){
+			for (int state = 0; state < 3; state++){
+				if identity == TileKeys.interactionKey[element][state]{
+					return TileKeys.interactionKey[(element)];
+					}	
+				}	
+			}	
+  		}
 
   public static Ai parse(char c, Board board, int x, int y) {
     Ai ai = new Ai(x, y, board); // TODO: this
     ai.setIdentity(c);
+    ai.setInteractionKeys();
 
     switch (c) {
     case TileKeys.fireGas:
