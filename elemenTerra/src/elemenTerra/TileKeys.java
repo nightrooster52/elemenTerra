@@ -36,18 +36,40 @@ public interface TileKeys {
   char earthSolid = 'E';
 
   //(+1)%3 for stronger element, (+2)%3 for weaker element
-
-  char[] gasses = { TileKeys.fireGas, TileKeys.waterGas, TileKeys.earthGas };
-  char[] liquids = { TileKeys.fireLiquid, TileKeys.waterLiquid,
-      TileKeys.earthLiquid };
-  char[] solids = { TileKeys.fireSolid, TileKeys.waterSolid,
-      TileKeys.earthSolid };
-
-  char[] fires = { TileKeys.fireGas, TileKeys.fireLiquid, TileKeys.fireSolid };
-  char[] waters = { TileKeys.waterGas, TileKeys.waterLiquid,
-      TileKeys.waterSolid };
-  char[] earths = { TileKeys.earthGas, TileKeys.earthLiquid,
-      TileKeys.earthSolid };
+  char[][] interactionKey ={
+		  {fireGas, fireLiquid, fireSolid},
+		  {waterGas, waterLiquid, waterSolid},
+		  {earthGas, earthLiquid, earthSolid}
+	  };
+  
+  public char[] strongerStates(char identity){
+	  for (int element = 0; element < 3; element++){
+			for (int state = 0; state < 3; state++){
+				if identity == interactionKey[element][state]{
+					return interactionKey[(element+1)%3];
+					}
+				}		
+	  		}
+  		}
+  public char[] strongerStates(char identity){
+	  for (int element = 0; element < 3; element++){
+		  for (int state = 0; state < 3; state++){
+			  if identity == interactionKey[element][state]{
+				  return interactionKey[(element+1)%3];
+				  }
+			  }			
+		  }
+  }
+  public char[] analagousStates(char identity){
+	  for (int element = 0; element < 3; element++){
+			for (int state = 0; state < 3; state++){
+				if identity == interactionKey[element][state]{
+					return interactionKey[(element)];
+					}	
+				}	
+			}	
+  		}
+  
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
       TileKeys.playerTile, TileKeys.LTile, TileKeys.RTile, TileKeys.fireGas,
