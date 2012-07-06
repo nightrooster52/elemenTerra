@@ -1,7 +1,11 @@
 package elemenTerra.entity;
 
 public abstract class Decisions {
+    private Player player;
 
+    public Decisions(Player p){
+	this.player = p;
+    }
     //gas interactions
     public void analagousGas(Entity e){
 	;

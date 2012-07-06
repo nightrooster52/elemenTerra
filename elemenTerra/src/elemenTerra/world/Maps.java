@@ -87,7 +87,7 @@ public class Maps implements TileKeys {
     Random random = new Random();
     for (int i = 0; i < 2500; i++) {
       char tileStr;
-      int type = random.nextInt(80);
+      int type = random.nextInt(40);
 
       switch (type) {
       case 0:
