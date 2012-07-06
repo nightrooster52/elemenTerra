@@ -75,6 +75,7 @@ public class Entity {
     }
     return TileKeys.junkCharArray;
   }
+
   protected char[] strongerStates(char identity){
     for (int element = 0; element < 3; element++){
 	for (int state = 0; state < 3; state++){
@@ -85,6 +86,7 @@ public class Entity {
     }
     return TileKeys.junkCharArray;
   }
+
   protected char[] weakerStates(char identity){
     for (int element = 0; element < 3; element++){
 	for (int state = 0; state < 3; state++){
@@ -95,6 +97,7 @@ public class Entity {
     }
     return TileKeys.junkCharArray;
   }
+
   protected void setInteractionKeys(){
 	  analagousStates = analagousStates(identity);
 	  weakerStates = weakerStates(identity);
