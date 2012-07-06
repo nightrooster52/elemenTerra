@@ -90,7 +90,7 @@ public class SeekerBrain extends Brain {
     } else {
 	boolean xory = random.nextBoolean();
 	if (xory){
-	    attempt = aXchar;
+	    attempt = aYchar;
 	}else {
 	    attempt = aXchar;//aYchar
 	}
