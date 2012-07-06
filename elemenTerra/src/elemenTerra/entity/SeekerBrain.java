@@ -39,6 +39,7 @@ public class SeekerBrain extends Brain {
     int attempty = 0;
     char aXchar = 'Z';
     char aYchar = 'Z';
+
     if (distancex > 0) {
       attemptx = 1;
       aXchar = 'd';
@@ -47,6 +48,16 @@ public class SeekerBrain extends Brain {
       attemptx = -1;
       aXchar = 'a';
       //System.out.println("Left attempt");
+    } else {
+	System.out.println("x's equivalent");
+	lr = random.nextBoolean();
+	if (lr){
+	    attemptx = 1;
+	    aXchar = 'd';
+	}else{
+	    attemptx = -1;
+	    aXchar = 'a';
+	}
     }
     if (distancey > 0) {
       attempty = 1;
@@ -57,34 +68,52 @@ public class SeekerBrain extends Brain {
       attempty = -1;
       aYchar = 'w';
       //System.out.println("Up attempt");
+    } else {
+	System.out.println("y's equivalent");
+	ud = random.nextBoolean();
+	if (ud){
+	    attempty = 1;
+	    aYchar = 's';
+	}else{
+	    attempty = -1;
+	    aYchar = 'w';
+	}
     }
 
     int dx = ix + attemptx;
     int dy = iy + attempty;
     char attempt = 'Z';
     //farther in x than y distance (squared for absolute value), x dominates
-    if (distancex * distancex > distancey * distancey) {
+    if (distancex*distancex > distancey*distancey) {
       //System.out.println("distance larger: y");
       if (board.checkTile(dx, iy)) {
         //System.out.println("check x valid");
         attempt = aXchar;
       } else {
-        if (!board.getTile(dx, iy).getEntity().toString().equals("X")) {
+	  if (!board.getTile(dx, iy).getEntity().toString().equals(body.getIdentity())) {
           attempt = aYchar;
           //System.out.println(board.getTile(dx, iy).getEntity().toString());
         }
       }
-    } else {
+    } else if (distancex*distancex < distancey*distancey) {
       //System.out.println("distance larger: y");
       if (board.checkTile(ix, dy)) {
         //System.out.println("check y valid");
         attempt = aYchar;
       } else {
-        if (!board.getTile(ix, dy).getEntity().toString().equals("X")) {
+	  if (!board.getTile(ix, dy).getEntity().toString().equals(body.getIdentity())) {
           attempt = aXchar;
           //System.out.println(board.getTile(ix, dy).getEntity().toString());
         }
       }
+    } else {
+	System.out.print("diagonal");
+	xory = random.nextBoolean();
+	if (xory){
+	    attempt = aXchar;
+	}else {
+	    attempt = aXchar;//aYchar
+	}
     }
     return attempt;
   }

@@ -43,16 +43,16 @@ public abstract class Brain {
     return false;
   }
 
-  public Entity closestEntity(char type) {
+  public Entity closestEntity(char type){
     //takes a char type (identity) because it may be used to search for other types than body.identity
     Entity entity;
     for (int range = 1; range < 10; range++) {
       Tile[] shell = searchTiles(range);
-      int lookfirst = random.nextInt(shell.length - 1); //randomizes the first direction looked, so there isn't an upper-left dx bias
+      int lookfirst = random.nextInt(shell.length );// - 1 //randomizes the first direction looked, so there isn't an upper-left dx bias
       //System.out.println("");
       //System.out.println("cursor ints:");
-      for (int searched = 0; searched < shell.length; searched++) {
-        int cursor = (searched + lookfirst) % (shell.length - 1);
+      for (int searched = 1; searched <= shell.length; searched++) {
+	  int cursor = (searched + lookfirst) % (shell.length);//-1
         //System.out.print(cursor);
         if (shell[cursor].isOccupied()) {
           entity = shell[cursor].getEntity();
