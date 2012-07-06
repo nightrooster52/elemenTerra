@@ -1,5 +1,5 @@
-public class SolidDecisions extends PlayerDecisions{
-    public SolidDecisions(){
+public class SolidPlayerDecisions extends Decisions{
+    public SolidPlayerDecisions(){
 	super();
     }
 

@@ -50,7 +50,7 @@ public class SeekerBrain extends Brain {
       //System.out.println("Left attempt");
     } else {
 	System.out.println("x's equivalent");
-	boolean lr = random.nextBoolean();
+	lr = random.nextBoolean();
 	if (lr){
 	    attemptx = 1;
 	    aXchar = 'd';
@@ -70,7 +70,7 @@ public class SeekerBrain extends Brain {
       //System.out.println("Up attempt");
     } else {
 	System.out.println("y's equivalent");
-	boolean ud = random.nextBoolean();
+	ud = random.nextBoolean();
 	if (ud){
 	    attempty = 1;
 	    aYchar = 's';
@@ -109,7 +109,7 @@ public class SeekerBrain extends Brain {
       }
     } else {
 	System.out.print("diagonal");
-	boolean xory = random.nextBoolean();
+	xory = random.nextBoolean();
 	if (xory){
 	    attempt = aXchar;
 	}else {

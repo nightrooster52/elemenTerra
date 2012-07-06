@@ -11,7 +11,6 @@ public class GasBrain extends SeekerBrain {
 	@Override
 	public void tick() {
 		wait++;
-
 		if (wait == delay) {
 			wait = 0;
 			target = closestEntity(body.getIdentity());

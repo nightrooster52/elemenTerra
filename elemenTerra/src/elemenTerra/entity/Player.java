@@ -1,6 +1,6 @@
 package elemenTerra.entity;
 public class Player extends Entity{
-
+    
     public Player(int x, int y){
 	super(x, y);
 	identity = 'X';
@@ -14,6 +14,5 @@ public class Player extends Entity{
 	setInteractionKeys();
 	color = e.getColor();
     }
-    
     
 }

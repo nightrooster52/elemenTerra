@@ -64,7 +64,7 @@ public class Board implements TileKeys {
       board[10][10].occupy(player);
       playerHasSpawned = true;
     }
-    System.out.println("EntityGen complete");
+    System.out.println("print test");
   }
 
   public boolean checkTile(int x, int y) {

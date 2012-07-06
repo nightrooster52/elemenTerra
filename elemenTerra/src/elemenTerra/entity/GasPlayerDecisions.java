@@ -1,5 +1,5 @@
-public class GasDecisions extends PlayerDecisions{
-    public GasDecisions(){
+public class GasPlayerDecisions extends Decisions{
+    public GasPlayerDecisions(){
 	super();
     }
 
