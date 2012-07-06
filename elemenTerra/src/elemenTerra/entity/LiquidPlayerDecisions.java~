@@ -1,0 +1,7 @@
+public class LiquidDecisions extends PlayerDecisions{
+    public LiquidDecisions(){
+	super();
+    }
+
+
+}

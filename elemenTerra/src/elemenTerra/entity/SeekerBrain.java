@@ -6,6 +6,7 @@ public class SeekerBrain extends Brain {
   protected Entity target;
 
   public SeekerBrain(Ai body, Board board) {
+      System.out.println("brain generation print test");
     super(body, board);
     target = body;
   }
@@ -82,6 +83,7 @@ public class SeekerBrain extends Brain {
 
     int dx = ix + attemptx;
     int dy = iy + attempty;
+
     char attempt = 'Z';
     //farther in x than y distance (squared for absolute value), x dominates
     if (distancex*distancex > distancey*distancey) {
