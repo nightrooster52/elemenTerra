@@ -41,8 +41,8 @@ public class Game {
 
   public Game() {
     maps = new Maps();
-    //board = new Board(maps.randomElements());
-    board = new Board(maps.randomGas());
+    board = new Board(maps.randomElements());
+    //board = new Board(maps.randomGas());
     //board = new Board(maps.elementMap);
     player = board.getPlayer();
     scanner = new Scanner(System.in);

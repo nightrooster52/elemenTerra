@@ -8,7 +8,7 @@ public class Entity {
   protected int x, y;
   protected char identity = '#';
   protected char facing = 'w';
-  protected Color color = Color.gray;
+  protected Color color = Color.WHITE;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
 

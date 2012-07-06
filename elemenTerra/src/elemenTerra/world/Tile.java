@@ -56,6 +56,6 @@ public class Tile {
 	}
 
 	public Color getColor() {
-		return occupied ? occupant.getColor() : Color.WHITE;
+		return occupied ? occupant.getColor() : Color.gray;
 	}
 }
