@@ -43,7 +43,7 @@ public interface TileKeys {
   
   char[][] interactionKey = {fireStates, waterStates, earthStates };
   
-  
+
   
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,

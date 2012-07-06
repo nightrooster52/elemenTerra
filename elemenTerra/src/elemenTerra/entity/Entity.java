@@ -1,5 +1,6 @@
 package elemenTerra.entity;
 
+import elemenTerra.TileKeys;
 import java.awt.Color;
 
 public class Entity {
@@ -10,6 +11,11 @@ public class Entity {
   protected Color color = Color.gray;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
+
+  protected char[] strongerStates;
+  protected char[] weakerStates;
+  protected char[] analagousStates;
+
 
   public Entity(int x, int y) {
     this.x = x;
@@ -33,6 +39,7 @@ public class Entity {
     return facing;
   }
 
+
   public void die() {
     ;
   }
@@ -41,10 +48,15 @@ public class Entity {
     x += dx;
     y += dy;
   }
+  
+  public void handleBump(Entity e){
+      ;
+  }
 
   public void bump(Entity e) {
-    ;
-  }
+      handleBump(e);
+      e.handleBump(this);
+      }
 
   public void setIdentity(char key) {
     identity = key;
@@ -53,6 +65,42 @@ public class Entity {
   public char getIdentity() {
     return identity;
   }
+  protected char[] analagousStates(char identity){
+    for (int element = 0; element < 3; element++){
+	for (int state = 0; state < 3; state++){
+	    if (identity == TileKeys.interactionKey[element][state]){
+		return TileKeys.interactionKey[element];
+	    }
+	}
+    }
+    return TileKeys.junkCharArray;
+  }
+  protected char[] strongerStates(char identity){
+    for (int element = 0; element < 3; element++){
+	for (int state = 0; state < 3; state++){
+	    if (identity == TileKeys.interactionKey[element][state]){
+		return TileKeys.interactionKey[(element+1)%3];
+	    }
+	}
+    }
+    return TileKeys.junkCharArray;
+  }
+  protected char[] weakerStates(char identity){
+    for (int element = 0; element < 3; element++){
+	for (int state = 0; state < 3; state++){
+	    if (identity == TileKeys.interactionKey[element][state]){
+		return TileKeys.interactionKey[(element+2)%3];
+	    }
+	}
+    }
+    return TileKeys.junkCharArray;
+  }
+  protected void setInteractionKeys(){
+	  analagousStates = analagousStates(identity);
+	  weakerStates = weakerStates(identity);
+	  strongerStates = strongerStates(identity);
+  }
+
 
   @Override
   public String toString() {
@@ -65,7 +113,7 @@ public class Entity {
   }
 
   public void tick() {
-
+      ;
   }
 
   public void turn(String lr) {

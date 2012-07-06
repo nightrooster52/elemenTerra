@@ -7,9 +7,6 @@ public class Ai extends Entity {
   protected Brain brain;
   protected Board board;
   protected Entity target;
-  protected char[] strongerStates;
-  protected char[] weakerStates;
-  protected char[] analagousStates;
   
 
   public Ai(int x, int y, Board b) {
@@ -49,46 +46,10 @@ public class Ai extends Entity {
    * I was wondering if we could use a hashmap here instead of arrays to make running collision logic faster?
    * 
    */
-  protected void setInteractionKeys(){
-	  analagousStates = analagousStates(identity);
-	  weakerStates = weakerStates(identity);
-	  strongerStates = strongerStates(identity);
-  }
 
-  protected char[] strongerStates(char identity){
-	  for (int element = 0; element < 3; element++){
-			for (int state = 0; state < 3; state++){
-				if (identity == TileKeys.interactionKey[element][state]){
-					return TileKeys.interactionKey[(element+1)%3];
-					}
-				}		
-	  		}
-	  //this is just error prevention...and it feels like terrible form...why do I feel dirty...
-	  return TileKeys.junkCharArray;
-	  }
-  protected char[] weakerStates(char identity){
-	  for (int element = 0; element < 3; element++){
-		  for (int state = 0; state < 3; state++){
-			  if (identity == TileKeys.interactionKey[element][state]){
-				  return TileKeys.interactionKey[(element+2)%3];
-				  }
-			  }			
-		  }
-	  return TileKeys.junkCharArray;	
-      }
-  protected char[] analagousStates(char identity){
-	  for (int element = 0; element < 3; element++){
-			for (int state = 0; state < 3; state++){
-				if (identity == TileKeys.interactionKey[element][state]){
-					return TileKeys.interactionKey[element];
-					}	
-				}	
-			}
-	  return TileKeys.junkCharArray;
-      }
 
   public static Ai parse(char c, Board board, int x, int y) {
-    Ai ai = new Ai(x, y, board); // TODO: this
+    Ai ai = new Ai(x, y, board);
     ai.setIdentity(c);
     ai.setInteractionKeys();
 
@@ -130,7 +91,6 @@ public class Ai extends Entity {
       ai.setColor(TileKeys.darkBlue);
       break;
     }
-
     return ai;
   }
 }
