@@ -35,6 +35,10 @@ public interface TileKeys {
   char earthLiquid = 'e';
   char earthSolid = 'E';
 
+  char[] gasses = {fireGas, waterGas, earthGas};
+  char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
+  char[] Solids = {fireSolid, waterSolid, earthSolid};
+
   char[] fireStates = {fireGas, fireLiquid, fireSolid};
   char[] waterStates = {waterGas, waterLiquid, waterSolid};
   char[] earthStates = {earthGas, earthLiquid, earthSolid};

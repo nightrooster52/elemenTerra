@@ -38,7 +38,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   @Override
   public void paintComponent(Graphics g) {
-      g.setColor(Color.BLACK);
+      g.setColor(Color.gray);
       g.fillRect(0, 0, width, height);
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
@@ -62,7 +62,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    game.handleMove(e.getKeyChar(), board.getPlayer());
+    game.handleInput(e.getKeyChar(), board.getPlayer());
   }
 
   @Override

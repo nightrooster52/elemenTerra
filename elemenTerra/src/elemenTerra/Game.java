@@ -75,6 +75,15 @@ public class Game {
       board.bump(x, y, e);
     }
   }
+    public void handleInput(char input, Entity e){
+	//resets the entity that inputs 'x'
+	if (input == 'x'){
+	    e.setIdentity(e.getOriginalIdentity());
+	    e.setColor(e.getOriginalColor());
+	}else {
+	    handleMove(input, e);
+	}
+    }
 
   public void handleMove(char input, Entity e) {
     //System.out.println("called handleMove");

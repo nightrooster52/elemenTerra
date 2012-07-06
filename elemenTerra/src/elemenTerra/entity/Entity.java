@@ -7,8 +7,10 @@ public class Entity {
 
   protected int x, y;
   protected char identity = '#';
+  protected char originalIdentity = '#';
   protected char facing = 'w';
   protected Color color = Color.WHITE;
+  protected Color originalColor = Color.WHITE;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
 
@@ -25,6 +27,7 @@ public class Entity {
   public Entity(int x, int y, char identity) {
     this(x, y);
     this.identity = identity;
+    this.originalIdentity = identity;
   }
 
   public int getX() {
@@ -38,7 +41,6 @@ public class Entity {
   public char getFacing() {
     return facing;
   }
-
 
   public void die() {
     ;
@@ -65,6 +67,11 @@ public class Entity {
   public char getIdentity() {
     return identity;
   }
+
+  public char getOriginalIdentity() {
+    return originalIdentity;
+  }
+
   protected char[] analagousStates(char identity){
     for (int element = 0; element < 3; element++){
 	for (int state = 0; state < 3; state++){
@@ -138,6 +145,10 @@ public class Entity {
 
   public Color getColor() {
     return color;
+  }
+
+  public Color getOriginalColor() {
+    return originalColor;
   }
 
   public void setColor(Color color) {

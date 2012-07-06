@@ -1,3 +1,5 @@
+package elemenTerra.entity;
+
 public abstract class Decisions {
 
     //gas interactions
