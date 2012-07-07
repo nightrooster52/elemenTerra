@@ -8,16 +8,16 @@ import elemenTerra.world.Board;
 import elemenTerra.world.Tile;
 import elemenTerra.entity.*;
 
-public abstract class Brain {
+public class Brain {
   protected int delay = 10;
   protected int wait = 0;
   protected int searchBuffer = 1;
-  protected Ai body;
+  protected Entity body;
   protected Board board;
   protected Game game;
   protected Random random = new Random();
 
-  public Brain(Ai body, Board board) {
+  public Brain(Entity body, Board board) {
     this.body = body;
     this.board = board;
   }
@@ -55,7 +55,7 @@ public abstract class Brain {
 	  }
       }
     }
-   return board.getTile(body.getX(), body.getY());
+    return board.getTile(body.getX(), body.getY());
   }
 
   public Entity closestEntity(char type){
@@ -113,6 +113,8 @@ public abstract class Brain {
 	}
     }
 
-  public abstract void tick();
+    public void tick(){
+	;
+    }
 
 }

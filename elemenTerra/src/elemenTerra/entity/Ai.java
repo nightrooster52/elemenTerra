@@ -6,27 +6,23 @@ import elemenTerra.entity.brain.*;
 
 
 public class Ai extends Entity {
-  protected Brain brain;
-  protected Board board;
+
+
   protected Entity target;
   
 
   public Ai(int x, int y, Board b) {
-    super(x, y);
-    board = b;
+    super(x, y, b);
     identity = '+';
   }
 
   public Ai(int x, int y, Entity target, Board b) {
-    super(x, y);
-    board = b;
-    this.target = target;
-    setTarget(target);
+      super(x, y, b);
+      this.target = target;
+      setTarget(target);
   }
 
   public void tick() {
-    //System.out.println("asked the Ai to tick");
-    //System.out.println(board.testString);
     brain.tick();
   }
 
@@ -36,13 +32,6 @@ public class Ai extends Entity {
     identity = '+';
   }
 
-  public Brain getBrain() {
-    return brain;
-  }
-
-  public void setBrain(Brain brain) {
-    this.brain = brain;
-  }
   
   /*sets the state interaction arrays for easy access in collisions
    * I was wondering if we could use a hashmap here instead of arrays to make running collision logic faster?

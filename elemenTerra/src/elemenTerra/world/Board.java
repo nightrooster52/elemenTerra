@@ -44,11 +44,11 @@ public class Board implements TileKeys {
         if (identity == TileKeys.blockTile) {
 
           tile.setIdentity(identity);
-          tile.occupy(new Entity(col, row, TileKeys.blockTile));
+          tile.occupy(new Entity(col, row, this, TileKeys.blockTile));
 
         } else if (identity == TileKeys.playerTile) {
 
-          player = new Player(col, row, TileKeys.playerTile);
+	  player = new Player(col, row, this, TileKeys.playerTile);
           tile.occupy(player);
           playerHasSpawned = true;
 
@@ -60,7 +60,7 @@ public class Board implements TileKeys {
 
     if (playerHasSpawned == false) {
       board[10][10].vacate();
-      player = new Player(10, 10, TileKeys.playerTile);
+      player = new Player(10, 10, this,  TileKeys.playerTile);
       board[10][10].occupy(player);
       playerHasSpawned = true;
     }

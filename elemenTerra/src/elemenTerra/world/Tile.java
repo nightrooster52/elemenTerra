@@ -64,7 +64,6 @@ public class Tile {
     public void die() {
 	if (occupied) {
 	    vacate();
-	    occupant.die();
 	}
     }
 

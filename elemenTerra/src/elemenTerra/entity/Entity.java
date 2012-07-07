@@ -2,8 +2,13 @@ package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
 import java.awt.Color;
+import elemenTerra.world.Board;
+import elemenTerra.entity.brain.*;
 
 public class Entity {
+    
+  protected Brain brain;
+  protected Board board;
 
   protected int x, y;
   protected char identity = '#';
@@ -19,15 +24,17 @@ public class Entity {
   protected char[] analagousStates;
 
 
-  public Entity(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }
+    public Entity(int x, int y, Board b) {
+	this.x = x;
+	this.y = y;
+	board = b;
+	this.brain = new Brain(this, b);
+    }
 
-  public Entity(int x, int y, char identity) {
-    this(x, y);
-    this.identity = identity;
-    this.originalIdentity = identity;
+    public Entity(int x, int y, Board b, char identity) {
+	this(x, y, b);
+	this.identity = identity;
+	this.originalIdentity = identity;
   }
 
   public int getX() {
@@ -49,7 +56,7 @@ public class Entity {
   }
 
   public void die() {
-    ;
+      board.getTile(x, y).vacate();
   }
 
   public void move(int dx, int dy) {
@@ -64,7 +71,16 @@ public class Entity {
   public void bump(Entity e) {
       handleBump(e);
       e.handleBump(this);
-      }
+  }
+
+  public Brain getBrain() {
+    return brain;
+  }
+
+  public void setBrain(Brain brain) {
+    this.brain = brain;
+  }
+
 
   public void setIdentity(char key) {
     identity = key;
