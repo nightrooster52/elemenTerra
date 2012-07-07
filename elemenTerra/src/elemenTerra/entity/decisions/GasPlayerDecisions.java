@@ -12,11 +12,11 @@ public class GasPlayerDecisions extends Decisions{
 	//absorb e
 	;
     }
-    public void StrongerGas(Entity e){
+    public void strongerGas(Entity e){
 	//slowed by e
 	;
     }
-    public void WeakerGas(Entity e){
+    public void weakerGas(Entity e){
 	//move e
 	;
     }
@@ -26,11 +26,11 @@ public class GasPlayerDecisions extends Decisions{
 	//move e
 	;
     }
-    public void StrongerLiquid(Entity e){
+    public void strongerLiquid(Entity e){
 	//lose gas
 	;
     }
-    public void WeakerLiquid(Entity e){
+    public void weakerLiquid(Entity e){
 	//move e
 	;
     }
@@ -40,11 +40,11 @@ public class GasPlayerDecisions extends Decisions{
 	//nothing
 	;
     }
-    public void StrongerSolid(Entity e){
+    public void strongerSolid(Entity e){
 	//nothing
 	;
     }
-    public void WeakerSolid(Entity e){
+    public void weakerSolid(Entity e){
 	//nothing
 	;
     }

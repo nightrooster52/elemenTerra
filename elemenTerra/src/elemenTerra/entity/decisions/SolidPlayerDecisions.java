@@ -11,11 +11,11 @@ public class SolidPlayerDecisions extends Decisions{
 	//move e
 	;
     }
-    public void StrongerGas(Entity e){
+    public void strongerGas(Entity e){
 	//slowed by e
 	;
     }
-    public void WeakerGas(Entity e){
+    public void weakerGas(Entity e){
 	//move e
 	;
     }
@@ -25,25 +25,25 @@ public class SolidPlayerDecisions extends Decisions{
 	//absorb liquid ^-> to solid
 	;
     }
-    public void StrongerLiquid(Entity e){
+    public void strongerLiquid(Entity e){
 	//lose liquid
 	;
     }
-    public void WeakerLiquid(Entity e){
+    public void weakerLiquid(Entity e){
 	//move e
 	;
     }
 
     //solid interactions
-    public void analagousSolid(Entity e){
+    public void analagoussolid(Entity e){
 	//absorb e
 	;
     }
-    public void StrongerSolid(Entity e){
+    public void strongersolid(Entity e){
 	//nothing
 	;
     }
-    public void WeakerSolid(Entity e){
+    public void weakersolid(Entity e){
 	//break e into 4 liquids
 	;
     }

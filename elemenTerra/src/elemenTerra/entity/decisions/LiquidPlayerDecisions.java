@@ -11,11 +11,11 @@ public class LiquidPlayerDecisions extends Decisions{
 	//absorb e and ^-> it to Liquid when have 4
 	;
     }
-    public void StrongerGas(Entity e){
+    public void strongerGas(Entity e){
 	//slowed by e
 	;
     }
-    public void WeakerGas(Entity e){
+    public void weakerGas(Entity e){
 	//move e
 	;
     }
@@ -25,11 +25,11 @@ public class LiquidPlayerDecisions extends Decisions{
 	//absorb e
 	;
     }
-    public void StrongerLiquid(Entity e){
+    public void strongerLiquid(Entity e){
 	//lose liquid
 	;
     }
-    public void WeakerLiquid(Entity e){
+    public void weakerLiquid(Entity e){
 	//break e down into 4 gas
 	;
     }
@@ -39,11 +39,11 @@ public class LiquidPlayerDecisions extends Decisions{
 	//blocked
 	;
     }
-    public void StrongerSolid(Entity e){
+    public void strongerSolid(Entity e){
 	//blocked
 	;
     }
-    public void WeakerSolid(Entity e){
+    public void weakerSolid(Entity e){
 	//move
 	;
     }

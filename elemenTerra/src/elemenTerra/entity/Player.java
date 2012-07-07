@@ -35,7 +35,36 @@ public class Player extends Entity{
 		    decisions = new GasPlayerDecisions(this);
 		}
 	    }
+	}else {
+	    if (bumpIdentity == analagousStates[0]){
+		decisions.analagousGas(e);
+	    }
+	    if (bumpIdentity == analagousStates[1]){
+		decisions.analagousLiquid(e);
+	    }
+	    if (bumpIdentity == analagousStates[2]){
+		decisions.analagousSolid(e);
+	    }
+	    if (bumpIdentity == weakerStates[0]){
+		decisions.weakerGas(e);
+	    }
+	    if (bumpIdentity == weakerStates[1]){
+		decisions.weakerLiquid(e);
+	    }
+	    if (bumpIdentity == weakerStates[2]){
+		decisions.weakerSolid(e);
+	    }
+	    if (bumpIdentity == strongerStates[0]){
+		decisions.strongerGas(e);
+	    }
+	    if (bumpIdentity == strongerStates[1]){
+		decisions.strongerLiquid(e);
+	    }
+	    if (bumpIdentity == strongerStates[2]){
+		decisions.strongerSolid(e);
+	    }
 	}
+
     }
 
     private void immitate(Entity e){
@@ -48,25 +77,40 @@ public class Player extends Entity{
 	char particleIdentity = e.getIdentity();
 	for (int index = 0; index < 3; index++){
 	    if (particleIdentity == TileKeys.gasses[index]){
-		e.die();
 		gasNum++;
 	    }
 	}
 	for (int index = 0; index < 3; index++){
 	    if (particleIdentity == TileKeys.liquids[index]){
-		e.die();
 		liquidNum++;
 	    }
 	}
 	for (int index = 0; index < 3; index++){
 	    if (particleIdentity == TileKeys.solids[index]){
-		e.die();
 		solidNum++;
 	    }
 	}
+	e.die();
     }
 
     public void dropParticle(char type){
+
+	for (int index = 0; index < 3; index++){
+	    if (type == TileKeys.gasses[index]){
+		gasNum--;
+	    }
+	}
+	for (int index = 0; index < 3; index++){
+	    if (type == TileKeys.liquids[index]){
+		liquidNum--;
+	    }
+	}
+	for (int index = 0; index < 3; index++){
+	    if (type == TileKeys.solids[index]){
+		solidNum--;
+	    }
+	}
+
 	if (brain.look(facing)){
 	    int[] xy = wasdToXY(facing);
 	    int aix = x + xy[0];
@@ -81,9 +125,6 @@ public class Player extends Entity{
     }
     //utility method
     public int[] wasdToXY(char input){
-
-
-
 	if (input == 'w') {
 	    int[] xy = {0, -1};
 	    return xy ; 
@@ -100,9 +141,6 @@ public class Player extends Entity{
 	    int[] xy = {0, 0}; 
 	    return xy;
 	}
-	
     }
-
-
     
 }

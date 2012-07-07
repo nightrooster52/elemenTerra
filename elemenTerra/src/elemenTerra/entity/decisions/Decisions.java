@@ -12,10 +12,10 @@ public abstract class Decisions {
     public void analagousGas(Entity e){
 	;
     }
-    public void StrongerGas(Entity e){
+    public void strongerGas(Entity e){
 	;
     }
-    public void WeakerGas(Entity e){
+    public void weakerGas(Entity e){
 	;
     }
 
@@ -23,10 +23,10 @@ public abstract class Decisions {
     public void analagousLiquid(Entity e){
 	;
     }
-    public void StrongerLiquid(Entity e){
+    public void strongerLiquid(Entity e){
 	;
     }
-    public void WeakerLiquid(Entity e){
+    public void weakerLiquid(Entity e){
 	;
     }
 
@@ -34,10 +34,10 @@ public abstract class Decisions {
     public void analagousSolid(Entity e){
 	;
     }
-    public void StrongerSolid(Entity e){
+    public void strongerSolid(Entity e){
 	;
     }
-    public void WeakerSolid(Entity e){
+    public void weakerSolid(Entity e){
 	;
     }
 
