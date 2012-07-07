@@ -70,7 +70,18 @@ public class Game {
 	  board.bump(x, y, e);
       }
   }
+    public void push(Entity pusher, Entity pushed, char direction){
+	
+	if (pushed.getBrain().look(direction)){
+	    handleMove(direction, pushed);
+	}else {
+	    Tile destination = pushed.getBrain().closestEmptyTile();
+	    portEntity(destination, pushed);
+	    
+	}
+	handleMove(direction, pusher);
 
+    }
 
 
   public void moveEntity(int dx, int dy, Entity e) {
@@ -101,11 +112,14 @@ public class Game {
     public void handleInput(char input, Entity e){
 	//resets the entity that inputs 'x'
 	if (input == 'x'){
-	    e.setIdentity(e.getOriginalIdentity());
-	    e.setColor(e.getOriginalColor());
+	    playerInput(input, e);
 	}else {
 	    handleMove(input, e);
 	}
+    }
+
+    public void playerInput(char input, Entity e){
+	e.handleInput(input);
     }
 
 
@@ -127,6 +141,7 @@ public class Game {
       ; // do nothing
     }
   }
+    
 
   public void start() {
     // Now that the game is created
@@ -134,9 +149,11 @@ public class Game {
 
     ((BoardView) display.getContentPane()).setGame(this);
 
+    player.getBrain().setGame(this);
+    
     for (Entity entity : board.getEntities()) {
       if (entity instanceof Ai) {
-        ((Ai) entity).getBrain().setGame(this);
+	  ((Ai) entity).getBrain().setGame(this);
       }
     }
 

@@ -12,20 +12,16 @@ public class Player extends Entity{
     protected int liquidNum = 0;
     protected int solidNum = 0;
     protected Decisions decisions;
-    protected Brain brain;
+
+    public Player(int x, int y, Board b, char identity){
+	super(x, y, b, identity);	
+    }
 
     public Player(int x, int y, Board b){
 	super(x, y, b, 'X');
     }
 
-    public Player(int x, int y, Board b, char identity){
-	super(x, y, b, identity);
-    }
     public void handleBump(Entity e){
-	/* ****next to implement****** 
-	 *classify e
-	 *decisions.classification(e);
-	 */
 	char bumpIdentity = e.getIdentity();
 
 	if (identity == 'X'){
@@ -33,6 +29,7 @@ public class Player extends Entity{
 		if (bumpIdentity == TileKeys.gasses[index]){
 		    immitate(e);
 		    decisions = new GasPlayerDecisions(this);
+		    decisions.analagousGas(e);
 		}
 	    }
 	}else {
@@ -66,14 +63,23 @@ public class Player extends Entity{
 	}
 
     }
+    public void handleInput(char input){
+	if ((gasNum + liquidNum + solidNum) >0){
+	    dropParticle(identity);
+	}
+	if ((gasNum + liquidNum + solidNum) == 0){
+	    setIdentity(getOriginalIdentity());
+	    setColor(getOriginalColor());
+	}
+    }
 
-    private void immitate(Entity e){
+    public void immitate(Entity e){
 	identity = e.getIdentity();
 	color = e.getColor();
 	setInteractionKeys();
     }
 
-    private void absorb(Entity e){
+    public void absorb(Entity e){
 	char particleIdentity = e.getIdentity();
 	for (int index = 0; index < 3; index++){
 	    if (particleIdentity == TileKeys.gasses[index]){
@@ -91,10 +97,10 @@ public class Player extends Entity{
 	    }
 	}
 	e.die();
+
     }
 
     public void dropParticle(char type){
-
 	for (int index = 0; index < 3; index++){
 	    if (type == TileKeys.gasses[index]){
 		gasNum--;
@@ -110,17 +116,22 @@ public class Player extends Entity{
 		solidNum--;
 	    }
 	}
-
 	if (brain.look(facing)){
 	    int[] xy = wasdToXY(facing);
 	    int aix = x + xy[0];
 	    int aiy = y + xy[1];
-	    Ai.parse(type, board, aix, aiy);
+	    Ai ai = Ai.parse(type, board, aix, aiy);
+	    board.getTile(aix, aiy).occupy(ai);
+	    brain.passGame(ai);
 	}else {
 	    Tile destination = brain.closestEmptyTile();
-	    x = destination.getX();
-	    y = destination.getY();
-	    Ai.parse(type, board, x, y);
+	    int aix = destination.getX();
+	    int aiy = destination.getY();
+	    //System.out.println(aix);
+	    //System.out.println(aiy);
+	    Ai ai = Ai.parse(type, board, aix, aiy);
+	    board.getTile(aix, aiy).occupy(ai);
+	    brain.passGame(ai);
 	}
     }
     //utility method
@@ -142,5 +153,15 @@ public class Player extends Entity{
 	    return xy;
 	}
     }
-    
+    public int getGasNum(){
+	return gasNum;
+    }
+    public int getLiquidNum(){
+	return liquidNum;
+    }
+    public int getSolidNum(){
+	return solidNum;
+    }
+        
+
 }

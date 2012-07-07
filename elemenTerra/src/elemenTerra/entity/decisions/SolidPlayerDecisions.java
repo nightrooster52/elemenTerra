@@ -1,6 +1,9 @@
 package elemenTerra.entity.decisions;
 
+
+import elemenTerra.*;
 import elemenTerra.entity.*;
+import elemenTerra.entity.brain.Brain;
 
 public class SolidPlayerDecisions extends Decisions{
     public SolidPlayerDecisions(Player p){

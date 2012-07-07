@@ -25,6 +25,9 @@ public class Brain {
   public void setGame(Game game) {
     this.game = game;
   }
+    public Game getGame(){
+	return game;
+    }
 
   public boolean look(char wasd) {
     int ix = body.getX();
@@ -102,16 +105,10 @@ public class Brain {
     return shell;
   }
 
-    public void push(Entity e){
-	char direction = e.getFacing();
-	if (look(direction)){
-	    game.handleMove(direction, e);
-	}else {
-	    Tile destination = closestEmptyTile();
-	    game.portEntity(destination, e);
-	    
-	}
+    public void passGame(Ai ai){
+        ai.getBrain().setGame(game);
     }
+
 
 
 

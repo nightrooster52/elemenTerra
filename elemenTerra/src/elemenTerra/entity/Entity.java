@@ -93,6 +93,9 @@ public class Entity {
   public char getOriginalIdentity() {
     return originalIdentity;
   }
+  public void handleInput(char input){
+      ;
+  }
 
   protected char[] analagousStates(char identity){
     for (int element = 0; element < 3; element++){
