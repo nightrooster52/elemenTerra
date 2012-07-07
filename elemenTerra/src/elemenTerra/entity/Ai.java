@@ -54,7 +54,7 @@ public class Ai extends Entity {
       ai.setColor(TileKeys.red);
       break;
     case TileKeys.fireSolid:
-      ai.setBrain(new LiquidBrain(ai, board));
+      ai.setBrain(new SolidBrain(ai, board));
       ai.setColor(TileKeys.darkRed);
       break;
     case TileKeys.earthGas:
@@ -66,7 +66,7 @@ public class Ai extends Entity {
       ai.setColor(TileKeys.green);
       break;
     case TileKeys.earthSolid:
-      ai.setBrain(new LiquidBrain(ai, board));
+      ai.setBrain(new SolidBrain(ai, board));
       ai.setColor(TileKeys.darkGreen);
       break;
     case TileKeys.waterGas:
@@ -78,7 +78,7 @@ public class Ai extends Entity {
       ai.setColor(TileKeys.blue);
       break;
     case TileKeys.waterSolid:
-      ai.setBrain(new LiquidBrain(ai, board));
+      ai.setBrain(new SolidBrain(ai, board));
       ai.setColor(TileKeys.darkBlue);
       break;
     }

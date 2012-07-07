@@ -100,18 +100,20 @@ public class Brain {
       }
     }
     return shell;
-
   }
+
     public void push(Entity e){
 	char direction = e.getFacing();
 	if (look(direction)){
-	    game.handleMove(direction, body);
+	    game.handleMove(direction, e);
 	}else {
 	    Tile destination = closestEmptyTile();
-	    game.portEntity(destination, body);
+	    game.portEntity(destination, e);
 	    
 	}
     }
+
+
 
     public void tick(){
 	;

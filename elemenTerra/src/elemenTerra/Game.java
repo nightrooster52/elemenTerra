@@ -108,6 +108,7 @@ public class Game {
 	}
     }
 
+
   public void handleMove(char input, Entity e) {
     //System.out.println("called handleMove");
     if (input == 'w') {

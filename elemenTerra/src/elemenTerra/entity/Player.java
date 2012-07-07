@@ -4,6 +4,7 @@ import java.awt.Color;
 import elemenTerra.entity.decisions.*;
 import elemenTerra.entity.brain.Brain;
 import elemenTerra.world.Board;
+import elemenTerra.world.Tile;
 import elemenTerra.TileKeys;
 
 public class Player extends Entity{
@@ -31,6 +32,7 @@ public class Player extends Entity{
 	    for (int index = 0; index < 3; index++){
 		if (bumpIdentity == TileKeys.gasses[index]){
 		    immitate(e);
+		    decisions = new GasPlayerDecisions(this);
 		}
 	    }
 	}
@@ -63,8 +65,44 @@ public class Player extends Entity{
 	    }
 	}
     }
-    public void dropParticle(){
+
+    public void dropParticle(char type){
+	if (brain.look(facing)){
+	    int[] xy = wasdToXY(facing);
+	    int aix = x + xy[0];
+	    int aiy = y + xy[1];
+	    Ai.parse(type, board, aix, aiy);
+	}else {
+	    Tile destination = brain.closestEmptyTile();
+	    x = destination.getX();
+	    y = destination.getY();
+	    Ai.parse(type, board, x, y);
+	}
+    }
+    //utility method
+    public int[] wasdToXY(char input){
+
+
+
+	if (input == 'w') {
+	    int[] xy = {0, -1};
+	    return xy ; 
+	} else if (input == 'a') {
+	    int[] xy = {-1, 0};
+	    return xy ;
+	} else if (input == 's') {
+	    int[] xy = {0, 1}; 
+	    return xy; 
+	} else if (input == 'd') {
+	    int[] xy = {1, 0}; 
+	    return  xy;
+	} else {
+	    int[] xy = {0, 0}; 
+	    return xy;
+	}
 	
     }
+
+
     
 }
