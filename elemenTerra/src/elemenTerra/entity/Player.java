@@ -15,7 +15,6 @@ public class Player extends Entity{
 
     public Player(int x, int y, Board b){
 	super(x, y, b, 'X');
-	
     }
 
     public Player(int x, int y, Board b, char identity){
@@ -23,10 +22,6 @@ public class Player extends Entity{
     }
     public void handleBump(Entity e){
 	/* ****next to implement****** 
-	 *if Player is  blank and e is a gas
-	 *immitate and absorbe e
-	 *
-	 *if Player is not blank
 	 *classify e
 	 *decisions.classification(e);
 	 */
@@ -45,6 +40,28 @@ public class Player extends Entity{
 	identity = e.getIdentity();
 	color = e.getColor();
 	setInteractionKeys();
+    }
+
+    private void absorb(Entity e){
+	char particleIdentity = e.getIdentity();
+	for (int index = 0; index < 3; index++){
+	    if (particleIdentity == TileKeys.gasses[index]){
+		e.die();
+		gasNum++;
+	    }
+	}
+	for (int index = 0; index < 3; index++){
+	    if (particleIdentity == TileKeys.liquids[index]){
+		e.die();
+		liquidNum++;
+	    }
+	}
+	for (int index = 0; index < 3; index++){
+	    if (particleIdentity == TileKeys.solids[index]){
+		e.die();
+		solidNum++;
+	    }
+	}
     }
     public void dropParticle(){
 	
