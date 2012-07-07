@@ -1,5 +1,7 @@
 package elemenTerra.entity;
+
 import java.awt.Color;
+import elemenTerra.entity.decisions.*;
 
 public class Player extends Entity{
     
@@ -22,6 +24,7 @@ public class Player extends Entity{
 	 *classify e
 	 *decisions.classification(e);
 	 */
+	
 	identity = e.getIdentity();
 	color = e.getColor();
 	setInteractionKeys();

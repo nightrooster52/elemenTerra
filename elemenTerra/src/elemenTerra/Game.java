@@ -48,17 +48,40 @@ public class Game {
     scanner = new Scanner(System.in);
     gameTimer = new Timer();
   }
+  public void portEntity(Tile destination,  Entity e){
+      int px = e.getX();
+      int py = e.getY();
+
+      int x = destination.getX();
+      int y = destination.getY();
+
+      if (board.checkTile(x, y)) {
+	  // vacate Entity's current tile
+	  board.getTile(px, py).vacate();
+
+	  // move the entity
+	  e.setX(x);
+	  e.setY(y);
+
+	  // occupy the new tile
+	  destination.occupy(e);
+
+      } else {
+	  board.bump(x, y, e);
+      }
+  }
+
+
 
   public void moveEntity(int dx, int dy, Entity e) {
     //System.out.println("called moveEntity");
+      int px = e.getX();
+      int py = e.getY();
 
-    int px = e.getX();
-    int py = e.getY();
+      int x = px + dx;
+      int y = py + dy;
 
-    int x = px + dx;
-    int y = py + dy;
-
-    if (board.checkTile(x, y)) {
+      if (board.checkTile(x, y)) {
 
       Tile targetTile = board.getTile(x, y);
 

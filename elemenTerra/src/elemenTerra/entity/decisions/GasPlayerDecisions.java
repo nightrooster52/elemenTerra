@@ -1,4 +1,6 @@
-package elemenTerra.entity;
+package elemenTerra.entity.decisions;
+
+import elemenTerra.entity.*;
 
 public class GasPlayerDecisions extends Decisions{
     public GasPlayerDecisions(Player p){

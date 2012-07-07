@@ -2,6 +2,8 @@ package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
+import elemenTerra.entity.brain.*;
+
 
 public class Ai extends Entity {
   protected Brain brain;

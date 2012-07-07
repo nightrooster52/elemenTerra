@@ -38,7 +38,7 @@ public class Board implements TileKeys {
     for (int row = 0; row < height; row++) {
       for (int col = 0; col < width; col++) {
         char identity = map.charAt(cursor++);
-        Tile tile = new Tile();
+        Tile tile = new Tile(col, row);
         board[row][col] = tile;
 
         if (identity == TileKeys.blockTile) {

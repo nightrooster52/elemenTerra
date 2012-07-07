@@ -1,12 +1,14 @@
-package elemenTerra.entity;
+package elemenTerra.entity.decisions;
 
-public class LiquidPlayerDecisions extends Decisions{
-    public LiquidPlayerDecisions(Player p){
+import elemenTerra.entity.*;
+
+public class SolidPlayerDecisions extends Decisions{
+    public SolidPlayerDecisions(Player p){
 	super(p);
     }
     //gas interactions
     public void analagousGas(Entity e){
-	//absorb e and ^-> it to Liquid when have 4
+	//move e
 	;
     }
     public void StrongerGas(Entity e){
@@ -20,7 +22,7 @@ public class LiquidPlayerDecisions extends Decisions{
 
     //liquid interactions
     public void analagousLiquid(Entity e){
-	//absorb e
+	//absorb liquid ^-> to solid
 	;
     }
     public void StrongerLiquid(Entity e){
@@ -28,23 +30,24 @@ public class LiquidPlayerDecisions extends Decisions{
 	;
     }
     public void WeakerLiquid(Entity e){
-	//break e down into 4 gas
+	//move e
 	;
     }
 
     //solid interactions
     public void analagousSolid(Entity e){
-	//blocked
+	//absorb e
 	;
     }
     public void StrongerSolid(Entity e){
-	//blocked
+	//nothing
 	;
     }
     public void WeakerSolid(Entity e){
-	//move
+	//break e into 4 liquids
 	;
     }
+
 
 
 }
