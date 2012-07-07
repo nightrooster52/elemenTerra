@@ -4,6 +4,7 @@ import elemenTerra.world.Board;
 
 public class SeekerBrain extends Brain {
   protected Entity target;
+  protected boolean targetStable = true;
 
   public SeekerBrain(Ai body, Board board) {
     super(body, board);
@@ -71,7 +72,7 @@ public class SeekerBrain extends Brain {
         //System.out.println("check x valid");
         attempt = aXchar;
       } else {
-	  if (!board.getTile(dx, iy).getEntity().toString().equals(body.getIdentity())) {
+	  if (targetStable && !board.getTile(dx, iy).getEntity().toString().equals(body.getIdentity())) {
           attempt = aYchar;
           //System.out.println(board.getTile(dx, iy).getEntity().toString());
         }
@@ -82,7 +83,7 @@ public class SeekerBrain extends Brain {
         //System.out.println("check y valid");
         attempt = aYchar;
       } else {
-	  if (!board.getTile(ix, dy).getEntity().toString().equals(body.getIdentity())) {
+	  if (targetStable && !board.getTile(ix, dy).getEntity().toString().equals(body.getIdentity())) {
           attempt = aXchar;
           //System.out.println(board.getTile(ix, dy).getEntity().toString());
         }

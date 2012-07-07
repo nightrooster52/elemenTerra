@@ -10,6 +10,7 @@ import elemenTerra.world.Tile;
 public abstract class Brain {
   protected int delay = 10;
   protected int wait = 0;
+  protected int searchBuffer = 1;
   protected Ai body;
   protected Board board;
   protected Game game;
@@ -42,15 +43,26 @@ public abstract class Brain {
     }
     return false;
   }
+  public Tile closestEmptyTile(){
+    for (int range = 1; range < 100; range++) {//range = 1
+      Tile[] shell = searchTiles(range);
+      int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
+      for (int searched = 1; searched <= shell.length; searched++) {
+	  int cursor = (searched + lookfirst) % (shell.length);//-1
+	  if (!shell[cursor].isOccupied()){
+	      return shell[cursor];
+	  }
+      }
+    }
+   return board.getTile(body.getX(), body.getY());
+  }
 
   public Entity closestEntity(char type){
     //takes a char type (identity) because it may be used to search for other types than body.identity
     Entity entity;
-    for (int range = 1; range < 10; range++) {
+    for (int range = searchBuffer; range < 10; range++) {//range = 1
       Tile[] shell = searchTiles(range);
-      int lookfirst = random.nextInt(shell.length );// - 1 //randomizes the first direction looked, so there isn't an upper-left dx bias
-      //System.out.println("");
-      //System.out.println("cursor ints:");
+      int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
       for (int searched = 1; searched <= shell.length; searched++) {
 	  int cursor = (searched + lookfirst) % (shell.length);//-1
         //System.out.print(cursor);

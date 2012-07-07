@@ -36,7 +36,7 @@ public class Tile {
 	}
 
 	public char getIdentity() {
-		return identity;
+	    return occupied ? occupant.getIdentity() : identity;
 	}
 
 	public Entity getEntity() {
@@ -45,7 +45,7 @@ public class Tile {
 
 	@Override
 	public String toString() {
-		return occupied ? occupant.toString() : identity + "";
+		return occupied ? occupant.getIdentity() + "" : identity + "";
 	}
 
 	public void die() {
