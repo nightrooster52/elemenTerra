@@ -26,8 +26,7 @@ public class GasPlayerDecisions extends Decisions{
     ;
   }
   public void weakerGas(Entity e){
-    //move e
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   //liquid interactions

@@ -14,12 +14,11 @@ public class GasElementDecisions extends Decisions{
   public void analagousGas(Entity e){
     ;
   }
-
   public void strongerGas(Entity e){
     ;
   }
   public void weakerGas(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   //liquid interactions
@@ -30,7 +29,7 @@ public class GasElementDecisions extends Decisions{
     ;
   }
   public void weakerLiquid(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   //solid interactions
@@ -41,7 +40,7 @@ public class GasElementDecisions extends Decisions{
     ;
   }
   public void weakerSolid(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
 

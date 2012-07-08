@@ -102,6 +102,7 @@ public class Brain {
 
   public void passGame(Ai ai){
     ai.getBrain().setGame(game);
+    ai.getDecisions().setGame(game);
   }
 
 

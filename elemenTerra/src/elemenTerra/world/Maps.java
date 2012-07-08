@@ -122,7 +122,7 @@ public class Maps implements TileKeys {
     Random random = new Random();
     for (int i = 0; i < 9375; i++) {
       char tileChar;
-      int type = random.nextInt(100);
+      int type = random.nextInt(15);
 
       switch (type) {
       case 0:
@@ -202,7 +202,7 @@ public class Maps implements TileKeys {
     Random random = new Random();
     for (int i = 0; i < 9375; i++) {
       char tileChar = TileKeys.defaultTile;
-      int type = random.nextInt(6);
+      int type = random.nextInt(4);
 
       if (type == 0) {
         tileChar = TileKeys.fireGas;

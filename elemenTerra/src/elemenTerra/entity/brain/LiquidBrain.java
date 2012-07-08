@@ -6,7 +6,7 @@ import elemenTerra.entity.*;
 public class LiquidBrain extends SeekerBrain{
   public LiquidBrain(Ai body, Board board){
     super(body, board);
-    this.delay = 30;
+    this.delay = 15;
   }
 
   public void tick(){

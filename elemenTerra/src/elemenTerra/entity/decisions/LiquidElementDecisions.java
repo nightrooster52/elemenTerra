@@ -19,7 +19,7 @@ public class LiquidElementDecisions extends Decisions{
     ;
   }
   public void weakerGas(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   //liquid interactions
@@ -30,7 +30,7 @@ public class LiquidElementDecisions extends Decisions{
     ;
   }
   public void weakerLiquid(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   //solid interactions
@@ -41,7 +41,7 @@ public class LiquidElementDecisions extends Decisions{
     ;
   }
   public void weakerSolid(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
 
