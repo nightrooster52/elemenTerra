@@ -76,7 +76,7 @@ public class Brain {
 	  }
       }
     }
-    return body;
+    return null;
   }
 
   public Tile[] searchTiles(int range) {

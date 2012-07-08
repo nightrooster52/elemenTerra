@@ -14,9 +14,11 @@ public class LiquidBrain extends SeekerBrain{
 
 		if (wait == delay){
 			wait = 0;
-			this.target = closestEntity(body.getIdentity());
-			char output = goToTarget();
-			game.handleMove(output, body);
+			target = closestEntity(body.getIdentity());
+			if (target != null){
+			    char output = goToTarget(target);
+			    game.handleMove(output, body);
+			}
 		}
 	}
 }

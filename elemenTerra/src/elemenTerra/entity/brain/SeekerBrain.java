@@ -81,7 +81,7 @@ public class SeekerBrain extends Brain {
     return attempt;
   }
 
-  public char goToTarget() {
+  public char goToTarget(Entity target) {
     int targetx = target.getX();
     int targety = target.getY();
     char attempt = goToXY(targetx, targety, board);
@@ -96,9 +96,10 @@ public class SeekerBrain extends Brain {
     wait++;
     if (wait == delay) {
       wait = 0;
-      char output = goToTarget();
-      //System.out.println(output);
-      game.handleMove(output, body);
+      if (target != null){
+	  char output = goToTarget(target);
+	  game.handleMove(output, body);
+      }
     }
   }
 }

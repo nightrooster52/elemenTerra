@@ -19,9 +19,9 @@ public class Entity {
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
 
-  protected char[] strongerStates;
-  protected char[] weakerStates;
-  protected char[] analagousStates;
+  public char[] strongerStates;
+  public char[] weakerStates;
+  public char[] analagousStates;
 
 
     public Entity(int x, int y, Board b) {

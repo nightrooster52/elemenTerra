@@ -17,8 +17,14 @@ public class GasBrain extends SeekerBrain {
 	if (wait == delay) {
 	    wait = 0;
 	    target = closestEntity(body.getIdentity());
-	    char output = goToTarget();
-	    game.handleMove(output, body);
+	    if (target == null){
+		target = closestEntity(body.analagousStates[1]);
+	    }
+
+	    if (target != null){
+		char output = goToTarget(target);
+		game.handleMove(output, body);
+	    }
 	}
     }
 }

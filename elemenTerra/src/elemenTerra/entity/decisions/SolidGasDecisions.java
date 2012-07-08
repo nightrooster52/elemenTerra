@@ -4,7 +4,7 @@ import elemenTerra.*;
 import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
-public abstract class Decisions {
+public abstract class SolidElementDecisions {
     protected Entity body;
     protected Brain brain;
     protected Game game;
