@@ -10,7 +10,7 @@ public abstract class LiquidElementDecisions {
     protected Game game;
 
     public Decisions(Entity e){
-	this.entity= e;
+	this.body = e;
 	this.brain = e.getBrain();
 	this.game = brain.getGame();
     }

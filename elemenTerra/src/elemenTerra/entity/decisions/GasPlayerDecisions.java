@@ -6,16 +6,19 @@ import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
 public class GasPlayerDecisions extends Decisions{
-    public GasPlayerDecisions(Player player){
-	super(player);
+    protected Player body;
+
+    public GasPlayerDecisions(Player body){
+	super(body);
+	this.body = body;
     }
 
     //gas interactions
     public void analagousGas(Entity e){
-	if (player.getGasNum() < 200){
-	    player.absorb(e);//absorb e
+	if (body.getGasNum() < 4){
+	    body.absorb(e);//absorb e
 	} else {
-	    game.push(player, e, player.getFacing());
+	    game.push(body, e, body.getFacing());
 	}
     }
     public void strongerGas(Entity e){

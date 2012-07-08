@@ -1,56 +1,53 @@
 package elemenTerra.entity.decisions;
 
-
 import elemenTerra.*;
 import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
-public class SolidPlayerDecisions extends Decisions{
-    public SolidPlayerDecisions(Player body){
-	super(body);
+public abstract class SolidElementDecisions {
+    protected Entity body;
+    protected Brain brain;
+    protected Game game;
+
+    public Decisions(Entity e){
+	this.entity= e;
+	this.brain = e.getBrain();
+	this.game = brain.getGame();
     }
+
     //gas interactions
     public void analagousGas(Entity e){
-	//move e
 	;
     }
+
     public void strongerGas(Entity e){
-	//slowed by e
 	;
     }
     public void weakerGas(Entity e){
-	//move e
 	;
     }
 
     //liquid interactions
     public void analagousLiquid(Entity e){
-	//absorb liquid ^-> to solid
 	;
     }
     public void strongerLiquid(Entity e){
-	//lose liquid
 	;
     }
     public void weakerLiquid(Entity e){
-	//move e
 	;
     }
 
     //solid interactions
-    public void analagoussolid(Entity e){
-	//absorb e
+    public void analagousSolid(Entity e){
 	;
     }
-    public void strongersolid(Entity e){
-	//nothing
+    public void strongerSolid(Entity e){
 	;
     }
-    public void weakersolid(Entity e){
-	//break e into 4 liquids
+    public void weakerSolid(Entity e){
 	;
     }
-
 
 
 }

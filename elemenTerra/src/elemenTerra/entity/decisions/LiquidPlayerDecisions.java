@@ -5,8 +5,8 @@ import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
 public class LiquidPlayerDecisions extends Decisions{
-    public LiquidPlayerDecisions(Player p){
-	super(p);
+    public LiquidPlayerDecisions(Player body){
+	super(body);
     }
     //gas interactions
     public void analagousGas(Entity e){
