@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
-
+import java.awt.Color;
 import elemenTerra.Game;
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
@@ -16,7 +16,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
   protected int height;
   protected int width;
   protected int tileSize = 10;
-  protected int gutter;
+  protected int gutter = 1;
 
   protected Board board;
   protected Game game;
@@ -38,6 +38,8 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   @Override
   public void paintComponent(Graphics g) {
+      g.setColor(Color.gray);
+      g.fillRect(0, 0, width, height);
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
         Tile tile = board.getTile(col, row);
@@ -60,7 +62,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    game.handleMove(e.getKeyChar(), board.getPlayer());
+    game.handleInput(e.getKeyChar(), board.getPlayer());
   }
 
   @Override

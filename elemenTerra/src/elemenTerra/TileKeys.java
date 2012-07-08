@@ -35,19 +35,20 @@ public interface TileKeys {
   char earthLiquid = 'e';
   char earthSolid = 'E';
 
-  //(+1)%3 for stronger element, (+2)%3 for weaker element
+  char[] gasses = {fireGas, waterGas, earthGas};
+  char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
+  char[] solids = {fireSolid, waterSolid, earthSolid};
 
-  char[] gasses = { TileKeys.fireGas, TileKeys.waterGas, TileKeys.earthGas };
-  char[] liquids = { TileKeys.fireLiquid, TileKeys.waterLiquid,
-      TileKeys.earthLiquid };
-  char[] solids = { TileKeys.fireSolid, TileKeys.waterSolid,
-      TileKeys.earthSolid };
+  char[] fireStates = {fireGas, fireLiquid, fireSolid};
+  char[] waterStates = {waterGas, waterLiquid, waterSolid};
+  char[] earthStates = {earthGas, earthLiquid, earthSolid};
+  char[] junkCharArray = {'Z'}; 
+  
+  
+  char[][] interactionKey = {fireStates, waterStates, earthStates };
+  
 
-  char[] fires = { TileKeys.fireGas, TileKeys.fireLiquid, TileKeys.fireSolid };
-  char[] waters = { TileKeys.waterGas, TileKeys.waterLiquid,
-      TileKeys.waterSolid };
-  char[] earths = { TileKeys.earthGas, TileKeys.earthLiquid,
-      TileKeys.earthSolid };
+  
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
       TileKeys.playerTile, TileKeys.LTile, TileKeys.RTile, TileKeys.fireGas,

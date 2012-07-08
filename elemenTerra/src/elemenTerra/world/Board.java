@@ -38,17 +38,17 @@ public class Board implements TileKeys {
     for (int row = 0; row < height; row++) {
       for (int col = 0; col < width; col++) {
         char identity = map.charAt(cursor++);
-        Tile tile = new Tile();
+        Tile tile = new Tile(col, row);
         board[row][col] = tile;
 
         if (identity == TileKeys.blockTile) {
 
           tile.setIdentity(identity);
-          tile.occupy(new Entity(col, row, TileKeys.blockTile));
+          tile.occupy(new Entity(col, row, this, TileKeys.blockTile));
 
         } else if (identity == TileKeys.playerTile) {
 
-          player = new Player(col, row, TileKeys.playerTile);
+	  player = new Player(col, row, this, TileKeys.playerTile);
           tile.occupy(player);
           playerHasSpawned = true;
 
@@ -60,11 +60,11 @@ public class Board implements TileKeys {
 
     if (playerHasSpawned == false) {
       board[10][10].vacate();
-      player = new Player(10, 10, TileKeys.playerTile);
+      player = new Player(10, 10, this,  TileKeys.playerTile);
       board[10][10].occupy(player);
       playerHasSpawned = true;
     }
-    System.out.println("EntityGen complete");
+    System.out.println("print test");
   }
 
   public boolean checkTile(int x, int y) {

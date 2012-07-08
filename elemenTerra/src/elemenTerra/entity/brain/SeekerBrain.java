@@ -1,9 +1,11 @@
-package elemenTerra.entity;
+package elemenTerra.entity.brain;
 
 import elemenTerra.world.Board;
+import elemenTerra.entity.*;
 
 public class SeekerBrain extends Brain {
   protected Entity target;
+  protected boolean targetStable = true;
 
   public SeekerBrain(Ai body, Board board) {
     super(body, board);
@@ -18,73 +20,63 @@ public class SeekerBrain extends Brain {
   public char goToXY(int targetx, int targety, Board b) {
     int ix = body.getX();
     int iy = body.getY();
-    //System.out.println("AI");
-    //System.out.println(ix);
-    //System.out.println(iy);
 
     int tx = targetx;
     int ty = targety;
-    //System.out.println(tx);
-    //System.out.println("Target");
-    //System.out.println(ty);
 
     int distancex = tx - ix;
     int distancey = ty - iy;
-    //System.out.println("Distance");
-    //System.out.println(distancex);
-    //System.out.println(distancey);
 
-    //set up the dx/dy
     int attemptx = 0;
     int attempty = 0;
     char aXchar = 'Z';
     char aYchar = 'Z';
+
     if (distancex > 0) {
       attemptx = 1;
       aXchar = 'd';
-      //System.out.println("Right attempt");
     } else if (distancex < 0) {
       attemptx = -1;
       aXchar = 'a';
-      //System.out.println("Left attempt");
     }
+
     if (distancey > 0) {
       attempty = 1;
       aYchar = 's';
-
-      //System.out.println("Down attempt");
     } else if (distancey < 0) {
       attempty = -1;
       aYchar = 'w';
-      //System.out.println("Up attempt");
     }
 
-    int dx = ix + attemptx;
-    int dy = iy + attempty;
+    int destinationx = ix + attemptx;
+    int destinationy = iy + attempty;
+
     char attempt = 'Z';
-    //farther in x than y distance (squared for absolute value), x dominates
-    if (distancex * distancex > distancey * distancey) {
-      //System.out.println("distance larger: y");
-      if (board.checkTile(dx, iy)) {
-        //System.out.println("check x valid");
+    //farther in x than y distance (squared for absolute value), x check first
+    if (distancex*distancex > distancey*distancey) {
+      if (board.checkTile(destinationx, iy)) {
         attempt = aXchar;
       } else {
-        if (!board.getTile(dx, iy).getEntity().toString().equals("X")) {
-          attempt = aYchar;
-          //System.out.println(board.getTile(dx, iy).getEntity().toString());
-        }
+	  if (!(board.getTile(destinationx, iy).getIdentity() == body.getIdentity())) {
+	      attempt = aYchar;
+	  }
       }
-    } else {
-      //System.out.println("distance larger: y");
-      if (board.checkTile(ix, dy)) {
-        //System.out.println("check y valid");
+    //farther in y than x distance (squared for absolute value), y check first
+    } else if (distancex*distancex < distancey*distancey) {
+      if (board.checkTile(ix, destinationy)) {
         attempt = aYchar;
       } else {
-        if (!board.getTile(ix, dy).getEntity().toString().equals("X")) {
-          attempt = aXchar;
-          //System.out.println(board.getTile(ix, dy).getEntity().toString());
-        }
+	  if (!(board.getTile(ix, destinationy).getIdentity() == body.getIdentity())) {
+	      attempt = aXchar;
+	  }
       }
+    } else {
+	boolean xory = random.nextBoolean();
+	if (xory){
+	    attempt = aXchar;
+	}else {
+	    attempt = aYchar;
+	}
     }
     return attempt;
   }
