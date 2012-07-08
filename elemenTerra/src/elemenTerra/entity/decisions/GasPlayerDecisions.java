@@ -12,7 +12,7 @@ public class GasPlayerDecisions extends Decisions{
 
     //gas interactions
     public void analagousGas(Entity e){
-	if (player.getGasNum() < 4){
+	if (player.getGasNum() < 200){
 	    player.absorb(e);//absorb e
 	} else {
 	    game.push(player, e, player.getFacing());

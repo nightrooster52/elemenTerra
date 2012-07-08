@@ -50,8 +50,8 @@ public class Ai extends Entity {
     switch (c) {
     case TileKeys.fireGas:
       ai.setBrain(new GasBrain(ai, board));
-      ai.setColor(TileKeys.lightRed);
-      //ai.setColor(new Color((int) (Math.random()*255), 0, 0));
+      //ai.setColor(TileKeys.lightRed);
+      ai.setColor(new Color((int) (Math.random()*255), 0, 0));
       break;
     case TileKeys.fireLiquid:
       ai.setBrain(new LiquidBrain(ai, board));

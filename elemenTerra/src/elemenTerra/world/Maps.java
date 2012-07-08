@@ -70,15 +70,15 @@ public class Maps implements TileKeys {
       + "00000000000000000000"
       + "00000000000000000000"
       + "00000000000000000000"
-      + "00000000000000000000"
-      + "00000000000000000000"
-      + "00000000000000000000"
-      + "00000000000000000000"
-      + "00rrrrrrrrrrrrrrrr00"
-      + "00rrrrrrrrrrrrrrrr00"
-      + "00rrrrrrrrrrrrrrrr00"
-      + "00000000000000000000"
-      + "00000000000000000000"
+      + "000000000r0000000000"
+      + "00000000r0r000000000"
+      + "0000000r000r00000000"
+      + "000000r00000r0000000"
+      + "00000r0000000r000000"
+      + "000000r00000r0000000"
+      + "0000000r000r00000000"
+      + "00000000r0r000000000"
+      + "000000000r0000000000"
       + "00000000000000000000"
       + "00000000000000000000"
       + "00000000000000000000"
@@ -118,9 +118,9 @@ public class Maps implements TileKeys {
   }
 
   public String randomElements() {
-    String randomElements = "050 050 ";
+    String randomElements = "125 075 ";
     Random random = new Random();
-    for (int i = 0; i < 2500; i++) {
+    for (int i = 0; i < 9375; i++) {
       char tileStr;
       int type = random.nextInt(40);
 
@@ -165,6 +165,24 @@ public class Maps implements TileKeys {
     String randomElements = "050 050 ";
     Random random = new Random();
     for (int i = 0; i < 2500; i++) {
+      char tileStr = TileKeys.defaultTile;
+      int type = random.nextInt(3);
+
+      if (type == 0) {
+        tileStr = TileKeys.fireGas;
+      } else if (type == 1) {
+        //tileStr = TileKeys.waterGas;
+      }
+
+      randomElements += tileStr;
+    }
+    return randomElements;
+  }
+
+  public String randomGasHuge() {
+    String randomElements = "125 075 ";
+    Random random = new Random();
+    for (int i = 0; i < 9375; i++) {
       char tileStr = TileKeys.defaultTile;
       int type = random.nextInt(3);
 
