@@ -8,7 +8,7 @@ public class GasBrain extends SeekerBrain {
   public GasBrain(Ai body, Board board) {
     super(body, board);
     delay = 5;
-    searchBuffer = 2;
+    searchBuffer = 5;
     targetStable = true;
   }
 

@@ -4,14 +4,14 @@ import elemenTerra.*;
 import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
-public abstract class Decisions {
+public class Decisions {
   protected Entity body;
   protected Brain brain;
   protected Game game;
 
-  public Decisions(Entity e){
-    this.body = e;
-    this.brain = e.getBrain();
+  public Decisions(Entity body){
+    this.body = body;
+    this.brain = body.getBrain();
     this.game = brain.getGame();
   }
 
@@ -47,6 +47,12 @@ public abstract class Decisions {
   }
   public void weakerSolid(Entity e){
     ;
+  }
+
+
+
+  public void setGame(Game game){
+    this.game = game;
   }
 
 

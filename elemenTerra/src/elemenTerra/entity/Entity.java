@@ -29,8 +29,9 @@ public class Entity {
   public Entity(int x, int y, Board b) {
     this.x = x;
     this.y = y;
-    board = b;
+    this.board = b;
     this.brain = new Brain(this, b);
+    this.decisions = new Decisions(this);
   }
 
   public Entity(int x, int y, Board b, char identity) {
@@ -52,6 +53,9 @@ public class Entity {
   public void setY(int y) {
     this.y = y;
   }
+  public Decisions getDecisions(){
+    return decisions;
+  }
 
   public char getFacing() {
     return facing;
@@ -66,13 +70,19 @@ public class Entity {
     y += dy;
   }
 
-  public void handleBump(Entity e){
+  public void recieveBump(Entity e){
+    ;
+  }
+  public void giveBump(Entity e){
     ;
   }
 
-  public void bump(Entity e) {
-    handleBump(e);
-    e.handleBump(this);
+  public void bump(Entity e) {  //from
+    //I recievebump from e
+    recieveBump(e); 
+
+    //e gives bump to me
+    e.giveBump(this);
   }
 
   public Brain getBrain() {
@@ -83,6 +93,9 @@ public class Entity {
     this.brain = brain;
   }
 
+  public void setDecisions(Decisions decisions){
+    this.decisions = decisions;
+  }
 
   public void setIdentity(char key) {
     identity = key;

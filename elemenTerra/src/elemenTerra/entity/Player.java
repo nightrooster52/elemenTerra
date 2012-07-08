@@ -12,7 +12,6 @@ public class Player extends Entity{
   protected int liquidNum = 0;
   protected int solidNum = 0;
 
-
   public Player(int x, int y, Board b, char identity){
     super(x, y, b, identity);
   }
@@ -21,7 +20,7 @@ public class Player extends Entity{
     super(x, y, b, 'X');
   }
 
-  public void handleBump(Entity e){
+  public void giveBump(Entity e){
     char bumpIdentity = e.getIdentity();
 
     if (identity == 'X'){

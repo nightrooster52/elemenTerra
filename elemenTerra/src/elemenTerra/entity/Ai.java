@@ -33,18 +33,50 @@ public class Ai extends Entity {
     setBrain(new SeekerBrain(this, target, board));
     identity = '+';
   }
-  public void setDecisions(Decisions decisions){
-    this.decisions = decisions;
+
+  public void giveBump(Entity e){
+    char bumpIdentity = e.getIdentity();
+
+    if (bumpIdentity == analagousStates[0]){
+      decisions.analagousGas(e);
+    }
+    if (bumpIdentity == analagousStates[1]){
+      decisions.analagousLiquid(e);
+    }
+    if (bumpIdentity == analagousStates[2]){
+      decisions.analagousSolid(e);
+    }
+    if (bumpIdentity == weakerStates[0]){
+      decisions.weakerGas(e);
+    }
+    if (bumpIdentity == weakerStates[1]){
+      decisions.weakerLiquid(e);
+    }
+    if (bumpIdentity == weakerStates[2]){
+      decisions.weakerSolid(e);
+    }
+    if (bumpIdentity == strongerStates[0]){
+      decisions.strongerGas(e);
+    }
+    if (bumpIdentity == strongerStates[1]){
+      decisions.strongerLiquid(e);
+    }
+    if (bumpIdentity == strongerStates[2]){
+      decisions.strongerSolid(e);
+    }
   }
 
-
+  /*
+   *
+   ***********STATIC METHOD*********
+   *
+   *
+   */
 
   public static Ai parse(char c, Board board, int x, int y) {
     Ai ai = new Ai(x, y, board);
     ai.setIdentity(c);
     ai.setInteractionKeys();
-
-
 
     switch (c) {
     case TileKeys.fireGas:

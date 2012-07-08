@@ -12,7 +12,7 @@ public class SolidElementDecisions extends Decisions{
 
   //gas interactions
   public void analagousGas(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
 
   public void strongerGas(Entity e){
@@ -24,7 +24,7 @@ public class SolidElementDecisions extends Decisions{
 
   //liquid interactions
   public void analagousLiquid(Entity e){
-    ;
+    game.push(body, e, body.getFacing());
   }
   public void strongerLiquid(Entity e){
     ;

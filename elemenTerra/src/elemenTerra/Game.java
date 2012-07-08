@@ -152,12 +152,9 @@ public class Game {
 
     ((BoardView) display.getContentPane()).setGame(this);
 
-    player.getBrain().setGame(this);
-
     for (Entity entity : board.getEntities()) {
-      if (entity instanceof Ai) {
-        ((Ai) entity).getBrain().setGame(this);
-      }
+      entity.getBrain().setGame(this);
+      entity.getDecisions().setGame(this);
     }
 
     gameTimer.schedule(new TimerTask() {
