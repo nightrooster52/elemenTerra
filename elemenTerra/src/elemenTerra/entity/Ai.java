@@ -10,7 +10,7 @@ public class Ai extends Entity {
 
 
   protected Entity target;
-  
+
 
   public Ai(int x, int y, Board b) {
     super(x, y, b);
@@ -18,9 +18,9 @@ public class Ai extends Entity {
   }
 
   public Ai(int x, int y, Entity target, Board b) {
-      super(x, y, b);
-      this.target = target;
-      setTarget(target);
+    super(x, y, b);
+    this.target = target;
+    setTarget(target);
   }
 
   public void tick() {
@@ -33,10 +33,10 @@ public class Ai extends Entity {
     identity = '+';
   }
 
-  
+
   /*sets the state interaction arrays for easy access in collisions
    * I was wondering if we could use a hashmap here instead of arrays to make running collision logic faster?
-   * 
+   *
    */
 
 
@@ -44,7 +44,7 @@ public class Ai extends Entity {
     Ai ai = new Ai(x, y, board);
     ai.setIdentity(c);
     ai.setInteractionKeys();
-    
+
 
 
     switch (c) {

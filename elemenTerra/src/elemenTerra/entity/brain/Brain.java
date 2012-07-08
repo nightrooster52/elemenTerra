@@ -25,9 +25,9 @@ public class Brain {
   public void setGame(Game game) {
     this.game = game;
   }
-    public Game getGame(){
-	return game;
-    }
+  public Game getGame(){
+    return game;
+  }
 
   public boolean look(char wasd) {
     int ix = body.getX();
@@ -52,10 +52,10 @@ public class Brain {
       Tile[] shell = searchTiles(range);
       int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
       for (int searched = 1; searched <= shell.length; searched++) {
-	  int cursor = (searched + lookfirst) % (shell.length);//-1
-	  if (!shell[cursor].isOccupied()){
-	      return shell[cursor];
-	  }
+        int cursor = (searched + lookfirst) % (shell.length);//-1
+        if (!shell[cursor].isOccupied()){
+          return shell[cursor];
+        }
       }
     }
     return board.getTile(body.getX(), body.getY());
@@ -67,13 +67,13 @@ public class Brain {
       Tile[] shell = searchTiles(range);
       int lookfirst = random.nextInt(shell.length );//-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
       for (int searched = 0; searched <= shell.length; searched++) {//searched = 1
-	  int cursor = (searched + lookfirst) % (shell.length);//-1
-	  if (shell[cursor].isOccupied()) {
-	      entity = shell[cursor].getEntity();
-	      if (type == entity.getIdentity()) {
-		  return entity;
-	      }
-	  }
+        int cursor = (searched + lookfirst) % (shell.length);//-1
+        if (shell[cursor].isOccupied()) {
+          entity = shell[cursor].getEntity();
+          if (type == entity.getIdentity()) {
+            return entity;
+          }
+        }
       }
     }
     return null;
@@ -100,15 +100,15 @@ public class Brain {
     return shell;
   }
 
-    public void passGame(Ai ai){
-        ai.getBrain().setGame(game);
-    }
+  public void passGame(Ai ai){
+    ai.getBrain().setGame(game);
+  }
 
 
 
 
-    public void tick(){
-	;
-    }
+  public void tick(){
+    ;
+  }
 
 }
