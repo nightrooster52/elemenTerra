@@ -11,7 +11,7 @@ public class Player extends Entity{
   protected int gasNum = 0;
   protected int liquidNum = 0;
   protected int solidNum = 0;
-  protected Decisions decisions;
+
 
   public Player(int x, int y, Board b, char identity){
     super(x, y, b, identity);

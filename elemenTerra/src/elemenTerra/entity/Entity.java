@@ -4,6 +4,7 @@ import elemenTerra.TileKeys;
 import java.awt.Color;
 import elemenTerra.world.Board;
 import elemenTerra.entity.brain.*;
+import elemenTerra.entity.decisions.*;
 
 public class Entity {
 
@@ -19,6 +20,7 @@ public class Entity {
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
 
+  protected Decisions decisions;
   public char[] strongerStates;
   public char[] weakerStates;
   public char[] analagousStates;

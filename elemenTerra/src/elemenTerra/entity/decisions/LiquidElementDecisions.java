@@ -4,15 +4,10 @@ import elemenTerra.*;
 import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
-public abstract class LiquidElementDecisions {
-  protected Entity body;
-  protected Brain brain;
-  protected Game game;
+public class LiquidElementDecisions extends Decisions{
 
-  public Decisions(Entity e){
-    this.body = e;
-    this.brain = e.getBrain();
-    this.game = brain.getGame();
+  public LiquidElementDecisions(Entity body){
+    super(body);
   }
 
   //gas interactions

@@ -2,6 +2,7 @@ package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
+import elemenTerra.entity.decisions.*;
 import elemenTerra.entity.brain.*;
 import java.awt.Color;
 
@@ -32,12 +33,10 @@ public class Ai extends Entity {
     setBrain(new SeekerBrain(this, target, board));
     identity = '+';
   }
+  public void setDecisions(Decisions decisions){
+    this.decisions = decisions;
+  }
 
-
-  /*sets the state interaction arrays for easy access in collisions
-   * I was wondering if we could use a hashmap here instead of arrays to make running collision logic faster?
-   *
-   */
 
 
   public static Ai parse(char c, Board board, int x, int y) {
@@ -51,38 +50,47 @@ public class Ai extends Entity {
     case TileKeys.fireGas:
       ai.setBrain(new GasBrain(ai, board));
       ai.setColor(TileKeys.lightRed);
+      ai.decisions = new GasElementDecisions(ai);
       //ai.setColor(new Color((int) (Math.random()*255), 0, 0));
       break;
     case TileKeys.fireLiquid:
       ai.setBrain(new LiquidBrain(ai, board));
+      ai.decisions = new LiquidElementDecisions(ai);
       ai.setColor(TileKeys.red);
       break;
     case TileKeys.fireSolid:
       ai.setBrain(new SolidBrain(ai, board));
+      ai.decisions = new SolidElementDecisions(ai);
       ai.setColor(TileKeys.darkRed);
       break;
     case TileKeys.earthGas:
       ai.setBrain(new GasBrain(ai, board));
       ai.setColor(TileKeys.lightGreen);
+      ai.decisions = new GasElementDecisions(ai);
       break;
     case TileKeys.earthLiquid:
       ai.setBrain(new LiquidBrain(ai, board));
+      ai.decisions = new LiquidElementDecisions(ai);
       ai.setColor(TileKeys.green);
       break;
     case TileKeys.earthSolid:
       ai.setBrain(new SolidBrain(ai, board));
+      ai.decisions = new SolidElementDecisions(ai);
       ai.setColor(TileKeys.darkGreen);
       break;
     case TileKeys.waterGas:
       ai.setBrain(new GasBrain(ai, board));
       ai.setColor(TileKeys.lightBlue);
+      ai.decisions = new GasElementDecisions(ai);
       break;
     case TileKeys.waterLiquid:
       ai.setBrain(new LiquidBrain(ai, board));
+      ai.decisions = new LiquidElementDecisions(ai);
       ai.setColor(TileKeys.blue);
       break;
     case TileKeys.waterSolid:
       ai.setBrain(new SolidBrain(ai, board));
+      ai.decisions = new SolidElementDecisions(ai);
       ai.setColor(TileKeys.darkBlue);
       break;
     }
