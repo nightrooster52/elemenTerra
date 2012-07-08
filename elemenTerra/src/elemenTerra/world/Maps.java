@@ -6,18 +6,31 @@ import elemenTerra.TileKeys;
 
 public class Maps implements TileKeys {
 
-  String blankMap = "020 020 " + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "000000000X0000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
-      + "00000000000000000000" + "00000000000000000000"
+  public String blankMap = "020 020 " 
+      + "00000000000000000000"
+      + "00000000000000000000" 
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "000000000X0000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
       + "00000000000000000000";
-  String elementMap = "020 020 " + "00000000000000000000"
+
+
+
+  public String elementMap = "020 020 " + "00000000000000000000"
       + "00000000000000000000" + "00000000000000000000"
       + "00000000000000000000" + "00b00000000000000000"
       + "000fF000000000000000" + "00000000000000000000"
@@ -28,7 +41,7 @@ public class Maps implements TileKeys {
       + "00000000000000000000" + "00000000000000000000"
       + "00000000000000000000" + "00000000000000000000"
       + "00000000000000000000";
-  String lrMap = "020 020 " + "00000000000000000000" + "0000######0000000000"
+  public String lrMap = "020 020 " + "00000000000000000000" + "0000######0000000000"
       + "000#000000#000000000" + "00000000000000000000"
       + "0000L000000000000000" + "000#000000#000000000"
       + "0000######0000000000" + "00000000000000000000"
@@ -39,7 +52,7 @@ public class Maps implements TileKeys {
       + "00000000000000000000" + "00000000000000000000"
       + "00000000000000000000" + "00000000000000000000";
 
-  String SeekerMap = "020 020 " + "++++++++++++++++++++"
+  public String SeekerMap = "020 020 " + "++++++++++++++++++++"
       + "00000000000000000000" + "########0000########"
       + "00000000000000000000" + "0000############0000"
       + "00000000000000000000" + "00000000000000000000"
@@ -51,67 +64,136 @@ public class Maps implements TileKeys {
       + "0000############0000" + "00000000000000000000"
       + "000000000X0000000000";
 
+  public String biasTestMap = "020 020 " 
+      + "00000000000000000000"
+      + "0X000000000000000000" 
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "000000000r0000000000"
+      + "00000000r0r000000000"
+      + "0000000r000r00000000"
+      + "000000r00000r0000000"
+      + "00000r0000000r000000"
+      + "000000r00000r0000000"
+      + "0000000r000r00000000"
+      + "00000000r0r000000000"
+      + "000000000r0000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000"
+      + "00000000000000000000";
+
   String randomMap = randomMap();
 
   public String randomMap() {
     String randomMap = "020 020 ";
     Random random = new Random();
     for (int i = 0; i < 400; i++) {
+      char tileStr;
       int type = random.nextInt(100);
-      String tileStr = TileKeys.defaultTile;
-      if (type == 0) {
+
+      switch (type) {
+      case 0:
         tileStr = TileKeys.blockTile;
-      }
-      if (type == 1) {
+        break;
+      case 1:
         tileStr = TileKeys.SeekerTile;
-      }
-      if (type == 2) {
+        break;
+      case 2:
         tileStr = TileKeys.LTile;
-      }
-      if (type == 3) {
+        break;
+      case 3:
         tileStr = TileKeys.RTile;
+        break;
+      default:
+        tileStr = TileKeys.defaultTile;
       }
+
       randomMap += tileStr;
     }
     return randomMap;
   }
 
   public String randomElements() {
-    String randomElements = "050 050 ";
+    String randomElements = "125 075 ";
     Random random = new Random();
-    for (int i = 0; i < 2500; i++) {
-      int type = random.nextInt(80);
-      String tileStr = TileKeys.defaultTile;
-      if (type == 0) {
+    for (int i = 0; i < 9375; i++) {
+      char tileStr;
+      int type = random.nextInt(40);
+
+      switch (type) {
+      case 0:
         tileStr = TileKeys.fireGas;
-      }
-      if (type == 1) {
+        break;
+      case 1:
         tileStr = TileKeys.fireLiquid;
-      }
-      if (type == 2) {
+        break;
+      case 2:
         tileStr = TileKeys.fireSolid;
-      }
-      if (type == 3) {
+        break;
+      case 3:
         tileStr = TileKeys.waterGas;
-      }
-      if (type == 4) {
+        break;
+      case 4:
         tileStr = TileKeys.waterLiquid;
-      }
-      if (type == 5) {
+        break;
+      case 5:
         tileStr = TileKeys.waterSolid;
-      }
-      if (type == 6) {
+        break;
+      case 6:
         tileStr = TileKeys.earthGas;
-      }
-      if (type == 7) {
+        break;
+      case 7:
         tileStr = TileKeys.earthLiquid;
-      }
-      if (type == 8) {
+        break;
+      case 8:
         tileStr = TileKeys.earthSolid;
+        break;
+      default:
+        tileStr = TileKeys.defaultTile;
       }
+
       randomElements += tileStr;
     }
     return randomElements;
   }
 
+  public String randomGas() {
+    String randomElements = "050 050 ";
+    Random random = new Random();
+    for (int i = 0; i < 2500; i++) {
+      char tileStr = TileKeys.defaultTile;
+      int type = random.nextInt(3);
+
+      if (type == 0) {
+        tileStr = TileKeys.fireGas;
+      } else if (type == 1) {
+        //tileStr = TileKeys.waterGas;
+      }
+
+      randomElements += tileStr;
+    }
+    return randomElements;
+  }
+
+  public String randomGasHuge() {
+    String randomElements = "125 075 ";
+    Random random = new Random();
+    for (int i = 0; i < 9375; i++) {
+      char tileStr = TileKeys.defaultTile;
+      int type = random.nextInt(3);
+
+      if (type == 0) {
+        tileStr = TileKeys.fireGas;
+      } else if (type == 1) {
+        //tileStr = TileKeys.waterGas;
+      }
+
+      randomElements += tileStr;
+    }
+    return randomElements;
+  }
 }
