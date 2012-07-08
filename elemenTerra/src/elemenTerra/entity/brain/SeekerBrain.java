@@ -35,51 +35,47 @@ public class SeekerBrain extends Brain {
     if (distancex > 0) {
       attemptx = 1;
       aXchar = 'd';
-      //System.out.println("Right attempt");
     } else if (distancex < 0) {
       attemptx = -1;
       aXchar = 'a';
-      //System.out.println("Left attempt");
     }
+
     if (distancey > 0) {
       attempty = 1;
       aYchar = 's';
-
-      //System.out.println("Down attempt");
     } else if (distancey < 0) {
       attempty = -1;
       aYchar = 'w';
-      //System.out.println("Up attempt");
     }
 
-    int dx = ix + attemptx;
-    int dy = iy + attempty;
+    int destinationx = ix + attemptx;
+    int destinationy = iy + attempty;
 
     char attempt = 'Z';
     //farther in x than y distance (squared for absolute value), x check first
     if (distancex*distancex > distancey*distancey) {
-      if (board.checkTile(dx, iy)) {
+      if (board.checkTile(destinationx, iy)) {
         attempt = aXchar;
       } else {
-	  if (!(board.getTile(dx, iy).getIdentity() == body.getIdentity())) {
-          attempt = aYchar;
-        }
+	  if (!(board.getTile(destinationx, iy).getIdentity() == body.getIdentity())) {
+	      attempt = aYchar;
+	  }
       }
     //farther in y than x distance (squared for absolute value), y check first
     } else if (distancex*distancex < distancey*distancey) {
-      if (board.checkTile(ix, dy)) {
+      if (board.checkTile(ix, destinationy)) {
         attempt = aYchar;
       } else {
-	  if (!(board.getTile(ix, dy).getIdentity() == body.getIdentity())) {
-          attempt = aXchar;
+	  if (!(board.getTile(ix, destinationy).getIdentity() == body.getIdentity())) {
+	      attempt = aXchar;
 	  }
       }
     } else {
 	boolean xory = random.nextBoolean();
 	if (xory){
-	    attempt = aYchar;
-	}else {
 	    attempt = aXchar;
+	}else {
+	    attempt = aYchar;
 	}
     }
     return attempt;

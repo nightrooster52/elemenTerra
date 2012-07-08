@@ -62,11 +62,10 @@ public class Brain {
   }
 
   public Entity closestEntity(char type){
-    //takes a char type (identity) because it may be used to search for other types than body.identity
     Entity entity;
     for (int range = searchBuffer; range < 10; range++) {
       Tile[] shell = searchTiles(range);
-      int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
+      int lookfirst = random.nextInt(shell.length );//-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
       for (int searched = 0; searched <= shell.length; searched++) {//searched = 1
 	  int cursor = (searched + lookfirst) % (shell.length);//-1
 	  if (shell[cursor].isOccupied()) {
@@ -87,7 +86,7 @@ public class Brain {
 
     for (int row = -range; row <= range; row++) {
       for (int col = -range; col <= range; col++) {
-        if (row * row == range * range || col * col == range * range) { //either row or col are == +- range
+        if (row*row == range*range || col*col == range*range) { //either row or col are == +- range
           int tilex = col + ix;
           int tiley = row + iy;
           if (board.inBounds(tilex, tiley)) {
