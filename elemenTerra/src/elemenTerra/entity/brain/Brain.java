@@ -64,21 +64,17 @@ public class Brain {
   public Entity closestEntity(char type){
     //takes a char type (identity) because it may be used to search for other types than body.identity
     Entity entity;
-    for (int range = searchBuffer; range < 10; range++) {//range = 1
+    for (int range = searchBuffer; range < 10; range++) {
       Tile[] shell = searchTiles(range);
       int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
-      for (int searched = 1; searched <= shell.length; searched++) {
+      for (int searched = 0; searched <= shell.length; searched++) {//searched = 1
 	  int cursor = (searched + lookfirst) % (shell.length);//-1
-        //System.out.print(cursor);
-        if (shell[cursor].isOccupied()) {
-          entity = shell[cursor].getEntity();
-          if (type == entity.getIdentity()) {
-            //System.out.print(body.getX() + body.getY());
-            //System.out.print(" found Target at");
-            //System.out.println(entity.getX() + entity.getY());
-            return entity;
-          }
-        }
+	  if (shell[cursor].isOccupied()) {
+	      entity = shell[cursor].getEntity();
+	      if (type == entity.getIdentity()) {
+		  return entity;
+	      }
+	  }
       }
     }
     return body;
@@ -91,7 +87,7 @@ public class Brain {
 
     for (int row = -range; row <= range; row++) {
       for (int col = -range; col <= range; col++) {
-        if (row * row == range * range || col * col == range * range) { //either row or col are == +- range)
+        if (row * row == range * range || col * col == range * range) { //either row or col are == +- range
           int tilex = col + ix;
           int tiley = row + iy;
           if (board.inBounds(tilex, tiley)) {

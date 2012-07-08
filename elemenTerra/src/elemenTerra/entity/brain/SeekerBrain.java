@@ -20,23 +20,13 @@ public class SeekerBrain extends Brain {
   public char goToXY(int targetx, int targety, Board b) {
     int ix = body.getX();
     int iy = body.getY();
-    //System.out.println("AI");
-    //System.out.println(ix);
-    //System.out.println(iy);
 
     int tx = targetx;
     int ty = targety;
-    //System.out.println(tx);
-    //System.out.println("Target");
-    //System.out.println(ty);
 
     int distancex = tx - ix;
     int distancey = ty - iy;
-    //System.out.println("Distance");
-    //System.out.println(distancex);
-    //System.out.println(distancey);
 
-    //set up the dx/dy
     int attemptx = 0;
     int attempty = 0;
     char aXchar = 'Z';
@@ -66,35 +56,30 @@ public class SeekerBrain extends Brain {
     int dy = iy + attempty;
 
     char attempt = 'Z';
-    //farther in x than y distance (squared for absolute value), x dominates
+    //farther in x than y distance (squared for absolute value), x check first
     if (distancex*distancex > distancey*distancey) {
-      //System.out.println("distance larger: y");
       if (board.checkTile(dx, iy)) {
-        //System.out.println("check x valid");
         attempt = aXchar;
       } else {
-	  if (targetStable && !board.getTile(dx, iy).getEntity().toString().equals(body.getIdentity())) {
+	  if (!(board.getTile(dx, iy).getIdentity() == body.getIdentity())) {
           attempt = aYchar;
-          //System.out.println(board.getTile(dx, iy).getEntity().toString());
         }
       }
+    //farther in y than x distance (squared for absolute value), y check first
     } else if (distancex*distancex < distancey*distancey) {
-      //System.out.println("distance larger: y");
       if (board.checkTile(ix, dy)) {
-        //System.out.println("check y valid");
         attempt = aYchar;
       } else {
-	  if (targetStable && !board.getTile(ix, dy).getEntity().toString().equals(body.getIdentity())) {
+	  if (!(board.getTile(ix, dy).getIdentity() == body.getIdentity())) {
           attempt = aXchar;
-          //System.out.println(board.getTile(ix, dy).getEntity().toString());
-        }
+	  }
       }
     } else {
 	boolean xory = random.nextBoolean();
 	if (xory){
 	    attempt = aYchar;
 	}else {
-	    attempt = aXchar;//aYchar
+	    attempt = aXchar;
 	}
     }
     return attempt;

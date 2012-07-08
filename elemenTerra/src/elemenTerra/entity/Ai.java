@@ -3,6 +3,7 @@ package elemenTerra.entity;
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
 import elemenTerra.entity.brain.*;
+import java.awt.Color;
 
 
 public class Ai extends Entity {
@@ -43,11 +44,14 @@ public class Ai extends Entity {
     Ai ai = new Ai(x, y, board);
     ai.setIdentity(c);
     ai.setInteractionKeys();
+    
+
 
     switch (c) {
     case TileKeys.fireGas:
       ai.setBrain(new GasBrain(ai, board));
-      ai.setColor(TileKeys.lightRed);
+      //ai.setColor(TileKeys.lightRed);
+      ai.setColor(new Color((int) (Math.random()*255), 0, 0));
       break;
     case TileKeys.fireLiquid:
       ai.setBrain(new LiquidBrain(ai, board));
