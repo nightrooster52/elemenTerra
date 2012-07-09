@@ -53,6 +53,7 @@ public class Entity {
   public void setY(int y) {
     this.y = y;
   }
+
   public Decisions getDecisions(){
     return decisions;
   }
@@ -69,6 +70,8 @@ public class Entity {
   public void die() {
     board.getTile(x, y).vacate();
   }
+
+
 
   public void move(int dx, int dy) {
     x += dx;

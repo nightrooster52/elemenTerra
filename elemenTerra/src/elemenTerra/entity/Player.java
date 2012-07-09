@@ -60,8 +60,9 @@ public class Player extends Entity{
         decisions.strongerSolid(e);
       }
     }
-
   }
+
+
   public void handleInput(char input){
     if ((gasNum + liquidNum + solidNum) >0){
       dropParticle(identity);
@@ -77,6 +78,47 @@ public class Player extends Entity{
     color = e.getColor();
     setInteractionKeys();
   }
+
+
+  public void upConvert(){
+    for (int index = 0; index < 3; index++){
+      if (identity == TileKeys.liquids[index]){
+        color = TileKeys.solidColors[index];
+        identity = analagousStates[2];
+        decisions = new SolidPlayerDecisions(this);
+        gasNum = 0;
+        liquidNum = 1;
+      }
+      if (identity == TileKeys.gasses[index]){
+        color = TileKeys.liquidColors[index];
+        identity = analagousStates[1];
+        decisions = new LiquidPlayerDecisions(this);
+        liquidNum = 0;
+        solidNum = 1;
+      }
+    }
+  }
+
+  public void downConvert(){
+    for (int index = 0; index < 3; index++){
+      if (identity == TileKeys.liquids[index]){
+        color = TileKeys.gasColors[index];
+        identity = analagousStates[0];
+        decisions = new GasPlayerDecisions(this);
+        gasNum = 4;
+        liquidNum = 0;
+      }
+      if (identity == TileKeys.solids[index]){
+        color = TileKeys.liquidColors[index];
+        identity = analagousStates[1];
+        decisions = new SolidPlayerDecisions(this);
+        liquidNum = 4;
+        solidNum = 0;
+
+      }
+    }
+  }
+
 
   public void absorb(Entity e){
     char particleIdentity = e.getIdentity();
