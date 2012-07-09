@@ -70,8 +70,7 @@ public class SolidPlayerDecisions extends Decisions{
     ;
   }
   public void weakerSolid(Entity e){
-    //break e into 4 liquids
-    ;
+    game.push(body, e,  body.getFacing());
   }
 
 
