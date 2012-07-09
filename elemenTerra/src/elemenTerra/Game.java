@@ -78,7 +78,7 @@ public class Game {
     if (pushed.getBrain().look(direction)){
       handleMove(direction, pushed);
     }else {
-      Tile destination = pushed.getBrain().closestEmptyTile();
+      Tile destination = pusher.getBrain().closestEmptyTile();
       portEntity(destination, pushed);
 
     }
@@ -162,7 +162,7 @@ public class Game {
           public void run() {
           tick();
         }
-      }, 0, 1000/60);
+      }, 0, 1);//1000/60
   }
 
   public void tick() {

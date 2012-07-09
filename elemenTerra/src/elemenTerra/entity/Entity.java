@@ -14,11 +14,11 @@ public class Entity {
   protected int x, y;
   protected char identity = '#';
   protected char originalIdentity = '#';
-  protected char facing = 'w';
   protected Color color = Color.WHITE;
   protected Color originalColor = Color.WHITE;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
+  protected char facing = randomFace();
 
   protected Decisions decisions;
   public char[] strongerStates;
@@ -59,6 +59,11 @@ public class Entity {
 
   public char getFacing() {
     return facing;
+  }
+
+  public char randomFace() {
+    int index = ((int) (Math.random()*4));
+    return clockwise.charAt(index);
   }
 
   public void die() {

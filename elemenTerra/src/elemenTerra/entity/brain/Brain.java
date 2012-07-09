@@ -12,6 +12,7 @@ public class Brain {
   protected int delay = 10;
   protected int wait = 0;
   protected int searchBuffer = 1;
+  protected int searchMax = 100;
   protected Entity body;
   protected Board board;
   protected Game game;
@@ -48,24 +49,24 @@ public class Brain {
     return false;
   }
   public Tile closestEmptyTile(){
-    for (int range = 1; range < 100; range++) {//range = 1
+    for (int range = 1; range < searchMax; range++) {//range = 1
       Tile[] shell = searchTiles(range);
       int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
-      for (int searched = 1; searched <= shell.length; searched++) {
+      for (int searched = 0; searched <= shell.length; searched++) {
         int cursor = (searched + lookfirst) % (shell.length);//-1
         if (!shell[cursor].isOccupied()){
           return shell[cursor];
         }
       }
     }
-    return board.getTile(body.getX(), body.getY());
+    return null;
   }
 
   public Entity closestEntity(char type){
     Entity entity;
-    for (int range = searchBuffer; range < 10; range++) {
+    for (int range = searchBuffer; range < searchMax; range++) {
       Tile[] shell = searchTiles(range);
-      int lookfirst = random.nextInt(shell.length );//-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
+      int lookfirst = random.nextInt(shell.length -1 );//-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
       for (int searched = 0; searched <= shell.length; searched++) {//searched = 1
         int cursor = (searched + lookfirst) % (shell.length);//-1
         if (shell[cursor].isOccupied()) {
