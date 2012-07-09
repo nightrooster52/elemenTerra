@@ -41,9 +41,9 @@ public class Game {
 
   public Game() {
     maps = new Maps();
-    //board = new Board(maps.randomElements());
+    board = new Board(maps.randomElements());
 
-    board = new Board(maps.randomGasHuge());
+    //board = new Board(maps.randomGasHuge());
     //board = new Board(maps.randomFireHuge());
     //board = new Board(maps.biasTestMap);
     //board = new Board(maps.elementMap);
@@ -114,7 +114,7 @@ public class Game {
   }
   public void handleInput(char input, Entity e){
     //resets the entity that inputs 'x'
-    if (input == 'x'){
+    if (input == 'x' || input == 'r'){
       playerInput(input, e);
     }else {
       handleMove(input, e);
@@ -162,7 +162,7 @@ public class Game {
           public void run() {
           tick();
         }
-      }, 0, 1);//1000/60
+      }, 0, 1000/60);
   }
 
   public void tick() {

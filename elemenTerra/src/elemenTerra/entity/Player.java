@@ -64,12 +64,28 @@ public class Player extends Entity{
 
 
   public void handleInput(char input){
-    if ((gasNum + liquidNum + solidNum) >0){
-      dropParticle(identity);
+    if (input == 'r'){
+      System.out.println("Gas, Liq, Sol");
+      System.out.print(gasNum);
+      System.out.print("    ");
+      System.out.print(liquidNum);
+      System.out.print("    ");
+      System.out.println(solidNum);
     }
-    if ((gasNum + liquidNum + solidNum) == 0){
-      setIdentity(getOriginalIdentity());
-      setColor(getOriginalColor());
+    if (input == 'x'){
+      if ((gasNum + liquidNum + solidNum) >0){
+        if (gasNum > 0){
+          dropParticle(analagousStates[0]);
+        }else if (liquidNum > 0){
+          dropParticle(analagousStates[1]);
+        }else if (solidNum > 0){
+          dropParticle(analagousStates[2]);
+        }
+      }
+      if ((gasNum + liquidNum + solidNum) == 0){
+        setIdentity(getOriginalIdentity());
+        setColor(getOriginalColor());
+      }
     }
   }
 
@@ -82,19 +98,19 @@ public class Player extends Entity{
 
   public void upConvert(){
     for (int index = 0; index < 3; index++){
-      if (identity == TileKeys.liquids[index]){
-        color = TileKeys.solidColors[index];
-        identity = analagousStates[2];
-        decisions = new SolidPlayerDecisions(this);
-        gasNum = 0;
-        liquidNum = 1;
+      if (identity == TileKeys.liquids[index]){ //if i am a liquid
+        color = TileKeys.solidColors[index]; //I become solid color
+        identity = analagousStates[2];  //I take solid type
+        decisions = new SolidPlayerDecisions(this); //I get solid decisions
+        liquidNum = 0;
+        solidNum = 1;
       }
       if (identity == TileKeys.gasses[index]){
         color = TileKeys.liquidColors[index];
         identity = analagousStates[1];
         decisions = new LiquidPlayerDecisions(this);
-        liquidNum = 0;
-        solidNum = 1;
+        gasNum = 0;
+        liquidNum = 1;
       }
     }
   }
@@ -105,17 +121,40 @@ public class Player extends Entity{
         color = TileKeys.gasColors[index];
         identity = analagousStates[0];
         decisions = new GasPlayerDecisions(this);
-        gasNum = 4;
+        gasNum = 3;
         liquidNum = 0;
       }
       if (identity == TileKeys.solids[index]){
         color = TileKeys.liquidColors[index];
         identity = analagousStates[1];
-        decisions = new SolidPlayerDecisions(this);
-        liquidNum = 4;
+        decisions = new LiquidPlayerDecisions(this);
+        liquidNum = 3;
         solidNum = 0;
 
       }
+    }
+  }
+
+  public void convertGasToLiquid(){
+    if (gasNum == 4){
+      gasNum = 0;
+      liquidNum += 1;
+    } else {
+      System.out.println("convert gas to liquid called at inappropriate time");
+    }
+  }
+
+  public void convertLiquidToSolid(){
+    if (liquidNum == 4){
+      liquidNum = 0;
+      solidNum += 1;
+    } else {
+      System.out.println("convert liquid to solid called at inappropriate time");
+      System.out.print("Liquids : ");
+      System.out.println(liquidNum);
+      System.out.print("Solids : ");
+      System.out.println(solidNum);
+      
     }
   }
 
@@ -126,13 +165,9 @@ public class Player extends Entity{
       if (particleIdentity == TileKeys.gasses[index]){
         gasNum++;
       }
-    }
-    for (int index = 0; index < 3; index++){
       if (particleIdentity == TileKeys.liquids[index]){
         liquidNum++;
       }
-    }
-    for (int index = 0; index < 3; index++){
       if (particleIdentity == TileKeys.solids[index]){
         solidNum++;
       }
@@ -146,15 +181,21 @@ public class Player extends Entity{
       if (type == TileKeys.gasses[index]){
         gasNum--;
       }
-    }
-    for (int index = 0; index < 3; index++){
-      if (type == TileKeys.liquids[index]){
-        liquidNum--;
+      if (type == TileKeys.liquids[index]){ //will need to adjust for holding gasses in liquid/solid form
+        if (liquidNum == 1 && solidNum == 0){
+          downConvert();
+          type = identity;
+        }else{
+          liquidNum--;
+        }
       }
-    }
-    for (int index = 0; index < 3; index++){
       if (type == TileKeys.solids[index]){
-        solidNum--;
+        if (solidNum == 1){
+          downConvert();
+          type = identity;
+        }else {
+          solidNum--;
+        }
       }
     }
     if (brain.look(facing)){
