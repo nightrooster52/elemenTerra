@@ -56,7 +56,7 @@ public class Brain {
       List<Tile> shell = searchTiles(range);
       int shellSize = shell.size();
       if (shellSize >0){
-        int lookfirst = random.nextInt(shellSize -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
+        int lookfirst = random.nextInt(shellSize -1);
         for (int searched = 0; searched <= shellSize; searched++) {
           int cursor = (searched + lookfirst) % (shellSize);//-1
           Tile tile = shell.get(cursor);
@@ -95,21 +95,39 @@ public class Brain {
   public List<Tile> searchTiles(int range) {
     int ix = body.getX();
     int iy = body.getY();
-    List<Tile> shell = new ArrayList<Tile>();
-
-    for (int row = range; row >= -range; row--) {
-      for (int col = range; col >= -range; col--) {
-        if (row*row == range*range || col*col == range*range) { //either row or col are == +- range
-          int tilex = col + ix;
-          int tiley = row + iy;
-          if (board.inBounds(tilex, tiley)) {
-            Tile tile = board.getTile(tilex, tiley);
-            shell.add(tile);
+    List<Tile> finalShell = new ArrayList<Tile>();
+    List<Tile> bottom = new ArrayList<Tile>();
+    List<Tile> left = new ArrayList<Tile>();
+    List<Tile> right = new ArrayList<Tile>();
+    for (int row = -range; row <= range; row++) {
+      for (int col = -range; col <= range; col++) {
+        int tilex = col + ix;
+        int tiley = row + iy;
+        Tile tile;
+        if (board.inBounds(tilex, tiley)) {
+          tile = board.getTile(tilex, tiley);
+          if (row == range){
+            finalShell.add(tile); //aka top
+          }else if (col == range){
+            right.add(tile);
+          }else if (col == -range){
+            left.add(tile);
+          }else if (row == -range){
+            bottom.add(tile);
           }
         }
       }
     }
-    return shell;
+    finalShell.addAll(right);
+    int bottomSize = bottom.size();
+    for (int index = 0; index < bottomSize; index++) {
+      finalShell.add(bottom.get(bottomSize - (index+1)));
+    }
+    int leftSize = left.size();
+    for (int index = 0; index < leftSize ; index++) {
+      finalShell.add(left.get(leftSize - (index+1)));
+    }
+    return finalShell;
   }
 
   public void passGame(Ai ai){
