@@ -1,12 +1,14 @@
 package elemenTerra.entity.brain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import elemenTerra.Game;
+import elemenTerra.entity.Ai;
+import elemenTerra.entity.Entity;
 import elemenTerra.world.Board;
 import elemenTerra.world.Tile;
-import elemenTerra.entity.*;
 
 public class Brain {
   protected int delay = 10;
@@ -48,15 +50,18 @@ public class Brain {
     }
     return false;
   }
+
   public Tile closestEmptyTile(){
     for (int range = 1; range < searchMax; range++) {//range = 1
-      Tile[] shell = searchTiles(range);
-      int lookfirst = random.nextInt(shell.length -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
-      for (int searched = 0; searched <= shell.length; searched++) {
-        if (shell.length >0){
-          int cursor = (searched + lookfirst) % (shell.length);//-1
-          if (!shell[cursor].isOccupied()){
-            return shell[cursor];
+      List<Tile> shell = searchTiles(range);
+      int shellSize = shell.size();
+      if (shellSize >0){
+        int lookfirst = random.nextInt(shellSize -1);//randomizes the first direction looked, so there isn't an upper-left dx bias
+        for (int searched = 0; searched <= shellSize; searched++) {
+          int cursor = (searched + lookfirst) % (shellSize);//-1
+          Tile tile = shell.get(cursor);
+          if (!tile.isOccupied()){
+            return tile;
           }
         }
       }
@@ -67,13 +72,16 @@ public class Brain {
   public Entity closestEntity(char type){
     Entity entity;
     for (int range = searchBuffer; range < searchMax; range++) {
-      Tile[] shell = searchTiles(range);
-      int lookfirst = (int) Math.random()*shell.length;//-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
-      for (int searched = 0; searched <= shell.length; searched++) {//searched = 1
-        if (shell.length >0){
-          int cursor = (searched + lookfirst) % (shell.length);//-1
-          if (shell[cursor].isOccupied()) {
-            entity = shell[cursor].getEntity();
+      List<Tile> shell = searchTiles(range);
+      int shellSize = shell.size();
+      if (shellSize > 0){
+        //-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
+        int indexOffset = (int) Math.random() * shellSize;
+        for (int i = 0; i <= shellSize; i++) {//searched = 1
+          int cursor = (i + indexOffset) % (shellSize);//-1
+          Tile tile = shell.get(cursor);
+          if (tile.isOccupied()) {
+            entity = tile.getEntity();
             if (type == entity.getIdentity()) {
               return entity;
             }
@@ -84,20 +92,19 @@ public class Brain {
     return null;
   }
 
-  public Tile[] searchTiles(int range) {
+  public List<Tile> searchTiles(int range) {
     int ix = body.getX();
     int iy = body.getY();
-    Tile[] shell = new Tile[0];
+    List<Tile> shell = new ArrayList<Tile>();
 
-    for (int row = -range; row <= range; row++) {
-      for (int col = -range; col <= range; col++) {
+    for (int row = range; row >= -range; row--) {
+      for (int col = range; col >= -range; col--) {
         if (row*row == range*range || col*col == range*range) { //either row or col are == +- range
           int tilex = col + ix;
           int tiley = row + iy;
           if (board.inBounds(tilex, tiley)) {
             Tile tile = board.getTile(tilex, tiley);
-            shell = Arrays.copyOf(shell, shell.length + 1);
-            shell[shell.length - 1] = tile;
+            shell.add(tile);
           }
         }
       }

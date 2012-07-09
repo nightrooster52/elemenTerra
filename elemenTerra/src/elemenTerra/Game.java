@@ -6,7 +6,6 @@ import java.util.TimerTask;
 
 import elemenTerra.GFX.BoardView;
 import elemenTerra.GFX.Display;
-import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
 import elemenTerra.entity.Player;
 import elemenTerra.world.Board;
@@ -158,11 +157,11 @@ public class Game {
     }
 
     gameTimer.schedule(new TimerTask() {
-        @Override
-          public void run() {
-          tick();
-        }
-      }, 0, 1000/60);
+      @Override
+      public void run() {
+        tick();
+      }
+    }, 0, 1);
   }
 
   public void tick() {
@@ -173,7 +172,7 @@ public class Game {
   }
 
   @Override
-    public String toString() {
+  public String toString() {
     return board.toString();
   }
 }
