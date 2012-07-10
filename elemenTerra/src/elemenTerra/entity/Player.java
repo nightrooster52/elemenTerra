@@ -74,15 +74,9 @@ public class Player extends Entity{
     }
     if (input == 'x'){
       if ((gasNum + liquidNum + solidNum) >0){
-        if (gasNum > 0){
-          dropParticle(analagousStates[0]);
-        }else if (liquidNum > 0){
-          dropParticle(analagousStates[1]);
-        }else if (solidNum > 0){
-          dropParticle(analagousStates[2]);
-        }
+        dropParticle();
       }
-      if ((gasNum + liquidNum + solidNum) == 0){
+      if ((gasNum + liquidNum + solidNum) <= 0){
         setIdentity(getOriginalIdentity());
         setColor(getOriginalColor());
       }
@@ -154,7 +148,7 @@ public class Player extends Entity{
       System.out.println(liquidNum);
       System.out.print("Solids : ");
       System.out.println(solidNum);
-      
+
     }
   }
 
@@ -176,44 +170,49 @@ public class Player extends Entity{
 
   }
 
-  public void dropParticle(char type){
-    for (int index = 0; index < 3; index++){
-      if (type == TileKeys.gasses[index]){
+  public void dropParticle(){
+    if (gasNum + liquidNum + solidNum > 0){
+      char type;
+      if (gasNum > 0){
         gasNum--;
-      }
-      if (type == TileKeys.liquids[index]){ //will need to adjust for holding gasses in liquid/solid form
+        type = analagousStates[0];
+      }else if (liquidNum > 0){
         if (liquidNum == 1 && solidNum == 0){
           downConvert();
-          type = identity;
+          type = analagousStates[0];
         }else{
           liquidNum--;
+          type = analagousStates[1];
         }
-      }
-      if (type == TileKeys.solids[index]){
+      }else{ //solidNum must be greater than zero
         if (solidNum == 1){
           downConvert();
           type = identity;
+          type = analagousStates[1];
         }else {
           solidNum--;
+          type = analagousStates[2];
         }
       }
-    }
-    if (brain.look(facing)){
-      int[] xy = wasdToXY(facing);
-      int aix = x + xy[0];
-      int aiy = y + xy[1];
-      Ai ai = Ai.parse(type, board, aix, aiy);
-      board.getTile(aix, aiy).occupy(ai);
-      brain.passGame(ai);
-    }else {
-      Tile destination = brain.closestEmptyTile();
-      int aix = destination.getX();
-      int aiy = destination.getY();
-      //System.out.println(aix);
-      //System.out.println(aiy);
-      Ai ai = Ai.parse(type, board, aix, aiy);
-      board.getTile(aix, aiy).occupy(ai);
-      brain.passGame(ai);
+
+
+      if (brain.look(facing)){
+        int[] xy = wasdToXY(facing);
+        int aix = x + xy[0];
+        int aiy = y + xy[1];
+        Ai ai = Ai.parse(type, board, aix, aiy);
+        board.getTile(aix, aiy).occupy(ai);
+        brain.passGame(ai);
+      }else {
+        Tile destination = brain.closestEmptyTile();
+        int aix = destination.getX();
+        int aiy = destination.getY();
+        //System.out.println(aix);
+        //System.out.println(aiy);
+        Ai ai = Ai.parse(type, board, aix, aiy);
+        board.getTile(aix, aiy).occupy(ai);
+        brain.passGame(ai);
+      }
     }
   }
   //utility method

@@ -18,7 +18,7 @@ public class LiquidPlayerDecisions extends Decisions{
     } else {
       body.absorb(e);
       body.convertGasToLiquid();
-      body.dropParticle(body.getIdentity());
+      body.dropParticle();
     }
   }
   //absorb e and ^-> it to Liquid when have 4

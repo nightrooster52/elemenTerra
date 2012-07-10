@@ -23,7 +23,7 @@ public class SolidPlayerDecisions extends Decisions{
       body.absorb(e);
       body.convertGasToLiquid();
       body.convertLiquidToSolid();
-      body.dropParticle(body.getIdentity());
+      body.dropParticle();
     }
   }
   public void strongerGas(Entity e){
@@ -41,7 +41,7 @@ public class SolidPlayerDecisions extends Decisions{
     } else {
       body.absorb(e);
       body.convertLiquidToSolid();
-      body.dropParticle(body.getIdentity());
+      body.dropParticle();
     }
   }
 

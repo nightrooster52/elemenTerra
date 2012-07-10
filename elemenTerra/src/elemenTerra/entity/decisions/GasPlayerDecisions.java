@@ -37,7 +37,7 @@ public class GasPlayerDecisions extends Decisions{
     ;
   }
   public void strongerLiquid(Entity e){
-    body.dropParticle(body.getIdentity());
+    body.dropParticle();
     //lose gas
     ;
   }
