@@ -48,7 +48,7 @@ public class Board implements TileKeys {
 
         } else if (identity == TileKeys.playerTile) {
 
-	  player = new Player(col, row, this, TileKeys.playerTile);
+          player = new Player(col, row, this, TileKeys.playerTile);
           tile.occupy(player);
           playerHasSpawned = true;
 
@@ -119,7 +119,7 @@ public class Board implements TileKeys {
   }
 
   @Override
-  public String toString() {
+    public String toString() {
     String t = "";
     for (int row = 0; row < height; row++) {
       for (int col = 0; col < width; col++) {

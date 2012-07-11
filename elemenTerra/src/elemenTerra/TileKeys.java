@@ -35,6 +35,11 @@ public interface TileKeys {
   char earthLiquid = 'e';
   char earthSolid = 'E';
 
+
+  Color[] gasColors = {lightRed, lightBlue, lightGreen};
+  Color[] liquidColors = {red, blue, green};
+  Color[] solidColors = {darkRed, darkBlue, darkGreen};
+
   char[] gasses = {fireGas, waterGas, earthGas};
   char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
   char[] solids = {fireSolid, waterSolid, earthSolid};
@@ -42,17 +47,16 @@ public interface TileKeys {
   char[] fireStates = {fireGas, fireLiquid, fireSolid};
   char[] waterStates = {waterGas, waterLiquid, waterSolid};
   char[] earthStates = {earthGas, earthLiquid, earthSolid};
-  char[] junkCharArray = {'Z'}; 
-  
-  
-  char[][] interactionKey = {fireStates, waterStates, earthStates };
-  
 
-  
+  char[] junkCharArray = {'Z'};
+  char[][] interactionKey = {fireStates, waterStates, earthStates };
+
+
+
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
-      TileKeys.playerTile, TileKeys.LTile, TileKeys.RTile, TileKeys.fireGas,
-      TileKeys.fireLiquid, TileKeys.fireSolid, TileKeys.waterGas,
-      TileKeys.waterLiquid, TileKeys.waterSolid, TileKeys.earthGas,
-      TileKeys.earthLiquid, TileKeys.earthSolid };
+                      TileKeys.playerTile, TileKeys.LTile, TileKeys.RTile, TileKeys.fireGas,
+                      TileKeys.fireLiquid, TileKeys.fireSolid, TileKeys.waterGas,
+                      TileKeys.waterLiquid, TileKeys.waterSolid, TileKeys.earthGas,
+                      TileKeys.earthLiquid, TileKeys.earthSolid };
 }

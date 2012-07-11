@@ -4,37 +4,40 @@ import elemenTerra.TileKeys;
 import java.awt.Color;
 import elemenTerra.world.Board;
 import elemenTerra.entity.brain.*;
+import elemenTerra.entity.decisions.*;
 
 public class Entity {
-    
+
   protected Brain brain;
   protected Board board;
 
   protected int x, y;
   protected char identity = '#';
   protected char originalIdentity = '#';
-  protected char facing = 'w';
   protected Color color = Color.WHITE;
   protected Color originalColor = Color.WHITE;
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
+  protected char facing = randomFace();
 
-  protected char[] strongerStates;
-  protected char[] weakerStates;
-  protected char[] analagousStates;
+  protected Decisions decisions;
+  public char[] strongerStates;
+  public char[] weakerStates;
+  public char[] analagousStates;
 
 
-    public Entity(int x, int y, Board b) {
-	this.x = x;
-	this.y = y;
-	board = b;
-	this.brain = new Brain(this, b);
-    }
+  public Entity(int x, int y, Board b) {
+    this.x = x;
+    this.y = y;
+    this.board = b;
+    this.brain = new Brain(this, b);
+    this.decisions = new Decisions(this);
+  }
 
-    public Entity(int x, int y, Board b, char identity) {
-	this(x, y, b);
-	this.identity = identity;
-	this.originalIdentity = identity;
+  public Entity(int x, int y, Board b, char identity) {
+    this(x, y, b);
+    this.identity = identity;
+    this.originalIdentity = identity;
   }
 
   public int getX() {
@@ -51,26 +54,43 @@ public class Entity {
     this.y = y;
   }
 
+  public Decisions getDecisions(){
+    return decisions;
+  }
+
   public char getFacing() {
     return facing;
   }
 
-  public void die() {
-      board.getTile(x, y).vacate();
+  public char randomFace() {
+    int index = ((int) (Math.random()*4));
+    return clockwise.charAt(index);
   }
+
+  public void die() {
+    board.getTile(x, y).vacate();
+  }
+
+
 
   public void move(int dx, int dy) {
     x += dx;
     y += dy;
   }
-  
-  public void handleBump(Entity e){
-      ;
+
+  public void recieveBump(Entity e){
+    ;
+  }
+  public void giveBump(Entity e){
+    ;
   }
 
-  public void bump(Entity e) {
-      handleBump(e);
-      e.handleBump(this);
+  public void bump(Entity e) {  //from
+    //I recievebump from e
+    recieveBump(e); 
+
+    //e gives bump to me
+    e.giveBump(this);
   }
 
   public Brain getBrain() {
@@ -81,6 +101,9 @@ public class Entity {
     this.brain = brain;
   }
 
+  public void setDecisions(Decisions decisions){
+    this.decisions = decisions;
+  }
 
   public void setIdentity(char key) {
     identity = key;
@@ -94,53 +117,53 @@ public class Entity {
     return originalIdentity;
   }
   public void handleInput(char input){
-      ;
+    ;
   }
 
   protected char[] analagousStates(char identity){
     for (int element = 0; element < 3; element++){
-	for (int state = 0; state < 3; state++){
-	    if (identity == TileKeys.interactionKey[element][state]){
-		return TileKeys.interactionKey[element];
-	    }
-	}
+      for (int state = 0; state < 3; state++){
+        if (identity == TileKeys.interactionKey[element][state]){
+          return TileKeys.interactionKey[element];
+        }
+      }
     }
     return TileKeys.junkCharArray;
   }
 
   protected char[] strongerStates(char identity){
     for (int element = 0; element < 3; element++){
-	for (int state = 0; state < 3; state++){
-	    if (identity == TileKeys.interactionKey[element][state]){
-		return TileKeys.interactionKey[(element+1)%3];
-	    }
-	}
+      for (int state = 0; state < 3; state++){
+        if (identity == TileKeys.interactionKey[element][state]){
+          return TileKeys.interactionKey[(element+1)%3];
+        }
+      }
     }
     return TileKeys.junkCharArray;
   }
 
   protected char[] weakerStates(char identity){
     for (int element = 0; element < 3; element++){
-	for (int state = 0; state < 3; state++){
-	    if (identity == TileKeys.interactionKey[element][state]){
-		return TileKeys.interactionKey[(element+2)%3];
-	    }
-	}
+      for (int state = 0; state < 3; state++){
+        if (identity == TileKeys.interactionKey[element][state]){
+          return TileKeys.interactionKey[(element+2)%3];
+        }
+      }
     }
     return TileKeys.junkCharArray;
   }
 
   protected void setInteractionKeys(){
-	  analagousStates = analagousStates(identity);
-	  weakerStates = weakerStates(identity);
-	  strongerStates = strongerStates(identity);
+    analagousStates = analagousStates(identity);
+    weakerStates = weakerStates(identity);
+    strongerStates = strongerStates(identity);
   }
 
 
 
 
   @Override
-  public String toString() {
+    public String toString() {
     return "" + identity;
   }
 
@@ -150,7 +173,7 @@ public class Entity {
   }
 
   public void tick() {
-      ;
+    ;
   }
 
   public void turn(String lr) {

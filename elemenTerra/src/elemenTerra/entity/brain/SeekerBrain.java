@@ -54,51 +54,49 @@ public class SeekerBrain extends Brain {
     char attempt = 'Z';
     //farther in x than y distance (squared for absolute value), x check first
     if (distancex*distancex > distancey*distancey) {
-      if (board.checkTile(destinationx, iy)) {
+      if (true){//(board.checkTile(destinationx, iy)) {// seekers attempt strongest direction without checking//
         attempt = aXchar;
       } else {
-	  if (!(board.getTile(destinationx, iy).getIdentity() == body.getIdentity())) {
-	      attempt = aYchar;
-	  }
+        if (!(board.getTile(destinationx, iy).getIdentity() == body.getIdentity())) {
+          attempt = aYchar;
+        }
       }
-    //farther in y than x distance (squared for absolute value), y check first
+      //farther in y than x distance (squared for absolute value), y check first
     } else if (distancex*distancex < distancey*distancey) {
-      if (board.checkTile(ix, destinationy)) {
+      if (true){// (board.checkTile(ix, destinationy)) {// seekers attempt strongest direction without checking//
         attempt = aYchar;
       } else {
-	  if (!(board.getTile(ix, destinationy).getIdentity() == body.getIdentity())) {
-	      attempt = aXchar;
-	  }
+        if (!(board.getTile(ix, destinationy).getIdentity() == body.getIdentity())) {
+          attempt = aXchar;
+        }
       }
     } else {
-	boolean xory = random.nextBoolean();
-	if (xory){
-	    attempt = aXchar;
-	}else {
-	    attempt = aYchar;
-	}
+      boolean xory = random.nextBoolean();
+      if (xory){
+        attempt = aXchar;
+      }else {
+        attempt = aYchar;
+      }
     }
     return attempt;
   }
 
-  public char goToTarget() {
+  public char goToTarget(Entity target) {
     int targetx = target.getX();
     int targety = target.getY();
     char attempt = goToXY(targetx, targety, board);
-    //System.out.println("Ai attempted move");
     return attempt;
   }
 
   @Override
-  public void tick() {
-    //System.out.println("SeekerBrain ticked");
-    //System.out.println(board.testString);
+    public void tick() {
     wait++;
     if (wait == delay) {
       wait = 0;
-      char output = goToTarget();
-      //System.out.println(output);
-      game.handleMove(output, body);
+      if (target != null){
+        char output = goToTarget(target);
+        game.handleMove(output, body);
+      }
     }
   }
 }

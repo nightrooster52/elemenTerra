@@ -6,50 +6,72 @@ import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
 public class SolidPlayerDecisions extends Decisions{
-    public SolidPlayerDecisions(Player p){
-	super(p);
-    }
-    //gas interactions
-    public void analagousGas(Entity e){
-	//move e
-	;
-    }
-    public void strongerGas(Entity e){
-	//slowed by e
-	;
-    }
-    public void weakerGas(Entity e){
-	//move e
-	;
-    }
 
-    //liquid interactions
-    public void analagousLiquid(Entity e){
-	//absorb liquid ^-> to solid
-	;
+  protected Player body;
+  public SolidPlayerDecisions(Player body){
+    super(body);
+    this.body = body;
+  }
+  //gas interactions
+  public void analagousGas(Entity e){
+    if (body.getGasNum() < 3){
+      body.absorb(e);//absorb e
+    } else if (body.getLiquidNum() < 3){
+      body.absorb(e);//absorb e
+      body.convertGasToLiquid();
+    } else {
+      body.absorb(e);
+      body.convertGasToLiquid();
+      body.convertLiquidToSolid();
+      body.dropParticle();
     }
-    public void strongerLiquid(Entity e){
-	//lose liquid
-	;
-    }
-    public void weakerLiquid(Entity e){
-	//move e
-	;
-    }
+  }
+  public void strongerGas(Entity e){
+    //slowed by e
+    ;
+  }
+  public void weakerGas(Entity e){
+    game.push(body, e, body.getFacing());
+  }
 
-    //solid interactions
-    public void analagoussolid(Entity e){
-	//absorb e
-	;
+  //liquid interactions
+  public void analagousLiquid(Entity e){
+    if (body.getLiquidNum() < 3){
+      body.absorb(e);
+    } else {
+      body.absorb(e);
+      body.convertLiquidToSolid();
+      body.dropParticle();
     }
-    public void strongersolid(Entity e){
-	//nothing
-	;
+  }
+
+
+  public void strongerLiquid(Entity e){
+    //lose liquid
+    ;
+  }
+  public void weakerLiquid(Entity e){
+    game.push(body, e, body.getFacing());
+    //move e
+    ;
+  }
+
+  //solid interactions
+  public void analagousSolid(Entity e){
+    if (body.getSolidNum() < 4){
+      body.absorb(e);
+    } else {
+      game.push(body, e, body.getFacing());
     }
-    public void weakersolid(Entity e){
-	//break e into 4 liquids
-	;
-    }
+    
+  }
+  public void strongerSolid(Entity e){
+    //nothing
+    ;
+  }
+  public void weakerSolid(Entity e){
+    game.push(body, e,  body.getFacing());
+  }
 
 
 

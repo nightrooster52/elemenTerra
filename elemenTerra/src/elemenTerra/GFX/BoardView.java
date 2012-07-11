@@ -32,21 +32,21 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
   }
 
   @Override
-  public Dimension getPreferredSize() {
+    public Dimension getPreferredSize() {
     return new Dimension(width, height);
   }
 
   @Override
-  public void paintComponent(Graphics g) {
-      g.setColor(Color.gray);
-      g.fillRect(0, 0, width, height);
+    public void paintComponent(Graphics g) {
+    g.setColor(Color.gray);
+    g.fillRect(0, 0, width, height);
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
         Tile tile = board.getTile(col, row);
 
         g.setColor(tile.getColor());
         g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
-            - gutter, tileSize - gutter);
+                   - gutter, tileSize - gutter);
       }
     }
   }
@@ -56,17 +56,17 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
   }
 
   @Override
-  public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {
     //System.out.println("keyTyped");
   }
 
   @Override
-  public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
     game.handleInput(e.getKeyChar(), board.getPlayer());
   }
 
   @Override
-  public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
     //System.out.println("keyReleased");
   }
 }
