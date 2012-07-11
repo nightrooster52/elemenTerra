@@ -52,7 +52,7 @@ public class Brain {
   }
 
   public Tile closestEmptyTile(){
-    for (int range = 1; range < searchMax; range++) {//range = 1
+    for (int range = 1; range < 100; range++) {//range = 1
       List<Tile> shell = searchTiles(range);
       int shellSize = shell.size();
       if (shellSize >0){

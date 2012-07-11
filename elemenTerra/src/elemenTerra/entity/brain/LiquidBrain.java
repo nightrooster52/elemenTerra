@@ -7,6 +7,7 @@ public class LiquidBrain extends SeekerBrain{
   public LiquidBrain(Ai body, Board board){
     super(body, board);
     this.delay = 15;
+    this.searchMax = 15;
   }
 
   public void tick(){

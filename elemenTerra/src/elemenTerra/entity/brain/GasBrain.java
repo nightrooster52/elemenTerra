@@ -9,7 +9,7 @@ public class GasBrain extends SeekerBrain {
     super(body, board);
     delay = 5;
     searchBuffer = 5;
-    targetStable = true;
+    searchMax = 10;
   }
 
   public void tick() {
