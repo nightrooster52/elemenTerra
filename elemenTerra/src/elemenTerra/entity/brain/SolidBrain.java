@@ -6,7 +6,8 @@ import elemenTerra.entity.*;
 public class SolidBrain extends SeekerBrain{
   public SolidBrain(Ai body, Board board){
     super(body, board);
-    searchBuffer = 7;
+    searchBuffer = 5;
+    searchMax = 30;
     this.delay = 60;
   }
   public void tick(){

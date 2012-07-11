@@ -1,4 +1,4 @@
-SRC=elementerra
+SRC=elemenTerra
 
 
 run: compile
@@ -8,9 +8,9 @@ compile: clean
 	javac $(SRC)/*.java
 
 clean:
-	rm $(SRC)/*.class
-	rm $(SRC)/*/*.class
-	rm $(SRC)/*/*/*.class
-	rm $(SRC)/*~
-	rm $(SRC)/*/*~
-	rm $(SRC)/*/*/*~
+	rm -rf $(SRC)/*.class
+	rm -rf $(SRC)/*/*.class
+	rm -rf $(SRC)/*/*/*.class
+	rm -rf $(SRC)/*~
+	rm -rf $(SRC)/*/*~
+	rm -rf $(SRC)/*/*/*~

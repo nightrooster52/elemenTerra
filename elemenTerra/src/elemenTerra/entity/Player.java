@@ -167,7 +167,6 @@ public class Player extends Entity{
       }
     }
     e.die();
-
   }
 
   public void dropParticle(){

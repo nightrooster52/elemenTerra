@@ -69,15 +69,34 @@ public class Brain {
     return null;
   }
 
+  public int neighborNum(){
+    int x = body.getX();
+    int y = body.getY();
+
+    int neighborNum = 0;
+    for (int i = -1; i <2; i++){
+      for (int j = -1; j <2; j++){
+        if (board.inBounds(x+i, y+j)){
+          if (board.getTile(x+i, y+j).getIdentity() == body.getIdentity()){
+            neighborNum++;
+          }
+        }
+      }
+    }
+    return neighborNum -1; // -1 because of counting self
+  }
+
   public Entity closestEntity(char type){
     Entity entity;
+    //int nn = neighborNum(); //fux with this for fun searchbuffer effects
+
     for (int range = searchBuffer; range < searchMax; range++) {
       List<Tile> shell = searchTiles(range);
       int shellSize = shell.size();
       if (shellSize > 0){
         //-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
         int indexOffset = (int) Math.random() * shellSize;
-        for (int i = 0; i <= shellSize; i++) {//searched = 1
+        for (int i = 0; i <= shellSize; i++) {
           int cursor = (i + indexOffset) % (shellSize);//-1
           Tile tile = shell.get(cursor);
           if (tile.isOccupied()) {
@@ -99,34 +118,28 @@ public class Brain {
     List<Tile> bottom = new ArrayList<Tile>();
     List<Tile> left = new ArrayList<Tile>();
     List<Tile> right = new ArrayList<Tile>();
-    for (int row = -range; row <= range; row++) {
-      for (int col = -range; col <= range; col++) {
+    for (int col = -range; col <= range; col++) {
+      for (int row = -range; row <= range; row++) {
         int tilex = col + ix;
         int tiley = row + iy;
         Tile tile;
         if (board.inBounds(tilex, tiley)) {
           tile = board.getTile(tilex, tiley);
           if (row == range){
-            finalShell.add(tile); //aka top
+            finalShell.add(tile);
           }else if (col == range){
             right.add(tile);
+          }else if(row == -range){
+            bottom.add(0, tile); //bottom must be backwards
           }else if (col == -range){
-            left.add(tile);
-          }else if (row == -range){
-            bottom.add(tile);
+            left.add(0, tile); //left must be backwards, inserting at 0
           }
         }
       }
     }
     finalShell.addAll(right);
-    int bottomSize = bottom.size();
-    for (int index = 0; index < bottomSize; index++) {
-      finalShell.add(bottom.get(bottomSize - (index+1)));
-    }
-    int leftSize = left.size();
-    for (int index = 0; index < leftSize ; index++) {
-      finalShell.add(left.get(leftSize - (index+1)));
-    }
+    finalShell.addAll(bottom);
+    finalShell.addAll(left);
     return finalShell;
   }
 
