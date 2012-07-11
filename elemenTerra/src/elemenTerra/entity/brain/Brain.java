@@ -85,11 +85,12 @@ public class Brain {
     }
     return neighborNum -1; // -1 because of counting self
   }
-
-  public Entity closestEntity(char type){
+  public Entity closestEntity(char type, int searchBuffer, int searchMax){
     Entity entity;
-    //int nn = neighborNum(); //fux with this for fun searchbuffer effects
-
+    int nn = neighborNum(); //fux with this for fun searchbuffer effects
+    searchBuffer = nn + 1;
+    searchMax += nn*nn;
+    
     for (int range = searchBuffer; range < searchMax; range++) {
       List<Tile> shell = searchTiles(range);
       int shellSize = shell.size();
@@ -109,6 +110,11 @@ public class Brain {
       }
     }
     return null;
+  }
+
+
+  public Entity closestEntity(char type){
+    return closestEntity(type, searchBuffer, searchMax);
   }
 
   public List<Tile> searchTiles(int range) {

@@ -6,8 +6,9 @@ import elemenTerra.entity.*;
 public class LiquidBrain extends SeekerBrain{
   public LiquidBrain(Ai body, Board board){
     super(body, board);
-    this.delay = 15;
-    this.searchMax = 15;
+    delay = 15;
+    //searchMax = 15; //normal mode
+    searchMax = 10; //neighborNum search mode
   }
 
   public void tick(){

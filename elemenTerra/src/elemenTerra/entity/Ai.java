@@ -2,6 +2,7 @@ package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
+import elemenTerra.world.Tile;
 import elemenTerra.entity.decisions.*;
 import elemenTerra.entity.brain.*;
 import java.awt.Color;
@@ -25,13 +26,19 @@ public class Ai extends Entity {
   }
 
   public void tick() {
-    brain.tick();
+    if (alive){
+      brain.tick();
+    }
   }
 
   public void setTarget(Entity target) {
     this.target = target;
     setBrain(new SeekerBrain(this, target, board));
     identity = '+';
+  }
+  public void recieveBump(Entity e){
+    giveBump(e); //same thing for now
+    ;
   }
 
   public void giveBump(Entity e){
@@ -66,6 +73,63 @@ public class Ai extends Entity {
     }
   }
 
+  public void condense(){
+    Entity condensee;
+    for (int index = 0; index < 3; index++){
+      if (identity == TileKeys.liquids[index]){ //if i am a liquid
+        color = TileKeys.solidColors[index]; //I become solid color
+        identity = analagousStates[2];  //I take solid type
+        decisions = new SolidElementDecisions(this); //I get solid decisions
+        for (int i = 0; i < 3; i++){
+          condensee = brain.closestEntity(analagousStates[1], 1, 100); // kills 3 closest liquids
+	  if (!(condensee == null)){
+	    condensee.die();
+	  }
+        }
+      }
+      if (identity == TileKeys.gasses[index]){
+        color = TileKeys.liquidColors[index];
+        identity = analagousStates[1];
+        decisions = new LiquidElementDecisions(this);
+        for (int i = 0; i < 3; i++){
+          condensee = brain.closestEntity(analagousStates[0], 1, 100); // kills 3 closest gasses
+	  if (!(condensee == null)){
+	    condensee.die();
+	  }
+        }
+      }
+    }
+  }
+
+  public void dissipate(){
+    for (int index = 0; index < 3; index++){
+      if (identity == TileKeys.liquids[index]){
+        color = TileKeys.gasColors[index];
+        identity = analagousStates[0];
+        decisions = new GasElementDecisions(this);
+        for (int i = 0; i < 3; i++){//spawn 3 gasses
+          spawnAi(analagousStates[0]);
+        }
+      }
+      if (identity == TileKeys.solids[index]){
+        color = TileKeys.liquidColors[index];
+        identity = analagousStates[1];
+        decisions = new LiquidElementDecisions(this);
+        for (int i = 0; i < 3; i++){//spawn 3 gasses
+          spawnAi(analagousStates[1]);
+        }
+        //spawn 3 liquids
+      }
+    }
+  }
+  public void spawnAi(char type){
+    Tile destination = brain.closestEmptyTile();
+    int aix = destination.getX();
+    int aiy = destination.getY();
+    Ai ai = Ai.parse(type, board, aix, aiy);
+    board.getTile(aix, aiy).occupy(ai);
+    brain.passGame(ai);
+  }
   /*
    *
    ***********STATIC METHOD*********

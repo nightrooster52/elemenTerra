@@ -5,9 +5,11 @@ import elemenTerra.entity.*;
 import elemenTerra.entity.brain.Brain;
 
 public class LiquidElementDecisions extends Decisions{
+  protected Ai body;
 
-  public LiquidElementDecisions(Entity body){
+  public LiquidElementDecisions(Ai body){
     super(body);
+    this.body = body;
   }
 
   //gas interactions
@@ -16,9 +18,14 @@ public class LiquidElementDecisions extends Decisions{
   }
 
   public void strongerGas(Entity e){
-    ;
+    if (game.interElementReactions){
+      body.dissipate();
+    }
   }
   public void weakerGas(Entity e){
+    if (game.interElementReactions){
+      body.condense();
+    }
     game.push(body, e, body.getFacing());
   }
 
@@ -27,9 +34,15 @@ public class LiquidElementDecisions extends Decisions{
     ;
   }
   public void strongerLiquid(Entity e){
-    ;
+    if (game.interElementReactions){
+      body.dissipate();
+    }
+
   }
   public void weakerLiquid(Entity e){
+    if (game.interElementReactions){
+      body.condense();
+    }
     game.push(body, e, body.getFacing());
   }
 
@@ -38,9 +51,14 @@ public class LiquidElementDecisions extends Decisions{
     ;
   }
   public void strongerSolid(Entity e){
-    ;
+    if (game.interElementReactions){
+      body.dissipate();
+    }
   }
   public void weakerSolid(Entity e){
+    if (game.interElementReactions){
+      body.condense();
+    }
     game.push(body, e, body.getFacing());
   }
 

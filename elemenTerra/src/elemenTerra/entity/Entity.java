@@ -19,6 +19,7 @@ public class Entity {
   protected String clockwise = "wdsa";
   protected String counterclockwise = "wasd";
   protected char facing = randomFace();
+  protected boolean alive = true;
 
   protected Decisions decisions;
   public char[] strongerStates;
@@ -68,6 +69,7 @@ public class Entity {
   }
 
   public void die() {
+    alive = false;
     board.getTile(x, y).vacate();
   }
 
