@@ -19,7 +19,7 @@ public class SolidElementDecisions extends Decisions{
 
   public void strongerGas(Entity e){
     if (game.interElementReactions){
-      body.dissipate();
+      //body.dissipate();
     }
   }
   public void weakerGas(Entity e){

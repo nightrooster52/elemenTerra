@@ -43,7 +43,10 @@ public class GasElementDecisions extends Decisions{
 
   //solid interactions
   public void analagousSolid(Entity e){
-    ;
+    if (game.interElementReactions){
+      //body.condense();
+      ;
+    }
   }
   public void strongerSolid(Entity e){
     ;
@@ -51,6 +54,7 @@ public class GasElementDecisions extends Decisions{
   public void weakerSolid(Entity e){
     if (game.interElementReactions){
       body.condense();
+      ;
     }
     game.push(body, e, body.getFacing());
   }

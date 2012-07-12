@@ -54,7 +54,6 @@ public class Brain {
   public Tile closestEmptyTile(){
     for (int range = 1; range < 100; range++) {//range = 1
       List<Tile> shell = searchTiles(range);
-
       while (shell.size() > 0){
         int cursor = (int) Math.random()*shell.size();
         Tile tile = shell.get(cursor);
@@ -83,6 +82,7 @@ public class Brain {
     }
     return neighborNum -1; // -1 because of counting self
   }
+
   public Entity closestEntity(char type, int searchBuffer, int searchMax){
     Entity entity;
     int nn = neighborNum(); //fux with this for fun searchbuffer effects

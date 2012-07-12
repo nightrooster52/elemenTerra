@@ -37,7 +37,7 @@ public class Ai extends Entity {
     identity = '+';
   }
   public void recieveBump(Entity e){
-    giveBump(e); //same thing for now
+    //giveBump(e); //same thing for now
     ;
   }
 

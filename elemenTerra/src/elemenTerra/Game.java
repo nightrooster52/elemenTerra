@@ -22,7 +22,7 @@ public class Game {
   protected Timer gameTimer;
 
 
-  public boolean interElementReactions = false;
+  public boolean interElementReactions = true;
   //public boolean interElementReactions = true;
 
   public String testString = "GAME REFERENCE VALID";
@@ -45,10 +45,10 @@ public class Game {
 
   public Game() {
     maps = new Maps();
-    //board = new Board(maps.randomElements());
+    board = new Board(maps.randomElements());
 
     //board = new Board(maps.randomGasHuge());
-    board = new Board(maps.randomFireHuge());
+    //board = new Board(maps.randomFireHuge());
     //board = new Board(maps.biasTestMap);
     //board = new Board(maps.elementMap);
     player = board.getPlayer();

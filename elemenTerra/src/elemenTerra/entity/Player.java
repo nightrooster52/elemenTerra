@@ -206,8 +206,6 @@ public class Player extends Entity{
         Tile destination = brain.closestEmptyTile();
         int aix = destination.getX();
         int aiy = destination.getY();
-        //System.out.println(aix);
-        //System.out.println(aiy);
         Ai ai = Ai.parse(type, board, aix, aiy);
         board.getTile(aix, aiy).occupy(ai);
         brain.passGame(ai);
@@ -215,6 +213,8 @@ public class Player extends Entity{
     }
   }
   //utility method
+
+
   public int[] wasdToXY(char input){
     if (input == 'w') {
       int[] xy = {0, -1};
@@ -232,6 +232,10 @@ public class Player extends Entity{
       int[] xy = {0, 0};
       return xy;
     }
+  }
+
+  public void die(){
+    ;
   }
   public int getGasNum(){
     return gasNum;
