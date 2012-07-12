@@ -54,15 +54,13 @@ public class Brain {
   public Tile closestEmptyTile(){
     for (int range = 1; range < 100; range++) {//range = 1
       List<Tile> shell = searchTiles(range);
-      int shellSize = shell.size();
-      if (shellSize >0){
-        int lookfirst = random.nextInt(shellSize -1);
-        for (int searched = 0; searched <= shellSize; searched++) {
-          int cursor = (searched + lookfirst) % (shellSize);//-1
-          Tile tile = shell.get(cursor);
-          if (!tile.isOccupied()){
-            return tile;
-          }
+
+      while (shell.size() > 0){
+        int cursor = (int) Math.random()*shell.size();
+        Tile tile = shell.get(cursor);
+        shell.remove(cursor);
+        if (!tile.isOccupied()){
+          return tile;
         }
       }
     }
@@ -89,23 +87,18 @@ public class Brain {
     Entity entity;
     int nn = neighborNum(); //fux with this for fun searchbuffer effects
     searchBuffer = nn + 1;
-    searchMax += nn*nn;
-    
+    searchMax += nn + 20;
+
+    int cursor;
+
     for (int range = searchBuffer; range < searchMax; range++) {
       List<Tile> shell = searchTiles(range);
-      int shellSize = shell.size();
-      if (shellSize > 0){
-        //-1 //randomizes the first direction looked, so there isn't an upper-left dx bias
-        int indexOffset = (int) Math.random() * shellSize;
-        for (int i = 0; i <= shellSize; i++) {
-          int cursor = (i + indexOffset) % (shellSize);//-1
-          Tile tile = shell.get(cursor);
-          if (tile.isOccupied()) {
-            entity = tile.getEntity();
-            if (type == entity.getIdentity()) {
-              return entity;
-            }
-          }
+      while (shell.size() > 0){
+        cursor = (int) Math.random() * shell.size();
+        Tile tile = shell.get(cursor);
+        shell.remove(cursor);
+        if (tile.getIdentity() == type) {
+          return  tile.getEntity();
         }
       }
     }
@@ -120,24 +113,33 @@ public class Brain {
   public List<Tile> searchTiles(int range) {
     int ix = body.getX();
     int iy = body.getY();
+
+    int localRange = range;
+    if (random.nextBoolean()){
+      localRange = -range;
+    }
+
     List<Tile> finalShell = new ArrayList<Tile>();
+    List<Tile> right = new ArrayList<Tile>();
     List<Tile> bottom = new ArrayList<Tile>();
     List<Tile> left = new ArrayList<Tile>();
-    List<Tile> right = new ArrayList<Tile>();
+
     for (int col = -range; col <= range; col++) {
       for (int row = -range; row <= range; row++) {
+
+
         int tilex = col + ix;
         int tiley = row + iy;
         Tile tile;
         if (board.inBounds(tilex, tiley)) {
           tile = board.getTile(tilex, tiley);
-          if (row == range){
+          if (row == -localRange){
             finalShell.add(tile);
-          }else if (col == range){
+          }else if (col == localRange){
             right.add(tile);
-          }else if(row == -range){
+          }else if(row == localRange){
             bottom.add(0, tile); //bottom must be backwards
-          }else if (col == -range){
+          }else if (col == -localRange){
             left.add(0, tile); //left must be backwards, inserting at 0
           }
         }

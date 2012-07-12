@@ -8,7 +8,7 @@ public class SolidBrain extends SeekerBrain{
     super(body, board);
     searchBuffer = 10;
     searchMax = 30;
-    this.delay = 60;
+    delay = 60;
   }
   public void tick(){
     wait++;
