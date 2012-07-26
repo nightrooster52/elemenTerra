@@ -81,7 +81,7 @@ public class Ai extends Entity {
         identity = analagousStates[2];  //I take solid type
         decisions = new SolidElementDecisions(this); //I get solid decisions
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(analagousStates[1], 1, 100); // kills 3 closest liquids
+          condensee = brain.closestEntity(weakerStates[1], 1, 100); // kills 3 closest liquids
 	  if (!(condensee == null)){
 	    condensee.die();
 	  }
@@ -92,7 +92,7 @@ public class Ai extends Entity {
         identity = analagousStates[1];
         decisions = new LiquidElementDecisions(this);
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(analagousStates[0], 1, 100); // kills 3 closest gasses
+          condensee = brain.closestEntity(weakerStates[0], 1, 100); // kills 3 closest gasses
 	  if (!(condensee == null)){
 	    condensee.die();
 	  }
@@ -108,7 +108,7 @@ public class Ai extends Entity {
         identity = analagousStates[0];
         decisions = new GasElementDecisions(this);
         for (int i = 0; i < 3; i++){//spawn 3 gasses
-          spawnAi(analagousStates[0]);
+          spawnAi(strongerStates[0]);
         }
       }
       if (identity == TileKeys.solids[index]){
@@ -116,7 +116,7 @@ public class Ai extends Entity {
         identity = analagousStates[1];
         decisions = new LiquidElementDecisions(this);
         for (int i = 0; i < 3; i++){//spawn 3 gasses
-          spawnAi(analagousStates[1]);
+          spawnAi(strongerStates[1]);
         }
         //spawn 3 liquids
       }

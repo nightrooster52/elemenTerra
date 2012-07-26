@@ -7,7 +7,7 @@ public class GasBrain extends SeekerBrain {
 
   public GasBrain(Ai body, Board board) {
     super(body, board);
-    delay = 60;
+    delay = 5;
     searchBuffer = 5; //normal
     searchMax = 10;
     //searchBuffer = 1; // neighborNum mode
