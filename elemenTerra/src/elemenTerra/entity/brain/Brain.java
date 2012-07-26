@@ -115,7 +115,7 @@ public class Brain {
     int iy = body.getY();
 
     int localRange = range;
-    if (random.nextBoolean()){
+    if (Math.random() > .5){
       localRange = -range;
     }
 
@@ -126,8 +126,6 @@ public class Brain {
 
     for (int col = -range; col <= range; col++) {
       for (int row = -range; row <= range; row++) {
-
-
         int tilex = col + ix;
         int tiley = row + iy;
         Tile tile;

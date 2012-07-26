@@ -51,6 +51,7 @@ public class Game {
     //board = new Board(maps.randomFireHuge());
     //board = new Board(maps.biasTestMap);
     //board = new Board(maps.elementMap);
+
     player = board.getPlayer();
     scanner = new Scanner(System.in);
     gameTimer = new Timer();

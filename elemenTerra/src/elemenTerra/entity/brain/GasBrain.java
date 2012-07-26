@@ -7,7 +7,7 @@ public class GasBrain extends SeekerBrain {
 
   public GasBrain(Ai body, Board board) {
     super(body, board);
-    delay = 5;
+    delay = 60;
     searchBuffer = 5; //normal
     searchMax = 10;
     //searchBuffer = 1; // neighborNum mode
@@ -19,11 +19,15 @@ public class GasBrain extends SeekerBrain {
 
     if (wait == delay){
       wait = 0;
+
+      //target = null;
       target = closestEntity(body.analagousStates[2]);
+      if (target == null){
+        target = closestEntity(body.analagousStates[1]);
+      }
       if (target == null){
         target = closestEntity(body.getIdentity());
       }
-
       if (target != null){
         char output = goToTarget(target);
         game.handleMove(output, body);
