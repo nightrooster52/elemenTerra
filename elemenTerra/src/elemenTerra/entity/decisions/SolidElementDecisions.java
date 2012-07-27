@@ -29,7 +29,7 @@ public class SolidElementDecisions extends Decisions{
     //body.dissipate();
   }
   public void strongerLiquid(Entity e){
-    //body.dissipate();
+    body.dissipate();
   }
   public void strongerSolid(Entity e){
     body.dissipate();

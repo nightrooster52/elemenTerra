@@ -87,7 +87,7 @@ public class Game {
       portEntity(destination, pushed);
 
     }
-    handleMove(direction, pusher);
+    //handleMove(direction, pusher);
 
   }
 

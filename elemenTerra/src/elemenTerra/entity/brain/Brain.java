@@ -88,7 +88,7 @@ public class Brain {
   }
   public Entity closestEntity(char type){
     int nn = neighborNum(); //fux with this for fun searchbuffer effects
-    int searchBuffer = nn + 5;
+    int searchBuffer = nn + 2;
     int searchMax = nn + 20;
     return closestEntity(type, searchBuffer, searchMax);
   }

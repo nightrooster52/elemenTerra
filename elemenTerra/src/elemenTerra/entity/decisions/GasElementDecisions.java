@@ -14,7 +14,7 @@ public class GasElementDecisions extends Decisions{
 
   //analagous interactions
   public void analagousGas(Entity e){
-    game.push(body, e, body.getFacing());
+    //game.push(body, e, body.getFacing());
     ;
   }
   public void analagousLiquid(Entity e){
@@ -42,7 +42,7 @@ public class GasElementDecisions extends Decisions{
     game.push(body, e, body.getFacing());
   }
   public void weakerLiquid(Entity e){
-    //body.condense();
+    body.condense();
     game.push(body, e, body.getFacing());
   }
 
