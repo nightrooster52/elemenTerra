@@ -81,10 +81,10 @@ public class Ai extends Entity {
           condensee = brain.closestEntity(weakerStates[1], 1, 20); // kills 3 closest liquids
           if (!(condensee == null)){
             condensee.die();
-          } else{
-	    for(int j = 0; j<i; j++){
-	      spawnAi(weakerStates[1]);
-	    }
+          }else{ //target failed
+            for(int j = 0; j<i; j++){//undo kills
+              //spawnAi(weakerStates[1]);
+            }
             break;
           }
           if (i == 2){ //if I killed 3 closest liquids
@@ -98,14 +98,15 @@ public class Ai extends Entity {
       if (identity == TileKeys.gasses[index]){
         for (int i = 0; i < 3; i++){
           condensee = brain.closestEntity(weakerStates[0], 1, 20); // kills 3 closest gasses
-          if (!(condensee == null)){
+          if (!(condensee == null)){//if there is a target
             condensee.die();
-          }else{
-	    for(int j = 0; j<i; j++){
-	      spawnAi(weakerStates[0]);
-	    }
+          }else{ //target failed
+            for(int j = 0; j<i; j++){//undo kills
+              //spawnAi(weakerStates[0]);
+            }
             break;
-          }if (i == 2){ //if I killed 3 closest gasses
+          }
+          if (i == 2){ //if I successfully killed 3 closest gasses
             color = TileKeys.liquidColors[index];
             identity = analagousStates[1];
             decisions = new LiquidElementDecisions(this);
@@ -114,6 +115,7 @@ public class Ai extends Entity {
       }
     }
   }
+
   public void dissipate(){
     for (int index = 0; index < 3; index++){
       if (identity == TileKeys.liquids[index]){

@@ -116,13 +116,14 @@ public class Maps implements TileKeys {
     }
     return randomMap;
   }
+  
 
   public String randomElements() {
     String randomElements = "125 075 ";
     Random random = new Random();
     for (int i = 0; i < 9375; i++) {
       char tileChar;
-      int type = random.nextInt(40);
+      int type = random.nextInt(20);
 
       switch (type) {
       case 0:
