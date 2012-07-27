@@ -122,7 +122,7 @@ public class Maps implements TileKeys {
     Random random = new Random();
     for (int i = 0; i < 9375; i++) {
       char tileChar;
-      int type = random.nextInt(40);
+      int type = random.nextInt(30);
 
       switch (type) {
       case 0:

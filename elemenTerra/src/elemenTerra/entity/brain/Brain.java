@@ -13,12 +13,12 @@ import elemenTerra.world.Tile;
 public class Brain {
   protected int delay = 10;
   protected int wait = 0;
-  protected int searchBuffer = 1;
-  protected int searchMax = 100;
   protected Entity body;
   protected Board board;
   protected Game game;
   protected Random random = new Random();
+  protected int searchBuffer = 1;
+  protected int searchMax = 100;
 
   public Brain(Entity body, Board board) {
     this.body = body;
@@ -52,7 +52,11 @@ public class Brain {
   }
 
   public Tile closestEmptyTile(){
-    for (int range = 1; range < 100; range++) {//range = 1
+    return closestEmptyTile(1);
+  }
+
+  public Tile closestEmptyTile(int emptyBuffer){
+    for (int range = emptyBuffer; range < 200; range++) {//range = 1
       List<Tile> shell = searchTiles(range);
       while (shell.size() > 0){
         int cursor = (int) Math.random()*shell.size();
@@ -82,15 +86,17 @@ public class Brain {
     }
     return neighborNum -1; // -1 because of counting self
   }
+  public Entity closestEntity(char type){
+    int nn = neighborNum(); //fux with this for fun searchbuffer effects
+    int searchBuffer = nn + 5;
+    int searchMax = nn + 20;
+    return closestEntity(type, searchBuffer, searchMax);
+  }
+
 
   public Entity closestEntity(char type, int searchBuffer, int searchMax){
     Entity entity;
-    int nn = neighborNum(); //fux with this for fun searchbuffer effects
-    searchBuffer = nn + 1;
-    searchMax += nn + 20;
-
     int cursor;
-
     for (int range = searchBuffer; range < searchMax; range++) {
       List<Tile> shell = searchTiles(range);
       while (shell.size() > 0){
@@ -106,9 +112,7 @@ public class Brain {
   }
 
 
-  public Entity closestEntity(char type){
-    return closestEntity(type, searchBuffer, searchMax);
-  }
+
 
   public List<Tile> searchTiles(int range) {
     int ix = body.getX();

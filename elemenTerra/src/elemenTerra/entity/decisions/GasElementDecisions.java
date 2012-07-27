@@ -10,42 +10,43 @@ public class GasElementDecisions extends Decisions{
   public GasElementDecisions(Ai body){
     super(body);
     this.body = body;
-
   }
 
-  //gas interactions
+  //analagous interactions
   public void analagousGas(Entity e){
-    ;
-  }
-  public void strongerGas(Entity e){
-    ;
-  }
-  public void weakerGas(Entity e){
-    body.condense();
     game.push(body, e, body.getFacing());
+    ;
+  }
+  public void analagousLiquid(Entity e){
+    ;
+  }
+  public void analagousSolid(Entity e){
+    ;
   }
 
-  //liquid interactions
-  public void analagousLiquid(Entity e){
+  //stronger interactions
+  public void strongerGas(Entity e){
     ;
   }
   public void strongerLiquid(Entity e){
     ;
   }
-  public void weakerLiquid(Entity e){
+  public void strongerSolid(Entity e){
+    //game.push(body, e, body.getFacing());
+    ;
+  }
+
+  //weaker interactions
+  public void weakerGas(Entity e){
     body.condense();
     game.push(body, e, body.getFacing());
   }
-
-  //solid interactions
-  public void analagousSolid(Entity e){
+  public void weakerLiquid(Entity e){
     //body.condense();
+    game.push(body, e, body.getFacing());
   }
-  public void strongerSolid(Entity e){
-    ;
-  }
-  public void weakerSolid(Entity e){
 
+  public void weakerSolid(Entity e){
     body.condense();
     game.push(body, e, body.getFacing());
   }

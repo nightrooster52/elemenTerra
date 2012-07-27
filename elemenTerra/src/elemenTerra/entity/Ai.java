@@ -77,30 +77,43 @@ public class Ai extends Entity {
     Entity condensee;
     for (int index = 0; index < 3; index++){
       if (identity == TileKeys.liquids[index]){ //if i am a liquid
-        color = TileKeys.solidColors[index]; //I become solid color
-        identity = analagousStates[2];  //I take solid type
-        decisions = new SolidElementDecisions(this); //I get solid decisions
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(weakerStates[1], 1, 100); // kills 3 closest liquids
-	  if (!(condensee == null)){
-	    condensee.die();
-	  }
+          condensee = brain.closestEntity(weakerStates[1], 1, 20); // kills 3 closest liquids
+          if (!(condensee == null)){
+            condensee.die();
+          } else{
+	    for(int j = 0; j<i; j++){
+	      spawnAi(weakerStates[1]);
+	    }
+            break;
+          }
+          if (i == 2){ //if I killed 3 closest liquids
+            color = TileKeys.solidColors[index]; //I become solid color
+            identity = analagousStates[2];  //I take solid type
+            decisions = new SolidElementDecisions(this); //I get solid decisions
+          }
         }
       }
+
       if (identity == TileKeys.gasses[index]){
-        color = TileKeys.liquidColors[index];
-        identity = analagousStates[1];
-        decisions = new LiquidElementDecisions(this);
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(weakerStates[0], 1, 100); // kills 3 closest gasses
-	  if (!(condensee == null)){
-	    condensee.die();
-	  }
+          condensee = brain.closestEntity(weakerStates[0], 1, 20); // kills 3 closest gasses
+          if (!(condensee == null)){
+            condensee.die();
+          }else{
+	    for(int j = 0; j<i; j++){
+	      spawnAi(weakerStates[0]);
+	    }
+            break;
+          }if (i == 2){ //if I killed 3 closest gasses
+            color = TileKeys.liquidColors[index];
+            identity = analagousStates[1];
+            decisions = new LiquidElementDecisions(this);
+          }
         }
       }
     }
   }
-
   public void dissipate(){
     for (int index = 0; index < 3; index++){
       if (identity == TileKeys.liquids[index]){
@@ -115,10 +128,9 @@ public class Ai extends Entity {
         color = TileKeys.liquidColors[index];
         identity = analagousStates[1];
         decisions = new LiquidElementDecisions(this);
-        for (int i = 0; i < 3; i++){//spawn 3 gasses
+        for (int i = 0; i < 3; i++){//spawn 3 liquids
           spawnAi(strongerStates[1]);
         }
-        //spawn 3 liquids
       }
     }
   }
