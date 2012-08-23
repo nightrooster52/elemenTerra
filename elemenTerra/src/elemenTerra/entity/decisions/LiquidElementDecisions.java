@@ -25,10 +25,10 @@ public class LiquidElementDecisions extends Decisions{
 
   //stronger interactions
   public void strongerGas(Entity e){
-    body.dissipate();
+    //body.dissipate();
   }
   public void strongerLiquid(Entity e){
-    //body.dissipate();
+    body.dissipate();
   }
   public void strongerSolid(Entity e){
     body.dissipate();
