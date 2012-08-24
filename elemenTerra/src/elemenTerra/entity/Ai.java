@@ -2,6 +2,7 @@ package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
 import elemenTerra.world.Board;
+import elemenTerra.Game;
 import elemenTerra.world.Tile;
 import elemenTerra.entity.decisions.*;
 import elemenTerra.entity.brain.*;
@@ -12,8 +13,6 @@ public class Ai extends Entity {
 
 
   protected Entity target;
-
-
   public Ai(int x, int y, Board b) {
     super(x, y, b);
     identity = '+';
@@ -89,8 +88,13 @@ public class Ai extends Entity {
           }
           if (i == 2){ //if I killed 3 closest liquids
             color = TileKeys.solidColors[index]; //I become solid color
+
+	    Game game = brain.getGame();
+            brain = (new SolidBrain(this, board));
+	    brain.setGame(game);
             identity = analagousStates[2];  //I take solid type
             decisions = new SolidElementDecisions(this); //I get solid decisions
+
           }
         }
       }
@@ -108,8 +112,13 @@ public class Ai extends Entity {
           }
           if (i == 2){ //if I successfully killed 3 closest gasses
             color = TileKeys.liquidColors[index];
+	    Game game = brain.getGame();
+            brain = (new LiquidBrain(this, board));
+	    brain.setGame(game);
+
             identity = analagousStates[1];
             decisions = new LiquidElementDecisions(this);
+
           }
         }
       }

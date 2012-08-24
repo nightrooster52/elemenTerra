@@ -44,7 +44,7 @@ public class LiquidElementDecisions extends Decisions{
     game.push(body, e, body.getFacing());
   }
   public void weakerSolid(Entity e){
-    //body.condense();
+    body.condense();
     game.push(body, e, body.getFacing());
   }
 

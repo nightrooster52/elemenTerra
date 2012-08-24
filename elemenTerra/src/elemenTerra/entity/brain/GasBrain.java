@@ -9,7 +9,7 @@ public class GasBrain extends SeekerBrain {
     super(body, board);
     delay = 10;
     searchBuffer = 5; //normal
-    searchMax = 10;
+    searchMax = 15;
     //searchBuffer = 1; // neighborNum mode
     //searchMax = 5;
   }

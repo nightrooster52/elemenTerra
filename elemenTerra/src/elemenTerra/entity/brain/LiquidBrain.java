@@ -7,8 +7,7 @@ public class LiquidBrain extends SeekerBrain{
   public LiquidBrain(Ai body, Board board){
     super(body, board);
     delay = 15;
-    searchMax = 15; //normal mode
-    //searchMax = 10; //neighborNum search mode
+    searchMax = 30; //normal mode
   }
 
   public void tick(){

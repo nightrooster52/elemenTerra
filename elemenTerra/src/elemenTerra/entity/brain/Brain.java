@@ -19,6 +19,12 @@ public class Brain {
   protected Random random = new Random();
   protected int searchBuffer = 1;
   protected int searchMax = 100;
+  
+
+  public Brain(Entity body, Board board, Game game) {
+    this(body, board);
+    this.game = game;
+  }
 
   public Brain(Entity body, Board board) {
     this.body = body;
