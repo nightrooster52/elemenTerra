@@ -9,6 +9,7 @@ public class GasBrain extends SeekerBrain {
   public GasBrain(Ai body, Board board) {
     super(body, board);
     this.size = 5;
+    
     delay = 10;
   }
 
@@ -34,6 +35,6 @@ public class GasBrain extends SeekerBrain {
   }
   public void draw(Graphics g){
     g.setColor(body.getColor());
-    g.fillRect(body.getX() * 10, body.getY() * 10, size, size);
+    g.fillRect((body.getX() * 10)+(10-size)/2, (body.getY() * 10)+(10-size)/2, size, size);
   }
 }

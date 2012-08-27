@@ -78,7 +78,7 @@ public class Ai extends Entity {
     for (int index = 0; index < 3; index++){
       if (identity == TileKeys.liquids[index]){ //if i am a liquid
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(weakerStates[1], 1, 20); // kills 3 closest liquids
+          condensee = brain.closestEntity(weakerStates[1], 1, 20); // kills 3 weaker liquids
           if (!(condensee == null)){
             condensee.die();
           }else{ //target failed
@@ -89,11 +89,10 @@ public class Ai extends Entity {
           }
           if (i == 2){ //if I killed 3 closest liquids
             color = TileKeys.solidColors[index]; //I become solid color
-
-	    Game game = brain.getGame();
+            Game game = brain.getGame(); //goofy rewiring because entities don't have game reference
             brain = (new SolidBrain(this, board));
-	    brain.setGame(game);
-            identity = analagousStates[2];  //I take solid type
+            brain.setGame(game);
+            identity = analagousStates[2];  //I take liquid type
             decisions = new SolidElementDecisions(this); //I get solid decisions
 
           }
@@ -102,7 +101,7 @@ public class Ai extends Entity {
 
       if (identity == TileKeys.gasses[index]){
         for (int i = 0; i < 3; i++){
-          condensee = brain.closestEntity(weakerStates[0], 1, 20); // kills 3 closest gasses
+          condensee = brain.closestEntity(weakerStates[0], 1, 20); // kills 3 weaker gasses
           if (!(condensee == null)){//if there is a target
             condensee.die();
           }else{ //target failed
@@ -113,11 +112,10 @@ public class Ai extends Entity {
           }
           if (i == 2){ //if I successfully killed 3 closest gasses
             color = TileKeys.liquidColors[index];
-	    Game game = brain.getGame();
+            Game game = brain.getGame();
             brain = (new LiquidBrain(this, board));
-	    brain.setGame(game);
-
-            identity = analagousStates[1];
+            brain.setGame(game);
+            identity = analagousStates[1]; //I take liquid identity
             decisions = new LiquidElementDecisions(this);
 
           }
@@ -128,20 +126,26 @@ public class Ai extends Entity {
 
   public void dissipate(){
     for (int index = 0; index < 3; index++){
-      if (identity == TileKeys.liquids[index]){
-        color = TileKeys.gasColors[index];
-        identity = analagousStates[0];
-        decisions = new GasElementDecisions(this);
+      if (identity == TileKeys.liquids[index]){//if I am a liquid
+        color = TileKeys.gasColors[index]; //I take a gas color
+        identity = analagousStates[0]; //I become gas state
+        decisions = new GasElementDecisions(this); //set decisions
+        Game game = brain.getGame(); //goofy rewiring because entities don't have game reference
+        brain = (new GasBrain(this, board));
+        brain.setGame(game);
         for (int i = 0; i < 3; i++){//spawn 3 gasses
-          spawnAi(strongerStates[0]);
+          spawnAi(strongerStates[0]); //stronger
         }
       }
-      if (identity == TileKeys.solids[index]){
-        color = TileKeys.liquidColors[index];
-        identity = analagousStates[1];
+      if (identity == TileKeys.solids[index]){//if I am a solid
+        color = TileKeys.liquidColors[index]; //I take my liquid color
+        identity = analagousStates[1]; //I become liquid state
+        Game game = brain.getGame();
+        brain = (new LiquidBrain(this, board));
+        brain.setGame(game);
         decisions = new LiquidElementDecisions(this);
         for (int i = 0; i < 3; i++){//spawn 3 liquids
-          spawnAi(strongerStates[1]);
+          spawnAi(strongerStates[1]);//stronger
         }
       }
     }

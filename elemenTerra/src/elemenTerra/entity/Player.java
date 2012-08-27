@@ -1,6 +1,7 @@
 package elemenTerra.entity;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import elemenTerra.entity.decisions.*;
 import elemenTerra.entity.brain.Brain;
 import elemenTerra.world.Board;
@@ -75,10 +76,6 @@ public class Player extends Entity{
     if (input == 'x'){
       if ((gasNum + liquidNum + solidNum) >0){
         dropParticle();
-      }
-      if ((gasNum + liquidNum + solidNum) <= 0){
-        setIdentity(getOriginalIdentity());
-        setColor(getOriginalColor());
       }
     }
   }
@@ -210,7 +207,16 @@ public class Player extends Entity{
         board.getTile(aix, aiy).occupy(ai);
         brain.passGame(ai);
       }
+      if ((gasNum + liquidNum + solidNum) <= 0){
+        setIdentity(getOriginalIdentity());
+        setColor(getOriginalColor());
+      }
     }
+  }
+
+  public void draw(Graphics g){
+    g.setColor(color);
+    g.fillOval(x * 10 , y * 10, size, size);
   }
   //utility method
 

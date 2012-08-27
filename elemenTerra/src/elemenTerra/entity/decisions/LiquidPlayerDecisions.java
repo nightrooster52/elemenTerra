@@ -23,7 +23,7 @@ public class LiquidPlayerDecisions extends Decisions{
   }
   //absorb e and ^-> it to Liquid when have 4
   public void strongerGas(Entity e){
-    //slowed by e
+    body.dropParticle();
     ;
   }
   public void weakerGas(Entity e){
@@ -40,22 +40,20 @@ public class LiquidPlayerDecisions extends Decisions{
     }
   }
   public void strongerLiquid(Entity e){
-    //lose liquid
+    body.dropParticle();
     ;
   }
   public void weakerLiquid(Entity e){
     game.push(body, e, body.getFacing());
-    //break e down into 4 gas
     ;
   }
 
   //solid interactions
   public void analagousSolid(Entity e){
-    //blocked
     ;
   }
   public void strongerSolid(Entity e){
-    //blocked
+    body.dropParticle();
     ;
   }
   public void weakerSolid(Entity e){
