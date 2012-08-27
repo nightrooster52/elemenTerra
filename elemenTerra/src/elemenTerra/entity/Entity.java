@@ -1,6 +1,7 @@
 package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
+import java.awt.Graphics;
 import java.awt.Color;
 import elemenTerra.world.Board;
 import elemenTerra.entity.brain.*;
@@ -10,7 +11,8 @@ public class Entity {
 
   protected Brain brain;
   protected Board board;
-
+  
+  protected int size = 9;
   protected int x, y;
   protected char identity = '#';
   protected char originalIdentity = '#';
@@ -89,7 +91,7 @@ public class Entity {
 
   public void bump(Entity e) {  //from
     //I recievebump from e
-    recieveBump(e); 
+    recieveBump(e);
 
     //e gives bump to me
     e.giveBump(this);
@@ -177,6 +179,11 @@ public class Entity {
   public void tick() {
     ;
   }
+  public void draw(Graphics g){
+    g.setColor(color);
+    g.fillRect(x * 10 , y * 10, size, size);
+  }
+
 
   public void turn(String lr) {
     //left or right

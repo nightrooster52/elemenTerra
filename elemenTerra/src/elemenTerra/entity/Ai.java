@@ -1,6 +1,7 @@
 package elemenTerra.entity;
 
 import elemenTerra.TileKeys;
+import java.awt.Graphics;
 import elemenTerra.world.Board;
 import elemenTerra.Game;
 import elemenTerra.world.Tile;
@@ -152,6 +153,11 @@ public class Ai extends Entity {
     Ai ai = Ai.parse(type, board, aix, aiy);
     board.getTile(aix, aiy).occupy(ai);
     brain.passGame(ai);
+  }
+
+  public void draw(Graphics g){
+    //super.draw(g);
+    brain.draw(g);
   }
   /*
    *

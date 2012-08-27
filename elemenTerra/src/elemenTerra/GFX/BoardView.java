@@ -16,7 +16,7 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
   protected int height;
   protected int width;
   protected int tileSize = 10;
-  protected int gutter = 1;
+  protected int gutter = 2;
 
   protected Board board;
   protected Game game;
@@ -25,7 +25,6 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
     this.board = board;
     width = tileSize * board.getWidth();
     height = tileSize * board.getHeight();
-
     setFocusable(true);
     requestFocus();
     addKeyListener(this);
@@ -38,15 +37,16 @@ public class BoardView extends JPanel implements KeyListener, TileKeys {
 
   @Override
     public void paintComponent(Graphics g) {
+    //default background is gray
     g.setColor(Color.gray);
     g.fillRect(0, 0, width, height);
+    
     for (int row = 0; row < board.getHeight(); row++) {
       for (int col = 0; col < board.getWidth(); col++) {
         Tile tile = board.getTile(col, row);
-
-        g.setColor(tile.getColor());
-        g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize
-                   - gutter, tileSize - gutter);
+	tile.draw(g);
+        //g.setColor(tile.getColor());
+        //g.fillRect(col * tileSize + gutter, row * tileSize + gutter, tileSize - gutter, tileSize - gutter);
       }
     }
   }

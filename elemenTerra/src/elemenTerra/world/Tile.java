@@ -1,6 +1,7 @@
 package elemenTerra.world;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import elemenTerra.entity.Entity;
 
@@ -11,6 +12,8 @@ public class Tile {
   private char identity = '0';
   private int x;
   private int y;
+  private int size = 9;
+  private int gutter = 1;
 
   public Tile(int x, int y) {
     this.x = x;
@@ -59,6 +62,16 @@ public class Tile {
 
     public String toString() {
     return occupied ? occupant.getIdentity() + "" : identity + "";
+  }
+  public void draw(Graphics g){
+    g.setColor(getColor());
+    if (occupied){
+      occupant.draw(g);
+    }else {
+      g.fillRect(x * 10 , y * 10, size, size);
+    }
+
+
   }
 
   public void die() {

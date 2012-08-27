@@ -2,12 +2,13 @@ package elemenTerra.entity.brain;
 
 import elemenTerra.world.Board;
 import elemenTerra.entity.*;
+import java.awt.Graphics;
 
 public class LiquidBrain extends SeekerBrain{
   public LiquidBrain(Ai body, Board board){
     super(body, board);
+    size = 7;
     delay = 15;
-    searchMax = 30; //normal mode
   }
 
   public void tick(){
@@ -28,5 +29,9 @@ public class LiquidBrain extends SeekerBrain{
         game.handleMove(output, body);
       }
     }
+  }
+  public void draw(Graphics g){
+    g.setColor(body.getColor());
+    g.fillRect(body.getX() * 10 , body.getY() * 10, size, size);
   }
 }

@@ -3,7 +3,7 @@ package elemenTerra.entity.brain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.awt.Graphics;
 import elemenTerra.Game;
 import elemenTerra.entity.Ai;
 import elemenTerra.entity.Entity;
@@ -11,6 +11,7 @@ import elemenTerra.world.Board;
 import elemenTerra.world.Tile;
 
 public class Brain {
+  protected int size = 10;
   protected int delay = 10;
   protected int wait = 0;
   protected Entity body;
@@ -162,6 +163,10 @@ public class Brain {
   public void passGame(Ai ai){
     ai.getBrain().setGame(game);
     ai.getDecisions().setGame(game);
+  }
+  public void draw(Graphics g){
+    g.setColor(body.getColor());
+    g.fillRect(body.getX() * 10 , body.getY() * 10, size, size);
   }
 
 
