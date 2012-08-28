@@ -153,7 +153,7 @@ public class Entity {
     for (int element = 0; element < totElements; element++){
       for (int state = 0; state < 3; state++){
         if (identity == TileKeys.interactionKey[element][state]){
-          return TileKeys.interactionKey[(element+2)%totElements];
+          return TileKeys.interactionKey[(element+(totElements-1))%totElements];
         }
       }
     }
