@@ -11,7 +11,7 @@ public class Entity {
 
   protected Brain brain;
   protected Board board;
-  protected int totElements = 4;
+  public int totElements = 3;
 
   protected int size = 9;
   protected int x, y;
@@ -43,6 +43,17 @@ public class Entity {
     this.identity = identity;
     this.originalIdentity = identity;
   }
+  public void interactionKeyPrint(){
+    System.out.println("");
+    System.out.print("analagous: ");
+    System.out.println(analagousStates);
+    System.out.print("stronger: ");
+    System.out.println(strongerStates);
+    System.out.print("weaker: ");
+    System.out.println(weakerStates);
+
+  }
+
 
   public int getX() {
     return x;

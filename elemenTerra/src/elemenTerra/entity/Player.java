@@ -23,7 +23,7 @@ public class Player extends Entity{
 
   public void giveBump(Entity e){
     char bumpIdentity = e.getIdentity();
-
+    //e.interactionKeyPrint();
     if (identity == 'X'){
       for (int index = 0; index < totElements; index++){
         if (bumpIdentity == TileKeys.gasses[index]){
@@ -66,12 +66,14 @@ public class Player extends Entity{
 
   public void handleInput(char input){
     if (input == 'r'){
-      System.out.println("Gas, Liq, Sol");
-      System.out.print(gasNum);
-      System.out.print("    ");
-      System.out.print(liquidNum);
-      System.out.print("    ");
-      System.out.println(solidNum);
+      System.out.println("");
+      System.out.print("analagous: ");
+      System.out.println(analagousStates);
+      System.out.print("stronger: ");
+      System.out.println(strongerStates);
+      System.out.print("weaker: ");
+      System.out.println(weakerStates);
+       
     }
     if (input == 'x'){
       if ((gasNum + liquidNum + solidNum) >0){

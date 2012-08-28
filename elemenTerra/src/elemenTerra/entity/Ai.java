@@ -71,7 +71,7 @@ public class Ai extends Entity {
     if (bumpIdentity == strongerStates[2]){
       decisions.strongerSolid(e);
     }
-    
+
   }
 
   public void condense(){

@@ -42,8 +42,8 @@ public class Game {
 
   public Game() {
     maps = new Maps();
-    //board = new Board(maps.randomElements());
-    board = new Board(maps.randomFourElements());
+    board = new Board(maps.randomElements());
+    //board = new Board(maps.randomFourElements());
 
     //board = new Board(maps.randomGasHuge());
     //board = new Board(maps.randomSolidHuge());
