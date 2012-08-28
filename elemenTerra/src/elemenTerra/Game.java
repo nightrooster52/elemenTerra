@@ -20,10 +20,7 @@ public class Game {
   protected Maps maps;
   protected Scanner scanner;
   protected Timer gameTimer;
-
-
-  public boolean interElementReactions = true;
-  //public boolean interElementReactions = true;
+  
 
   public String testString = "GAME REFERENCE VALID";
 
@@ -45,9 +42,11 @@ public class Game {
 
   public Game() {
     maps = new Maps();
-    board = new Board(maps.randomElements());
+    //board = new Board(maps.randomElements());
+    board = new Board(maps.randomFourElements());
 
     //board = new Board(maps.randomGasHuge());
+    //board = new Board(maps.randomSolidHuge());
     //board = new Board(maps.randomFireHuge());
     //board = new Board(maps.biasTestMap);
     //board = new Board(maps.elementMap);
@@ -163,11 +162,11 @@ public class Game {
     }
 
     gameTimer.schedule(new TimerTask() {
-      @Override
-      public void run() {
-        tick();
-      }
-    }, 0, 1000/60);
+        @Override
+          public void run() {
+          tick();
+        }
+      }, 0, 1000/60);
   }
 
   public void tick() {
@@ -178,7 +177,7 @@ public class Game {
   }
 
   @Override
-  public String toString() {
+    public String toString() {
     return board.toString();
   }
 }

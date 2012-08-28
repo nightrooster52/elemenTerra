@@ -11,7 +11,8 @@ public class Entity {
 
   protected Brain brain;
   protected Board board;
-  
+  protected int totElements = 4;
+
   protected int size = 9;
   protected int x, y;
   protected char identity = '#';
@@ -125,36 +126,39 @@ public class Entity {
   }
 
   protected char[] analagousStates(char identity){
-    for (int element = 0; element < 3; element++){
+    for (int element = 0; element < totElements; element++){
       for (int state = 0; state < 3; state++){
         if (identity == TileKeys.interactionKey[element][state]){
           return TileKeys.interactionKey[element];
         }
       }
     }
-    return TileKeys.junkCharArray;
+    return null;
   }
 
   protected char[] strongerStates(char identity){
-    for (int element = 0; element < 3; element++){
+
+    for (int element = 0; element < totElements; element++){
       for (int state = 0; state < 3; state++){
         if (identity == TileKeys.interactionKey[element][state]){
-          return TileKeys.interactionKey[(element+1)%3];
+          return TileKeys.interactionKey[(element+1)%totElements];
         }
       }
     }
-    return TileKeys.junkCharArray;
+    return null;
   }
 
   protected char[] weakerStates(char identity){
-    for (int element = 0; element < 3; element++){
+
+    for (int element = 0; element < totElements; element++){
       for (int state = 0; state < 3; state++){
         if (identity == TileKeys.interactionKey[element][state]){
-          return TileKeys.interactionKey[(element+2)%3];
+          return TileKeys.interactionKey[(element+2)%totElements];
         }
       }
     }
-    return TileKeys.junkCharArray;
+
+    return null;
   }
 
   protected void setInteractionKeys(){

@@ -25,7 +25,7 @@ public class Player extends Entity{
     char bumpIdentity = e.getIdentity();
 
     if (identity == 'X'){
-      for (int index = 0; index < 3; index++){
+      for (int index = 0; index < totElements; index++){
         if (bumpIdentity == TileKeys.gasses[index]){
           immitate(e);
           decisions = new GasPlayerDecisions(this);
@@ -88,7 +88,7 @@ public class Player extends Entity{
 
 
   public void upConvert(){
-    for (int index = 0; index < 3; index++){
+    for (int index = 0; index < totElements; index++){
       if (identity == TileKeys.liquids[index]){ //if i am a liquid
         color = TileKeys.solidColors[index]; //I become solid color
         identity = analagousStates[2];  //I take solid type
@@ -107,7 +107,7 @@ public class Player extends Entity{
   }
 
   public void downConvert(){
-    for (int index = 0; index < 3; index++){
+    for (int index = 0; index < totElements; index++){
       if (identity == TileKeys.liquids[index]){
         color = TileKeys.gasColors[index];
         identity = analagousStates[0];
@@ -152,7 +152,7 @@ public class Player extends Entity{
 
   public void absorb(Entity e){
     char particleIdentity = e.getIdentity();
-    for (int index = 0; index < 3; index++){
+    for (int index = 0; index < totElements; index++){
       if (particleIdentity == TileKeys.gasses[index]){
         gasNum++;
       }

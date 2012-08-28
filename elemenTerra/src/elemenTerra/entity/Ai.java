@@ -71,6 +71,7 @@ public class Ai extends Entity {
     if (bumpIdentity == strongerStates[2]){
       decisions.strongerSolid(e);
     }
+    
   }
 
   public void condense(){
@@ -83,7 +84,7 @@ public class Ai extends Entity {
             condensee.die();
           }else{ //target failed
             for(int j = 0; j<i; j++){//undo kills
-              //spawnAi(weakerStates[1]);
+              spawnAi(weakerStates[1]);
             }
             break;
           }
@@ -106,7 +107,7 @@ public class Ai extends Entity {
             condensee.die();
           }else{ //target failed
             for(int j = 0; j<i; j++){//undo kills
-              //spawnAi(weakerStates[0]);
+              spawnAi(weakerStates[0]);
             }
             break;
           }
@@ -221,6 +222,21 @@ public class Ai extends Entity {
       ai.setBrain(new SolidBrain(ai, board));
       ai.decisions = new SolidElementDecisions(ai);
       ai.setColor(TileKeys.darkBlue);
+      break;
+    case TileKeys.elecGas:
+      ai.setBrain(new GasBrain(ai, board));
+      ai.setColor(TileKeys.lightYellow);
+      ai.decisions = new GasElementDecisions(ai);
+      break;
+    case TileKeys.elecLiquid:
+      ai.setBrain(new LiquidBrain(ai, board));
+      ai.decisions = new LiquidElementDecisions(ai);
+      ai.setColor(TileKeys.yellow);
+      break;
+    case TileKeys.elecSolid:
+      ai.setBrain(new SolidBrain(ai, board));
+      ai.decisions = new SolidElementDecisions(ai);
+      ai.setColor(TileKeys.darkYellow);
       break;
     }
     return ai;

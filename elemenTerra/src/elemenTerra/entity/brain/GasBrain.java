@@ -25,7 +25,7 @@ public class GasBrain extends SeekerBrain {
         target = closestEntity(body.analagousStates[1]);
       }
       if (target == null){
-        target = closestEntity(body.getIdentity());
+        target = closestEntity(body.analagousStates[0]);
       }
       if (target != null){
         char output = goToTarget(target);

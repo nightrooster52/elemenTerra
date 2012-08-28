@@ -1,7 +1,6 @@
 package elemenTerra.world;
 
 import java.util.Random;
-
 import elemenTerra.TileKeys;
 
 public class Maps implements TileKeys {
@@ -123,7 +122,7 @@ public class Maps implements TileKeys {
     Random random = new Random();
     for (int i = 0; i < 9375; i++) {
       char tileChar;
-      int type = random.nextInt(30);
+      int type = random.nextInt(30); //density
 
       switch (type) {
       case 0:
@@ -152,6 +151,59 @@ public class Maps implements TileKeys {
         break;
       case 8:
         tileChar = TileKeys.earthSolid;
+        break;
+      default:
+        tileChar = TileKeys.defaultTile;
+      }
+
+      randomElements += tileChar;
+    }
+    return randomElements;
+  }
+
+  public String randomFourElements() {
+    String randomElements = "125 075 ";
+    Random random = new Random();
+    for (int i = 0; i < 9375; i++) {
+      char tileChar;
+      int type = random.nextInt(50); //density
+
+      switch (type) {
+      case 0:
+        tileChar = TileKeys.fireGas;
+        break;
+      case 1:
+        tileChar = TileKeys.fireLiquid;
+        break;
+      case 2:
+        tileChar = TileKeys.fireSolid;
+        break;
+      case 3:
+        tileChar = TileKeys.waterGas;
+        break;
+      case 4:
+        tileChar = TileKeys.waterLiquid;
+        break;
+      case 5:
+        tileChar = TileKeys.waterSolid;
+        break;
+      case 6:
+        tileChar = TileKeys.earthGas;
+        break;
+      case 7:
+        tileChar = TileKeys.earthLiquid;
+        break;
+      case 8:
+        tileChar = TileKeys.earthSolid;
+        break;
+      case 9:
+        tileChar = TileKeys.elecGas;
+        break;
+      case 10:
+        tileChar = TileKeys.elecLiquid;
+        break;
+      case 11:
+        tileChar = TileKeys.elecSolid;
         break;
       default:
         tileChar = TileKeys.defaultTile;
@@ -191,6 +243,23 @@ public class Maps implements TileKeys {
         tileChar = TileKeys.fireGas;
       } else if (type == 1) {
         //tileChar = TileKeys.waterGas;
+      }
+
+      randomElements += tileChar;
+    }
+    return randomElements;
+  }
+  public String randomSolidHuge() {
+    String randomElements = "125 075 ";
+    Random random = new Random();
+    for (int i = 0; i < 9375; i++) {
+      char tileChar = TileKeys.defaultTile;
+      int type = random.nextInt(3);
+
+      if (type == 0) {
+        tileChar = TileKeys.fireSolid;
+      } else if (type == 1) {
+	;
       }
 
       randomElements += tileChar;

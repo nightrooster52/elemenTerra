@@ -16,6 +16,10 @@ public interface TileKeys {
   Color green = new Color(0, 255, 0);
   Color darkGreen = new Color(0, 120, 0);
 
+  Color lightYellow = new Color(255, 255, 180);
+  Color yellow = new Color(255, 255, 0);
+  Color darkYellow = new Color(100, 80, 0);
+
   char defaultTile = '0';
   char blockTile = '#';
   char playerTile = 'X';
@@ -35,23 +39,26 @@ public interface TileKeys {
   char earthLiquid = 'e';
   char earthSolid = 'E';
 
+  char elecGas = 'y';
+  char elecLiquid = 'c';
+  char elecSolid = 'C';
 
-  Color[] gasColors = {lightRed, lightBlue, lightGreen};
-  Color[] liquidColors = {red, blue, green};
-  Color[] solidColors = {darkRed, darkBlue, darkGreen};
 
-  char[] gasses = {fireGas, waterGas, earthGas};
-  char[] liquids = {fireLiquid, waterLiquid, earthLiquid};
-  char[] solids = {fireSolid, waterSolid, earthSolid};
+  Color[] gasColors = {lightRed, lightBlue, lightGreen, lightYellow};
+  Color[] liquidColors = {red, blue, green, yellow};
+  Color[] solidColors = {darkRed, darkBlue, darkGreen, darkYellow};
+
+  char[] gasses = {fireGas, waterGas, earthGas, elecGas};
+  char[] liquids = {fireLiquid, waterLiquid, earthLiquid, elecLiquid};
+  char[] solids = {fireSolid, waterSolid, earthSolid, elecSolid};
 
   char[] fireStates = {fireGas, fireLiquid, fireSolid};
   char[] waterStates = {waterGas, waterLiquid, waterSolid};
   char[] earthStates = {earthGas, earthLiquid, earthSolid};
+  char[] elecStates = {elecGas, elecLiquid, elecSolid};
 
   char[] junkCharArray = {'Z'};
-  char[][] interactionKey = {fireStates, waterStates, earthStates };
-
-
+  char[][] interactionKey = {fireStates, waterStates, earthStates, elecStates};
 
 
   char[] KeyArray = { TileKeys.defaultTile, TileKeys.blockTile,
