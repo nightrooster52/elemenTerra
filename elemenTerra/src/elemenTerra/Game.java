@@ -166,7 +166,7 @@ public class Game {
           public void run() {
           tick();
         }
-      }, 0, 1000/60);
+      }, 0, 1);
   }
 
   public void tick() {
